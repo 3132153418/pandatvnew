@@ -6,12 +6,15 @@ import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.module.live.ViewPagerAdapter;
 import com.jiyun.pandatv.module.live.views.NoScrollViewPager;
+import com.jiyun.pandatv.module.livechina.viewtwo.MyGridView;
 import com.jiyun.pandatv.moudle.entity.LiveChina_BaDaBean;
 
 import java.util.ArrayList;
@@ -19,26 +22,34 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View {
-    @BindView(R.id.livechin_person)
-    ImageView livechinPerson;
-    @BindView(R.id.livechiana_tablayout)
-    TabLayout livechianaTablayout;
-    @BindView(R.id.livachiana_viewpager)
-    NoScrollViewPager livachianaViewpager;
+
+
+    @BindView(R.id.zh_tab)
+    TabLayout zhTab;
+    @BindView(R.id.zh_delete)
+    Button zhDelete;
+    @BindView(R.id.zh_lanmu)
+    LinearLayout zhLanmu;
+    @BindView(R.id.iv_ic_add)
+    ImageView ivIcAdd;
+    @BindView(R.id.zh_viewpager)
+    NoScrollViewPager zhViewpager;
     Unbinder unbinder;
+    private boolean mFlag = true;
 
 
     private List<BaseFragment> fragment_list;
     private ViewPagerAdapter adapter;
     private String[] titles = new String[]{"八达岭", "黄山", "凤凰古城", "峨眉山"};
     private int[] tags = new int[]{0, 1, 2, 3};
-
+    private MyGridView myGridView1;
+    private MyGridView myGridView2;
     //持有P层对象
     private LiveChinaContract.Presenter presenter;
+    private LinearLayout my_grid_ll;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -60,15 +71,16 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
             new LiveChinapresenter(fuyongfragment);
 
             Bundle bundle = new Bundle();
-            bundle.putInt("typetwo",tags[i]);
+            bundle.putInt("typetwo", tags[i]);
             fuyongfragment.setArguments(bundle);
             fragment_list.add(fuyongfragment);
         }
-        livechianaTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        livachianaViewpager.setNoScroll(true);
-        adapter = new ViewPagerAdapter(fragment_list, titles,getChildFragmentManager(),getContext());
-        livachianaViewpager.setAdapter(adapter);
-        livechianaTablayout.setupWithViewPager(livachianaViewpager);
+        zhTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+        zhViewpager.setOffscreenPageLimit(3);
+        zhViewpager.setNoScroll(true);
+        adapter = new ViewPagerAdapter(fragment_list, titles, getChildFragmentManager(), getContext());
+        zhViewpager.setAdapter(adapter);
+        zhTab.setupWithViewPager(zhViewpager);
     }
 
     @Override
@@ -88,6 +100,11 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     }
 
 
+    @Override
+    public void badaling(LiveChina_BaDaBean liveChina_baDaBean) {
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -102,13 +119,6 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
         super.onDestroyView();
         unbinder.unbind();
     }
-
-    @OnClick(R.id.livechin_person)
-    public void onViewClicked() {
-    }
-
-    @Override
-    public void badaling(LiveChina_BaDaBean liveChina_baDaBean) {
-
-    }
 }
+
+

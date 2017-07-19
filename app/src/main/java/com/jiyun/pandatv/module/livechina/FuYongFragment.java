@@ -63,22 +63,18 @@ public class FuYongFragment extends BaseFragment implements LiveChinaContract.Vi
                 livachinamangger();
                 return inflateyuanchuang;
             case HUANGSHAN:
-
                 View inflate2 = inflater.inflate(R.layout.livechina_pull, null);
                 livachina_pull = (PullToRefreshRecyclerView) inflate2.findViewById(R.id.livechina_pull);
                 presenter.huangshan();
                 livachinamangger();
                 return inflate2;
             case FENGHUANG:
-
                 View inflate3 = inflater.inflate(R.layout.livechina_pull, null);
                 livachina_pull = (PullToRefreshRecyclerView) inflate3.findViewById(R.id.livechina_pull);
                 presenter.fenghaung();
                 livachinamangger();
                 return inflate3;
-
             case EMEISHAN:
-
                 View inflate4 = inflater.inflate(R.layout.livechina_pull, null);
                 livachina_pull = (PullToRefreshRecyclerView) inflate4.findViewById(R.id.livechina_pull);
                 presenter.emeishan();

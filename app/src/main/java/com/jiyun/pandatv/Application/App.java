@@ -7,6 +7,8 @@ import com.jiyun.pandatv.base.BaseActivity;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
+import cn.smssdk.SMSSDK;
+
 public class App extends Application {
 
     public static BaseActivity context = null;
@@ -22,6 +24,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         UMShareAPI.get(this);
+        SMSSDK.initSDK(this, "1e506690017a4", "a627c68689e042e44ed4177f45e65638");
     }
 
 }

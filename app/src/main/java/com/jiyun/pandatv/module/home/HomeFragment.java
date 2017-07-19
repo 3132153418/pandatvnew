@@ -52,7 +52,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
         home_MyLogin_Image = (ImageView) view.findViewById(R.id.home_MyLogin_Image);
         pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.home_PullToRefreshRecyclerView);
 
-
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         pullToRefreshRecyclerView.setLayoutManager(manager);
@@ -249,6 +248,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
                         linearLayout.removeAllViews();
                         viewList.clear();
                         presenter.start();
+                        pullToRefreshRecyclerView.setRefreshComplete();
                     }
                 },2000);
             }

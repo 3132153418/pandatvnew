@@ -1,4 +1,4 @@
-package com.jiyun.pandatv;
+package com.jiyun.pandatv.wxapi;
 
 import com.umeng.weixin.callback.WXCallbackActivity;
 

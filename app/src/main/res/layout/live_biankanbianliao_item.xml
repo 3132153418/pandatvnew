@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/panda_live_talk_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="少时诵诗书"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/panda_live_talk_message"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/panda_live_talk_author"
+            android:layout_marginLeft="10dp"
+            android:maxLines="2"
+            android:maxLength="400"
+            android:text="aaaaaaaa000000000"
+            android:textSize="15sp"
+            android:textColor="#000"/>
+
+
+        <TextView
+            android:id="@+id/panda_live_talk_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:background="#bbbbbb"
+            android:padding="0.5dp"
+            android:text="0.....0" />
+
+        <TextView
+            android:id="@+id/panda_live_talk_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/panda_live_talk_total"
+            android:layout_marginRight="2dp"
+            android:paddingTop="2dp"
+            android:text="0.......0" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/paper_after_image"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+         />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/home_play_icon"
+                android:id="@+id/imageView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wrewrwe"
+                android:textColor="#f7f3f3"
+                android:id="@+id/paper_play_time"
+                android:layout_marginTop="2dp"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView"/>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/paper_after_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="465465432132136"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/paper_after_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="123132132132"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

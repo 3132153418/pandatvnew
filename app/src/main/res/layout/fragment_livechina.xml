@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="5"
-        android:gravity="center"
-        android:textSize="50sp"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="80dp"
+        android:background="#283dd9">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="直播中国"
+            android:textColor="#fcfafa"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/livechin_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/person_sign"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.TabLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/livechiana_tablayout"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"/>
+        <ImageView
+            android:id="@+id/live_china_add_channel"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:src="@drawable/live_china_add"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:padding="5dp"
+            android:background="@android:color/white"
+            />
+        <View
+            android:layout_toLeftOf="@id/live_china_add_channel"
+            android:layout_width="10dp"
+            android:layout_height="41dp"
+            android:background="@drawable/litter_hide"
+            />
+    </RelativeLayout>
+
+    <com.jiyun.pandatv.module.live.views.NoScrollViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/livachiana_viewpager"/>
 </LinearLayout>

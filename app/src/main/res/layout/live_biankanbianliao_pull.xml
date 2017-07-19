@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/lpanda_watchtalk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdfd"
+        android:paddingBottom="20px">
+
+        <Button
+            android:id="@+id/lpanda_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8px"
+            android:layout_marginTop="18px"
+            android:background="@color/colorPrimaryDark"
+            android:text="评论"
+            android:textColor="#fcfafa" />
+
+        <com.jiyun.pandatv.module.live.views.ClearEditText
+            android:id="@+id/lpanda_input"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="14px"
+            android:layout_marginRight="15px"
+            android:background="@drawable/pe_shape_border_grays"
+            android:layout_marginTop="18px"
+            android:layout_toLeftOf="@+id/lpanda_btn"
+            android:gravity="center_vertical"
+            android:hint="添加评论"
+            android:paddingLeft="3dp"
+            android:textColorHint="#c9c9c9"
+            android:inputType="textMultiLine"
+            android:textCursorDrawable="@null"
+            android:textSize="40px" />
+    </RelativeLayout>
+
+    <com.androidkun.PullToRefreshRecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/live_biankanbianliao_pull"/>
+</LinearLayout>

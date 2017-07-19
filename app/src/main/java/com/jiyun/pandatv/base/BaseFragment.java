@@ -42,11 +42,11 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        bind.unbind();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        bind.unbind();
+//    }
 
 
     protected abstract int getFragmentLayoutId();

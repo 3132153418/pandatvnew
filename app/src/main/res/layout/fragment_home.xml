@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF4621DC">
+        <ImageView
+
+            android:src="@drawable/panda_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="13dp"/>
+
+
+        <!--原创互动图片-->
+        <ImageView
+
+            android:id="@+id/home_Original_Image"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/hudong_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--登录图片-->
+        <ImageView
+            android:id="@+id/home_MyLogin_Image"
+            android:src="@drawable/person_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <com.androidkun.PullToRefreshRecyclerView
+        android:id="@+id/home_PullToRefreshRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.androidkun.PullToRefreshRecyclerView>
+</LinearLayout>

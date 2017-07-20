@@ -1,6 +1,7 @@
 package com.jiyun.pandatv.module.live.liveadapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.androidkun.adapter.BaseAdapter;
@@ -21,6 +22,13 @@ public class JingcaiAdapter extends BaseAdapter<Live_JiangCaiBean.VideoBean> {
         super(context, R.layout.paper_after_item, datas);
     }
 
+    public void setJingcaiCallback(JingCaiCallback callback) {
+        this.jingcaiCallback = callback;
+    }
+    private JingCaiCallback jingcaiCallback;
+   public interface JingCaiCallback{
+        void back(int layoutPosition);
+    }
     @Override
     public void convert(ViewHolder holder, Live_JiangCaiBean.VideoBean videoBean) {
         holder.setText(R.id.paper_after_title, videoBean.getT());
@@ -28,5 +36,12 @@ public class JingcaiAdapter extends BaseAdapter<Live_JiangCaiBean.VideoBean> {
         holder.setText(R.id.paper_play_time, videoBean.getLen());
         ImageView imageView = (ImageView) holder.itemView.findViewById(R.id.paper_after_image);
         Glide.with(App.context.getApplication()).load(videoBean.getImg()).into(imageView);//名字
+        final int layoutPosition = holder.getLayoutPosition();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jingcaiCallback.back(layoutPosition);
+            }
+        });
     }
 }

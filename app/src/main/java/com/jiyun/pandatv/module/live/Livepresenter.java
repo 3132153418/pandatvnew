@@ -20,6 +20,7 @@ import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
 import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
 import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
 import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
+import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 public class Livepresenter implements LiveContract.Presenter {
     //持有View层对象
@@ -283,4 +284,14 @@ public class Livepresenter implements LiveContract.Presenter {
             }
         });
     }
-}
+
+    @Override
+    public void video(String pid,MyHttpCallBack<VideoTwoBean> myHttpCallBack) {
+        String head =  "http://vdn.apps.cntv.cn/api/getVideoInfoForCBox.do?pid=";
+        String s = head + pid;
+        liveMoudle.video(s,myHttpCallBack);
+
+    };
+
+
+    }

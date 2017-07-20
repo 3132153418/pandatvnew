@@ -15,6 +15,7 @@ import com.androidkun.callback.PullToRefreshListener;
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseFragment;
+import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.module.live.liveadapter.DangXiongBuRangAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JianJieAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JingcaiAdapter;
@@ -36,14 +37,18 @@ import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
 import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
 import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
 import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
+import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
+import fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer;
+
 /**
  * Created by lt on 2015/12/14.直播
  */
-public class MyFragment extends BaseFragment implements LiveContract.View {
+public class MyFragment extends BaseFragment implements LiveContract.View, JingcaiAdapter.JingCaiCallback {
 
     public static final int live = 0;//直播
     public static final int Wonderful_moment = 1;//精彩一刻
@@ -261,9 +266,6 @@ public class MyFragment extends BaseFragment implements LiveContract.View {
     }
 
 
-
-
-
     @Override
     public void showLiveFragment(Live_MoreViewBean pandaLiveDuoshijiaoBean) {
 
@@ -288,6 +290,7 @@ public class MyFragment extends BaseFragment implements LiveContract.View {
     public void jiangcai(Live_JiangCaiBean paperJingCaiBean) {
         jinagcaiBeanlist.addAll(paperJingCaiBean.getVideo());
         jingcaiAdapter = new JingcaiAdapter(getContext(), jinagcaiBeanlist);
+        jingcaiAdapter.setJingcaiCallback(this);
         jingcaipull.setAdapter(jingcaiAdapter);
     }
 
@@ -340,10 +343,34 @@ public class MyFragment extends BaseFragment implements LiveContract.View {
     }
 
     @Override
+
     public void yuanchuang(Live_YuanChuangBean paperYuanChuangBean) {
         pandaYuanChuanglist.addAll(paperYuanChuangBean.getVideo());
         pandayuanchuangadapter = new PandaYuanChuangAdapter(getContext(), pandaYuanChuanglist);
 //        Log.d("MyFragment", "原创新闻" + pandaYuanChuanglist);
         jingcaipull.setAdapter(pandayuanchuangadapter);
+    }
+
+
+
+    @Override
+    public void back(int layoutPosition) {
+        final Live_JiangCaiBean.VideoBean videoBean = jinagcaiBeanlist.get(layoutPosition);
+        presenter.video(videoBean.getVid(), new MyHttpCallBack<VideoTwoBean>() {
+            @Override
+            public void onSuccess(VideoTwoBean videoTwoBean) {
+                List<VideoTwoBean.VideoBean.ChaptersBean> chapters = videoTwoBean.getVideo().getChapters();//流畅
+                String liuchangurl = chapters.get(0).getUrl();
+                List<VideoTwoBean.VideoBean.Chapters4Bean> chapters4 = videoTwoBean.getVideo().getChapters4();//高清
+                String gaoqingurl = chapters4.get(0).getUrl();
+                String title = videoTwoBean.getTitle();
+                JCFullScreenActivity.toActivity(getContext(),gaoqingurl,liuchangurl,null, PandaVedioPlayer.class,title);
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 }

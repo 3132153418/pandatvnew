@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#beb8b8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:background="#fbf9f9"
+        android:layout_height="wrap_content">
+
+<android.support.design.widget.TabLayout
+    android:id="@+id/livechina_fragment_tablayout"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    app:tabSelectedTextColor="@color/colorPrimary"
+    app:tabIndicatorHeight="3dp"
+    app:tabIndicatorColor="@color/colorPrimary"
+    android:layout_height="match_parent">
+
+</android.support.design.widget.TabLayout>
+    <ImageView
+        android:id="@+id/livechina_fragment_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/live_china_add"/>
+    </LinearLayout>
+    <com.jiyun.pandatv.module.live.views.NoScrollViewPager
+        android:id="@+id/livechina_fragment_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.jiyun.pandatv.module.live.views.NoScrollViewPager>
+
+</LinearLayout>

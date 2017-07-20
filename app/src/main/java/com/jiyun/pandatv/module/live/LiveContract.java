@@ -3,6 +3,7 @@ package com.jiyun.pandatv.module.live;
 
 import com.jiyun.pandatv.base.BasePresenter;
 import com.jiyun.pandatv.base.BaseView;
+import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
 import com.jiyun.pandatv.moudle.entity.Live_DangXiongBuRangBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
@@ -14,6 +15,7 @@ import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
 import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
 import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
 import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
+import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 public interface LiveContract {
 
@@ -36,6 +38,7 @@ public interface LiveContract {
         void pandaevent(Live_PandaEventBean paperPandaEventBean);//熊猫那些事儿
         void tebiejiemu(Live_TeBieJieMuBean paperTeBieJieMuBean);//特别节目
         void yuanchuang(Live_YuanChuangBean paperYuanChuangBean);//原创
+
     }
 
     interface Presenter extends BasePresenter {
@@ -50,6 +53,7 @@ public interface LiveContract {
         void tebiejiemu(String vsid, String n, String serviceId, String o, String of, String p);
         void yuanchuang(String vsid, String n, String serviceId, String o, String of, String p);
         void setjiangcai(String vsid, String n, String serviceId, String o, String of, String p);
+        void video(String pid, MyHttpCallBack<VideoTwoBean> myHttpCallBack);
     }
 
 

@@ -25,10 +25,12 @@ public class Urls {
     public static final String MOREVIEWLIVE = BASEURL + "PAGE14501769230331752/PAGE14501787896813312/index.json";
     //    表看錶聊
     public static final String BIANKANBIANLIAO = "http://newcomment.cntv.cn/comment/list";
-    //    后面的服务器端的接口
+    //    精彩一刻after
     public static final String LIVE_BASEURL = "http://api.cntv.cn/video/videolistById";
+    //精彩一刻
+//    http://api.cntv.cn/video/videolistById?vsid=VSET100167216881&n=7&serviceId=panda&o=desc&of=time&p=1
     //    超萌滚滚秀
-//    public static final String QW =LIVE_BASEURL;
+//    public static final String QW =http://api.cntv.cn/video/videolistById?vsid=VSET100272959126&n=7&serviceId=panda&o=desc&of=time&p=1;
 //    当熊不让（没有）
 //    public static final String SD="    http://api.cntv.cn/video/videolistById?vsid=VSET100332640004&n=7&serviceId=panda&o=desc&of=time&p=1";
     //    熊猫TOP榜VSET100237714751
@@ -50,6 +52,7 @@ public class Urls {
     /*
     *
     * 直播中国*/
+    public static final String LIVECHINAS=BASEURL+"PAGE14501775094142282/index.json";
 //    八达岭
     public static final String BADA="http://www.ipanda.com/kehuduan/liebiao/badaling/index.json";
     //  凤凰
@@ -59,7 +62,8 @@ public class Urls {
     //    峨眉山
     public static final String EMEISHAN="http://www.ipanda.com/kehuduan/liebiao/emeishan/index.json";
 
-
+//视频
+    public static final String videourl="http://vdn.apps.cntv.cn/api/getVideoInfoForCBox.do";
 
     //    个人中心
 //注册

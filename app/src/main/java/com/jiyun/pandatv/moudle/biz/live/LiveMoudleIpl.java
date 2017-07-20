@@ -15,6 +15,7 @@ import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
 import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
 import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
 import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
+import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -156,5 +157,13 @@ public class LiveMoudleIpl implements LiveMoudle {
         map.put("p",p);
         okHttpUtils.get(Urls.LIVE_BASEURL, map, callBack);
     }
+
+    @Override
+    public void video(String url,MyHttpCallBack<VideoTwoBean> callBack) {
+
+        okHttpUtils.get(url,null, callBack);
+    }
+
+
 
 }

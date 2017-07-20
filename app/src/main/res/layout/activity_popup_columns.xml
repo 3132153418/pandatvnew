@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#faf8f8">
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <com.usian.android_app_oschina.view.DragGridView
+            android:id="@+id/gridView_channel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dip"
+            android:layout_marginRight="14dip"
+            android:gravity="center"
+            android:horizontalSpacing="14dip"
+            android:numColumns="4"
+            android:scrollbars="vertical"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="8.0dp"
+            />
+        <TextView
+            android:layout_margin="15dp"
+            android:text="点击添加更多栏目"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <com.usian.android_app_oschina.view.DragGridView
+            android:id="@+id/gridView_channel_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dip"
+            android:layout_marginRight="14dip"
+            android:gravity="center"
+            android:horizontalSpacing="14dip"
+            android:numColumns="4"
+            android:scrollbars="vertical"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="8.0dp" />
+    </LinearLayout>
+
+
+</ScrollView>

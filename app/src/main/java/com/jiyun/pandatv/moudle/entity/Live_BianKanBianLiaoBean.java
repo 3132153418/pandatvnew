@@ -1,13 +1,16 @@
 package com.jiyun.pandatv.moudle.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/13.
  */
 
-public class Live_BianKanBianLiaoBean {
+public class Live_BianKanBianLiaoBean implements Serializable{
 
+
+    private static final long serialVersionUID = 7259552740142932155L;
 
     @Override
     public String toString() {
@@ -64,7 +67,9 @@ public class Live_BianKanBianLiaoBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
+        private static final long serialVersionUID = 3688209443319427516L;
+
         @Override
         public String toString() {
             return "DataBean{" +
@@ -119,13 +124,16 @@ public class Live_BianKanBianLiaoBean {
             this.content = content;
         }
 
-        public static class ReplyBean {
+        public static class ReplyBean implements Serializable {
+            private static final long serialVersionUID = 8725921248123279693L;
         }
 
-        public static class ReplyCountBean {
+        public static class ReplyCountBean implements Serializable{
+            private static final long serialVersionUID = -647130206859468274L;
         }
 
-        public static class ContentBean {
+        public static class ContentBean implements Serializable{
+            private static final long serialVersionUID = -8301204187105864570L;
             /**
              * pid : 41403692
              * tid : 41403692

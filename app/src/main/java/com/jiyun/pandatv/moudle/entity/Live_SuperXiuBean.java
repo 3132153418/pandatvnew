@@ -2,13 +2,15 @@ package com.jiyun.pandatv.moudle.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/15.
  */
-public class Live_SuperXiuBean {
+public class Live_SuperXiuBean implements Serializable{
 
+    private static final long serialVersionUID = -1858250142304248770L;
     /**
      * videoset : {"0":{"vsid":"VSET100272959126","name":"77滚滚秀","img":"http://p1.img.cctvpic.com/photoAlbum/vms/standard/img/2016/7/4/VSETBr7Ufabb0BvOFDWAzU1Z160704.jpg","enname":"","url":"http://tv.cntv.cn/videoset/VSET100272959126","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"","sbsj":"","sbpd":"","desc":"《77滚滚秀》是一档集合所有滚滚精彩瞬间的娱乐、搞笑类节目，在这里你可以看到滚滚们搞笑、尴尬、萌萌哒，以及前所未见的所有神\u201c技能\u201d，每周五准时更新，还有更多互动和奖品等着你，快来加入我们吧。","playdesc":"","zcr":"","fcl":""},"count":"70"}
      * video : [{"vsid":"VSET100272959126","order":"67","vid":"00362cdfea104d7298feacfbe8b40549","t":"《77滚滚秀》 20170409 第六十七期：当时我就震惊了","url":"http://tv.cntv.cn/video/VSET100272959126/00362cdfea104d7298feacfbe8b40549","ptime":"2017-04-09 17:30:45","img":"http://p2.img.cctvpic.com/fmspic/2017/04/09/00362cdfea104d7298feacfbe8b40549-87.jpg","len":"00:02:34","em":"CM01"},{"vsid":"VSET100272959126","order":"66","vid":"cea3a33cd54a45988d0512d65b9b2aae","t":"《77滚滚秀》 20170331 第六十六期：寻奶大作战","url":"http://tv.cntv.cn/video/VSET100272959126/cea3a33cd54a45988d0512d65b9b2aae","ptime":"2017-03-31 18:33:24","img":"http://p2.img.cctvpic.com/fmspic/2017/03/31/cea3a33cd54a45988d0512d65b9b2aae-91.jpg","len":"00:02:41","em":"CM01"},{"vsid":"VSET100272959126","order":"65","vid":"2385afcf3a2b4546a8a205ff81f01d47","t":"《77滚滚秀》 20170325 第六十五期：爱挤油的团子","url":"http://tv.cntv.cn/video/VSET100272959126/2385afcf3a2b4546a8a205ff81f01d47","ptime":"2017-03-25 15:39:07","img":"http://p4.img.cctvpic.com/fmspic/2017/03/25/2385afcf3a2b4546a8a205ff81f01d47-87.jpg","len":"00:02:34","em":"CM01"},{"vsid":"VSET100272959126","order":"64","vid":"3c6b9ac4badc4b06a0ec5746fcd15ec8","t":"《77滚滚秀》 20170318 第六十四期：至尊唱片MV","url":"http://tv.cntv.cn/video/VSET100272959126/3c6b9ac4badc4b06a0ec5746fcd15ec8","ptime":"2017-03-18 19:42:01","img":"http://p4.img.cctvpic.com/fmspic/2017/03/18/3c6b9ac4badc4b06a0ec5746fcd15ec8-129.jpg","len":"00:04:05","em":"CM01"},{"vsid":"VSET100272959126","order":"63","vid":"7588082c0abe44e99d006bae0ac926c7","t":"《77滚滚秀》 20170313 第六十三期：聪明滚滚一大堆！","url":"http://tv.cntv.cn/video/VSET100272959126/7588082c0abe44e99d006bae0ac926c7","ptime":"2017-03-13 13:13:37","img":"http://p1.img.cctvpic.com/fmspic/2017/03/13/7588082c0abe44e99d006bae0ac926c7-99.jpg","len":"00:02:57","em":"CM01"},{"vsid":"VSET100272959126","order":"62","vid":"072081c57c7a412caf97380bd591ad91","t":"《77滚滚秀》 20170224 第六十二期：这团子交给你来守护吧！","url":"http://tv.cntv.cn/video/VSET100272959126/072081c57c7a412caf97380bd591ad91","ptime":"2017-02-24 19:43:57","img":"http://p1.img.cctvpic.com/fmspic/2017/02/24/072081c57c7a412caf97380bd591ad91-92.jpg","len":"00:02:44","em":"CM01"},{"vsid":"VSET100272959126","order":"61","vid":"3bd6524358714403bf52c3331fc68214","t":"《77滚滚秀》 20170217 第六十一期：和滚滚一起趴的周末!","url":"http://tv.cntv.cn/video/VSET100272959126/3bd6524358714403bf52c3331fc68214","ptime":"2017-02-17 17:50:13","img":"http://p2.img.cctvpic.com/fmspic/2017/02/17/3bd6524358714403bf52c3331fc68214-87.jpg","len":"00:02:34","em":"CM01"}]
@@ -33,7 +35,8 @@ public class Live_SuperXiuBean {
         this.video = video;
     }
 
-    public static class VideosetBean {
+    public static class VideosetBean implements Serializable{
+        private static final long serialVersionUID = -7520508055953929517L;
         /**
          * 0 : {"vsid":"VSET100272959126","name":"77滚滚秀","img":"http://p1.img.cctvpic.com/photoAlbum/vms/standard/img/2016/7/4/VSETBr7Ufabb0BvOFDWAzU1Z160704.jpg","enname":"","url":"http://tv.cntv.cn/videoset/VSET100272959126","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"","sbsj":"","sbpd":"","desc":"《77滚滚秀》是一档集合所有滚滚精彩瞬间的娱乐、搞笑类节目，在这里你可以看到滚滚们搞笑、尴尬、萌萌哒，以及前所未见的所有神\u201c技能\u201d，每周五准时更新，还有更多互动和奖品等着你，快来加入我们吧。","playdesc":"","zcr":"","fcl":""}
          * count : 70
@@ -59,7 +62,8 @@ public class Live_SuperXiuBean {
             this.count = count;
         }
 
-        public static class _$0Bean {
+        public static class _$0Bean implements Serializable{
+            private static final long serialVersionUID = 8616888188200002455L;
             /**
              * vsid : VSET100272959126
              * name : 77滚滚秀
@@ -256,7 +260,8 @@ public class Live_SuperXiuBean {
         }
     }
 
-    public static class VideoBean {
+    public static class VideoBean implements Serializable{
+        private static final long serialVersionUID = 2270318602890316646L;
         /**
          * vsid : VSET100272959126
          * order : 67

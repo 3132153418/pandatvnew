@@ -9,10 +9,15 @@ import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -22,6 +27,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   /**
    * 刚启动全屏时的播放状态
    */
+
   static int CURRENT_STATE = -1;      //当前的状态
   public static String GAOQINGURL;     //高清
   public static String LIUCHANGURL;     //流畅
@@ -32,8 +38,6 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   PandaVedioPlayer pandaVedioPlayer;
   private AudioManager audioManager;
   private MyVolumeReceiver mVolumeReceiver;
-  private String newGAOQINGURL = "http://2449.vod.myqcloud.com/2449_bfbbfa3cea8f11e5aac3db03cda99974.f20.mp4";
-
 
   //从正常状态下进入视频播放
   static void toActivityFromNormal(Context context, int state, String GAOQINGURL, Class videoPlayClass, Object... obj) {
@@ -77,6 +81,21 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
     pandaVedioPlayer.setStateAndUi(CURRENT_STATE);
     pandaVedioPlayer.setSwitchListener(this);
 
+    if (!NetUtil.isWifiConnected(this)) {
+      //如果是移动流量链接
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          showTipPop();
+        }
+      }, 1000);
+    }else{
+      //如果不是流量链接自动播放
+      automaticPlay();
+    }
+  }
+
+  private void automaticPlay() {
     if (pandaVedioPlayer.IF_FULLSCREEN_IS_DIRECTLY) {
       //如果直接充满全屏，就点击播放按钮自动播放
       pandaVedioPlayer.ivStart.performClick();
@@ -103,7 +122,38 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
       e.printStackTrace();
     }
   }
-
+  public void showTipPop() {
+    View dialogView = View.inflate(JCFullScreenActivity.this,R.layout.popwindow_iswifi,null);
+    // 提示信息
+    final TextView tipTv = (TextView) dialogView.findViewById(R.id.tv_tip);
+    // 创建弹出对话框，设置弹出对话框的背景为圆角
+    final PopupWindow tipPw = new PopupWindow(dialogView, FrameLayout.LayoutParams.WRAP_CONTENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT, true);
+    // 响应返回键
+    tipPw.setFocusable(true);
+    // Cancel按钮及其处理事件
+    final TextView btnCancel = (TextView) dialogView
+            .findViewById(R.id.btn_cancel);
+    btnCancel.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        if (tipPw != null && tipPw.isShowing()) {
+          tipPw.dismiss();// 关闭
+        }
+      }
+    });
+    final TextView btnOk = (TextView) dialogView.findViewById(R.id.btn_ok);
+    btnOk.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        if (tipPw != null && tipPw.isShowing()) {
+          tipPw.dismiss();// 关闭
+        }
+        //dosomething
+        automaticPlay();
+      }
+    });
+    // 显示RoundCorner对话框
+    tipPw.showAtLocation(dialogView, Gravity.CENTER, 0, 0);
+  }
   private void setAndRegisterVolumeReceiver() {
     mVolumeReceiver = new MyVolumeReceiver();
     IntentFilter filter = new IntentFilter();
@@ -127,6 +177,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    Log.d("JC", "销毁了Activity");
     unregisterReceiver(mVolumeReceiver);
   }
 

@@ -38,7 +38,6 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
     private List<BaseFragment> fragment_list;
     private ViewPagerAdapter adapter;
     //持有P层对象
-
     private LiveContract.Presenter presenter;
     private String[] titles = new String[]{"直播", "精彩一刻", "当熊不让", "超萌滚滚秀","熊猫档案", "熊猫TOP榜", "熊猫那些事儿", "特别节目","原创新闻"};
     private int[] tags  = new int[]{0,1,2,3,4,5,6,7,8};

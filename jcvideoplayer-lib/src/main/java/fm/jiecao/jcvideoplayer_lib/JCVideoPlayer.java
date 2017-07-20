@@ -72,7 +72,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
   protected int screenHeight;//屏幕高度
   protected AudioManager mAudioManager;//音频管理器
 
-  protected int threshold = 80;
+  protected int threshold = 40;
   protected float downX;//按下的x轴坐标点
   protected float downY;//按下的y轴坐标点
   protected boolean changeVolume = false;//是否改变音量
@@ -99,9 +99,11 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
     super(context, attrs);
     init(context);
   }
+
   //初始化基本的控件
   protected void init(Context context) {
-    View.inflate(context, getLayoutId(),this);
+    View inflate = View.inflate(context, getLayoutId(), this);
+//    showTipPop(inflate);
     ivStart = (ImageView) findViewById(R.id.start);
     ivFullScreen = (ImageView) findViewById(R.id.fullscreen);
     skProgress = (SeekBar) findViewById(R.id.progress);
@@ -211,6 +213,9 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
           }
         }
         JCMediaManager.intance().mediaPlayer.start();
+        if (PandaVedioPlayer.currentPosition!=0) {
+          JCMediaManager.intance().mediaPlayer.seekTo(PandaVedioPlayer.currentPosition);
+        }
         setStateAndUi(CURRENT_STATE_PLAYING);
       }
     } else if (i == R.id.fullscreen) {
@@ -316,7 +321,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
           }
           //如果是改变音量
           if (changeVolume) {
-            showVolumDialog(-deltaY);
+//            showVolumDialog(-deltaY);
           }
           break;
         case MotionEvent.ACTION_UP:
@@ -465,19 +470,18 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
   private void setDisplayCaseFailse() {
     try {
-//      if (PandaVedioPlayer.currentPosition!=0) {
-//        JCMediaManager.mediaPlayer.seekTo(PandaVedioPlayer.currentPosition);
-//      }
+      Log.d("JC", "JCMediaManager.intance().mediaPlayer"+(JCMediaManager.intance().mediaPlayer == null)+"");
+      Log.d("JC", "surfaceHolder"+(surfaceHolder == null)+"");
       JCMediaManager.intance().mediaPlayer.setDisplay(surfaceHolder);
     } catch (IllegalArgumentException e) {
       Log.i(TAG, "recreate surfaceview from IllegalArgumentException");
       FalseSetDisPlay = true;
-      addSurfaceView();
+//      addSurfaceView();
       e.printStackTrace();
     } catch (IllegalStateException e1) {
       Log.i(TAG, "recreate surfaceview from IllegalStateException");
       FalseSetDisPlay = true;
-      addSurfaceView();
+//      addSurfaceView();
       e1.printStackTrace();
     }
   }
@@ -497,6 +501,10 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
   public void onPrepared() {
     if (CURRENT_STATE != CURRENT_STATE_PREPAREING) return;
     JCMediaManager.intance().mediaPlayer.start();
+    //切换以后自动快进到上次播放位置
+    if (PandaVedioPlayer.currentPosition!=0) {
+      JCMediaManager.mediaPlayer.seekTo(PandaVedioPlayer.currentPosition);
+    }
     startProgressTimer();
     setStateAndUi(CURRENT_STATE_PLAYING);
   }

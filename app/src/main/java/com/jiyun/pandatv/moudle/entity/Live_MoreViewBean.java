@@ -1,13 +1,15 @@
 package com.jiyun.pandatv.moudle.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/13.
  */
 
-public class Live_MoreViewBean {
+public class Live_MoreViewBean implements Serializable{
 
+    private static final long serialVersionUID = -4137497303806875270L;
     private List<ListBean> list;
 
     public List<ListBean> getList() {
@@ -18,7 +20,8 @@ public class Live_MoreViewBean {
         this.list = list;
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable{
+        private static final long serialVersionUID = -6234495031857014406L;
         /**
          * url :
          * image : http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/6/14/1497428381378_816.jpg

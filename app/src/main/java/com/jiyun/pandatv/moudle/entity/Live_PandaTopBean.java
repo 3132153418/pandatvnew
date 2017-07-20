@@ -2,12 +2,14 @@ package com.jiyun.pandatv.moudle.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/15.
  */
-public class Live_PandaTopBean {
+public class Live_PandaTopBean implements Serializable{
+    private static final long serialVersionUID = 962898188802836531L;
     /**
      * videoset : {"0":{"vsid":"VSET100284428835","name":"熊猫TOP榜","img":"http://p1.img.cctvpic.com/photoAlbum/vms/standard/img/2016/8/5/VSETvxHANBMkCKTqyPatfdBz160805.jpg","enname":"其他","url":"http://tv.cntv.cn/videoset/VSET100284428835","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"","sbsj":"","sbpd":"其他","desc":"这是一档每周五更新的盘点类节目，每周盘点近期最萌、最酷、最搞笑的直播精彩画面","playdesc":"","zcr":"","fcl":""},"count":"55"}
      * video : [{"vsid":"VSET100284428835","order":"55","vid":"9a29f4991e7a48469729026e18ed9de1","t":"《熊猫TOP榜》 20170710 第二季第5期：煤炭兄妹的日常之你抢我抢","url":"http://tv.cntv.cn/video/VSET100284428835/9a29f4991e7a48469729026e18ed9de1","ptime":"2017-07-10 13:53:27","img":"http://p5.img.cctvpic.com/fmspic/2017/07/10/9a29f4991e7a48469729026e18ed9de1-129.jpg?p=2&h=120","len":"00:04:55","em":"CM01"},{"vsid":"VSET100284428835","order":"54","vid":"45f281a7e16540fd8823d67c75149d92","t":"《熊猫TOP榜》 20170703 第二季第四期：滚滚造型大赛","url":"http://tv.cntv.cn/video/VSET100284428835/45f281a7e16540fd8823d67c75149d92","ptime":"2017-07-03 14:43:25","img":"http://p5.img.cctvpic.com/fmspic/2017/07/03/45f281a7e16540fd8823d67c75149d92-129.jpg?p=2&h=120","len":"00:03:59","em":"CM01"},{"vsid":"VSET100284428835","order":"53","vid":"3998ae8b8a764b8e88e7dc7d75f331e4","t":"《熊猫TOP榜》 20170626 第二季第3期.这是一个神奇的院子","url":"http://tv.cntv.cn/video/VSET100284428835/3998ae8b8a764b8e88e7dc7d75f331e4","ptime":"2017-06-26 16:23:08","img":"http://p3.img.cctvpic.com/fmspic/2017/06/26/3998ae8b8a764b8e88e7dc7d75f331e4-129.jpg?p=2&h=120","len":"00:04:42","em":"CM01"},{"vsid":"VSET100284428835","order":"52","vid":"99fd0bb05e1d49d999048c20dc7b49b9","t":"《熊猫TOP榜》 20170619 第二季.第2期.夏天和泡澡更配哦(成片)","url":"http://tv.cntv.cn/video/VSET100284428835/99fd0bb05e1d49d999048c20dc7b49b9","ptime":"2017-06-19 14:47:12","img":"http://p4.img.cctvpic.com/fmspic/2017/06/19/99fd0bb05e1d49d999048c20dc7b49b9-129.jpg","len":"00:03:32","em":"CM01"},{"vsid":"VSET100284428835","order":"51","vid":"06ab416eb6a04d03848bb2a4bd4e6d52","t":"《熊猫TOP榜》 20170612 第二季第一期：窝头窝头请赐予我力量吧","url":"http://tv.cntv.cn/video/VSET100284428835/06ab416eb6a04d03848bb2a4bd4e6d52","ptime":"2017-06-12 15:47:04","img":"http://p1.img.cctvpic.com/fmspic/2017/06/12/06ab416eb6a04d03848bb2a4bd4e6d52-129.jpg","len":"00:04:41","em":"CM01"},{"vsid":"VSET100284428835","order":"50","vid":"2e246a096bb544d8a923c41b063c7a71","t":"《熊猫TOP榜》 20170605 第五十期 吃粽子、过儿童节 这样的熊生 巴适","url":"http://tv.cntv.cn/video/VSET100284428835/2e246a096bb544d8a923c41b063c7a71","ptime":"2017-06-05 15:39:11","img":"http://p2.img.cctvpic.com/fmspic/2017/06/05/2e246a096bb544d8a923c41b063c7a71-129.jpg","len":"00:04:40","em":"CM01"},{"vsid":"VSET100284428835","order":"49","vid":"66b6a588989a4ee7affe9f61202925f0","t":"《熊猫TOP榜》 20170529 第四十九期：卖萌和才华于一身的功夫熊猫","url":"http://tv.cntv.cn/video/VSET100284428835/66b6a588989a4ee7affe9f61202925f0","ptime":"2017-05-29 13:47:33","img":"http://p4.img.cctvpic.com/fmspic/2017/05/29/66b6a588989a4ee7affe9f61202925f0-129.jpg","len":"00:03:49","em":"CM01"}]
@@ -32,7 +34,8 @@ public class Live_PandaTopBean {
         this.video = video;
     }
 
-    public static class VideosetBean {
+    public static class VideosetBean implements Serializable{
+        private static final long serialVersionUID = -7906351036452243806L;
         /**
          * 0 : {"vsid":"VSET100284428835","name":"熊猫TOP榜","img":"http://p1.img.cctvpic.com/photoAlbum/vms/standard/img/2016/8/5/VSETvxHANBMkCKTqyPatfdBz160805.jpg","enname":"其他","url":"http://tv.cntv.cn/videoset/VSET100284428835","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"","sbsj":"","sbpd":"其他","desc":"这是一档每周五更新的盘点类节目，每周盘点近期最萌、最酷、最搞笑的直播精彩画面","playdesc":"","zcr":"","fcl":""}
          * count : 55
@@ -58,7 +61,8 @@ public class Live_PandaTopBean {
             this.count = count;
         }
 
-        public static class _$0Bean {
+        public static class _$0Bean implements Serializable{
+            private static final long serialVersionUID = 5988136547665523075L;
             /**
              * vsid : VSET100284428835
              * name : 熊猫TOP榜
@@ -255,7 +259,8 @@ public class Live_PandaTopBean {
         }
     }
 
-    public static class VideoBean {
+    public static class VideoBean implements Serializable{
+        private static final long serialVersionUID = 961545908515414563L;
         /**
          * vsid : VSET100284428835
          * order : 55

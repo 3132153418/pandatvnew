@@ -2,13 +2,15 @@ package com.jiyun.pandatv.moudle.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/15.
  */
-public class Live_PandaTxtBean {
+public class Live_PandaTxtBean implements Serializable{
 
+    private static final long serialVersionUID = 7547178462986423296L;
     /**
      * videoset : {"0":{"vsid":"VSET100340574858","name":"熊猫档案","img":"http://p1.img.cctvpic.com/photoAlbum/vms/standard/img/2017/5/10/VSETVFWrHiS4RXSTWVVVFmDV170510.jpg","enname":"其他","url":"http://tv.cntv.cn/videoset/VSET100340574858","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"熊猫直播","sbsj":"","sbpd":"其他","desc":"请你现在开始做到牢记五大认猫大法，每周跟着熊猫档案潜心学习，留心观察，融会贯通。说不定哪一天，你就能在茫茫熊海中focus你的心上熊。","playdesc":"","zcr":"","fcl":""},"count":"10"}
      * video : [{"vsid":"VSET100340574858","order":"10","vid":"19e07c13e3b8463399a5c10b132f090b","t":"《熊猫档案》 20170713 他因爆料太多网红黑料，竟荣登当红节目主角","url":"http://tv.cntv.cn/video/VSET100340574858/19e07c13e3b8463399a5c10b132f090b","ptime":"2017-07-13 18:15:28","img":"http://p2.img.cctvpic.com/fmspic/2017/07/13/19e07c13e3b8463399a5c10b132f090b-69.jpg?p=2&h=120","len":"00:03:25","em":"CM01"},{"vsid":"VSET100340574858","order":"9","vid":"24a1ae38737c44a2a211babb3c6dee3d","t":"《熊猫档案》 20170706 成长外挂第四期：文文演技爆发 实力演绎\u201c双面男神\u201d","url":"http://tv.cntv.cn/video/VSET100340574858/24a1ae38737c44a2a211babb3c6dee3d","ptime":"2017-07-06 15:19:04","img":"http://p3.img.cctvpic.com/fmspic/2017/07/06/24a1ae38737c44a2a211babb3c6dee3d-189.jpg?p=2&h=120","len":"00:05:36","em":"CM01"},{"vsid":"VSET100340574858","order":"8","vid":"c675df403f964fd3a01c66993281ca91","t":"《熊猫档案》 20170629 认猫插件第四期：是他，把众鲜肉秒帅成渣","url":"http://tv.cntv.cn/video/VSET100340574858/c675df403f964fd3a01c66993281ca91","ptime":"2017-06-29 15:05:16","img":"http://p4.img.cctvpic.com/fmspic/2017/06/29/c675df403f964fd3a01c66993281ca91-129.jpg?p=2&h=120","len":"00:05:11","em":"CM01"},{"vsid":"VSET100340574858","order":"7","vid":"2698634a7a9445a9977b73f92d371e33","t":"《熊猫档案》 20170615 成长外挂第三期：有一种爱叫做\u201c奉黄传奇\u201d","url":"http://tv.cntv.cn/video/VSET100340574858/2698634a7a9445a9977b73f92d371e33","ptime":"2017-06-15 16:19:03","img":"http://p4.img.cctvpic.com/fmspic/2017/06/15/2698634a7a9445a9977b73f92d371e33-129.jpg","len":"00:05:22","em":"CM01"},{"vsid":"VSET100340574858","order":"6","vid":"6160fa931c26446c99a4309bf8b66fb7","t":"《熊猫档案》 20170608 认猫插件第三期：教你以正确的姿势品鉴梅菜扣肉","url":"http://tv.cntv.cn/video/VSET100340574858/6160fa931c26446c99a4309bf8b66fb7","ptime":"2017-06-08 12:42:09","img":"http://p4.img.cctvpic.com/fmspic/2017/06/08/6160fa931c26446c99a4309bf8b66fb7-129.jpg","len":"00:05:22","em":"CM01"},{"vsid":"VSET100340574858","order":"5","vid":"3c48ab5014b245babaab0a285f6346b4","t":"《熊猫档案》 20170601 成长外挂第二期：一个被大侠梦耽误的文学青年","url":"http://tv.cntv.cn/video/VSET100340574858/3c48ab5014b245babaab0a285f6346b4","ptime":"2017-06-01 17:22:45","img":"http://p2.img.cctvpic.com/fmspic/2017/06/01/3c48ab5014b245babaab0a285f6346b4-95.jpg","len":"00:02:50","em":"CM01"},{"vsid":"VSET100340574858","order":"4","vid":"9d8cf7b2fc67428187bbd9cb46df747c","t":"《熊猫档案》 20170525 认猫插件第二期：天生忧郁气质的诗人","url":"http://tv.cntv.cn/video/VSET100340574858/9d8cf7b2fc67428187bbd9cb46df747c","ptime":"2017-05-25 17:02:13","img":"http://p1.img.cctvpic.com/fmspic/2017/05/25/9d8cf7b2fc67428187bbd9cb46df747c-129.jpg","len":"00:04:06","em":"CM01"}]
@@ -33,7 +35,8 @@ public class Live_PandaTxtBean {
         this.video = video;
     }
 
-    public static class VideosetBean {
+    public static class VideosetBean implements Serializable{
+        private static final long serialVersionUID = -8067587391021915399L;
         /**
          * 0 : {"vsid":"VSET100340574858","name":"熊猫档案","img":"http://p1.img.cctvpic.com/photoAlbum/vms/standard/img/2017/5/10/VSETVFWrHiS4RXSTWVVVFmDV170510.jpg","enname":"其他","url":"http://tv.cntv.cn/videoset/VSET100340574858","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"熊猫直播","sbsj":"","sbpd":"其他","desc":"请你现在开始做到牢记五大认猫大法，每周跟着熊猫档案潜心学习，留心观察，融会贯通。说不定哪一天，你就能在茫茫熊海中focus你的心上熊。","playdesc":"","zcr":"","fcl":""}
          * count : 10
@@ -59,7 +62,8 @@ public class Live_PandaTxtBean {
             this.count = count;
         }
 
-        public static class _$0Bean {
+        public static class _$0Bean implements Serializable{
+            private static final long serialVersionUID = 6473934841536528457L;
             /**
              * vsid : VSET100340574858
              * name : 熊猫档案
@@ -256,7 +260,8 @@ public class Live_PandaTxtBean {
         }
     }
 
-    public static class VideoBean {
+    public static class VideoBean implements Serializable{
+        private static final long serialVersionUID = -7449972592255203576L;
         /**
          * vsid : VSET100340574858
          * order : 10

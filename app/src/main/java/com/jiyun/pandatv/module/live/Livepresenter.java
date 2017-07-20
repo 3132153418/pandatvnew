@@ -4,6 +4,7 @@ package com.jiyun.pandatv.module.live;
 import android.util.Log;
 
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.biz.live.LiveMoudle;
@@ -42,24 +43,32 @@ public class Livepresenter implements LiveContract.Presenter {
     @Override
     public void loadDuoshijiaoData() {
 
-        liveMoudle.moreview(new MyHttpCallBack<Live_MoreViewBean>() {
-            @Override
-            public void onSuccess(final Live_MoreViewBean live_moreViewBean) {
-                //成功的回调
-                App.context.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        liveview.showLiveFragment(live_moreViewBean);
-                        L.d("多視角", live_moreViewBean.toString());
-                    }
-                });
-            }
+        ACache aCache = ACache.get(App.context);
+        Live_MoreViewBean live_moreViewBean = (Live_MoreViewBean) aCache.getAsObject("Live_MoreViewBean");
+        if (live_moreViewBean==null) {
+            Log.d("TAG","没有缓存数据");
+            liveMoudle.moreview(new MyHttpCallBack<Live_MoreViewBean>() {
+                @Override
+                public void onSuccess(final Live_MoreViewBean live_moreViewBean) {
+                    //成功的回调
+                    App.context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            liveview.showLiveFragment(live_moreViewBean);
+                            L.d("多視角", live_moreViewBean.toString());
+                        }
+                    });
+                }
 
-            @Override
-            public void onError(int errorCode, String errorMsg) {
+                @Override
+                public void onError(int errorCode, String errorMsg) {
 //                Log.d("Livepresenter", errorMsg);
-            }
-        });
+                }
+            });
+        }else{
+            Log.d("TAG","拿到了缓存数据");
+            liveview.showLiveFragment(live_moreViewBean);
+        }
     }
 
     @Override

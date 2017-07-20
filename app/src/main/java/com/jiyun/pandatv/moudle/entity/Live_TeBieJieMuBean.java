@@ -2,12 +2,14 @@ package com.jiyun.pandatv.moudle.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/15.
  */
-public class Live_TeBieJieMuBean {
+public class Live_TeBieJieMuBean implements Serializable{
+    private static final long serialVersionUID = -6984820260619668802L;
     /**
      * videoset : {"0":{"vsid":"VSET100167308855","name":"熊猫频道-特别节目","img":"http://p1.img.cctvpic.com/fmspic/vms/image/2013/06/21/VSET_1371809044488847.jpg","enname":"其他","url":"http://tv.cntv.cn/videoset/VSET100167308855","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"熊猫直播","sbsj":"2013-05-01","sbpd":"其他","desc":"熊猫频道采访野生动物保护专家、熊猫守护使、到访基地的名人，以人类的角度展现熊猫世界。","playdesc":"","zcr":"","fcl":""},"count":"246"}
      * video : [{"vsid":"VSET100167308855","order":"240","vid":"241dff898424469e98196f8b38fad15a","t":"《萌！遍地\u201c国宝\u201d亮相都江堰巡游》 20170708","url":"http://tv.cntv.cn/video/VSET100167308855/241dff898424469e98196f8b38fad15a","ptime":"2017-07-08 11:22:50","img":"http://p3.img.cctvpic.com/fmspic/2017/07/08/241dff898424469e98196f8b38fad15a-1392.jpg?p=2&h=120","len":"00:46:45","em":"CM01"},{"vsid":"VSET100167308855","order":"239","vid":"7f8bd4ba2a6b4281b364b24b72c4bbc2","t":"《特别节目》 20170706 最萌外交官\u2014\u2014\u201c梦梦\u201d\u201c娇庆\u201d开启新生活","url":"http://tv.cntv.cn/video/VSET100167308855/7f8bd4ba2a6b4281b364b24b72c4bbc2","ptime":"2017-07-06 11:58:05","img":"http://p4.img.cctvpic.com/fmspic/2017/07/06/7f8bd4ba2a6b4281b364b24b72c4bbc2-50.jpg?p=2&h=120","len":"00:01:39","em":"CM01"},{"vsid":"VSET100167308855","order":"238","vid":"259ede2d6f37479c8cb5e66f5cdd24f2","t":"《大熊猫舌尖上的窝窝头》 20170621","url":"http://tv.cntv.cn/video/VSET100167308855/259ede2d6f37479c8cb5e66f5cdd24f2","ptime":"2017-06-21 11:34:15","img":"http://p1.img.cctvpic.com/fmspic/2017/06/21/259ede2d6f37479c8cb5e66f5cdd24f2-2467.jpg?p=2&h=120","len":"00:41:07","em":"CM01"},{"vsid":"VSET100167308855","order":"237","vid":"4a83f88c5c1f4a04a734125955ab8c8c","t":"《熊猫特别节目》 20170606 关注旅日大熊猫回国","url":"http://tv.cntv.cn/video/VSET100167308855/4a83f88c5c1f4a04a734125955ab8c8c","ptime":"2017-06-06 11:19:01","img":"http://p4.img.cctvpic.com/fmspic/2017/06/06/4a83f88c5c1f4a04a734125955ab8c8c-130.jpg","len":"00:05:24","em":"CM01"},{"vsid":"VSET100167308855","order":"236","vid":"3d0d1a5e92a246158a20ab38c3c46290","t":"《在现场》 20170531 海归大熊猫\u201c宝宝\u201d的早晨","url":"http://tv.cntv.cn/video/VSET100167308855/3d0d1a5e92a246158a20ab38c3c46290","ptime":"2017-05-31 11:52:50","img":"http://p3.img.cctvpic.com/fmspic/2017/05/31/3d0d1a5e92a246158a20ab38c3c46290-2497.jpg","len":"00:41:37","em":"CM01"},{"vsid":"VSET100167308855","order":"235","vid":"96f68d3251de48fd9aed2366e88cbe00","t":"《特别节目》 20170530 端午特辑：熊猫三胞胎吃粽子比赛","url":"http://tv.cntv.cn/video/VSET100167308855/96f68d3251de48fd9aed2366e88cbe00","ptime":"2017-05-30 15:09:38","img":"http://p4.img.cctvpic.com/fmspic/2017/05/30/96f68d3251de48fd9aed2366e88cbe00-81.jpg","len":"00:02:21","em":"CM01"},{"vsid":"VSET100167308855","order":"234","vid":"3751a0c5b1fe432a9a10ad77c203d163","t":"《特别节目》 20170523 2017年全球首对圈养大熊猫双胞胎顺利诞生","url":"http://tv.cntv.cn/video/VSET100167308855/3751a0c5b1fe432a9a10ad77c203d163","ptime":"2017-05-23 16:06:49","img":"http://p5.img.cctvpic.com/fmspic/2017/05/23/3751a0c5b1fe432a9a10ad77c203d163-81.jpg","len":"00:02:21","em":"CM01"}]
@@ -32,7 +34,8 @@ public class Live_TeBieJieMuBean {
         this.video = video;
     }
 
-    public static class VideosetBean {
+    public static class VideosetBean implements Serializable{
+        private static final long serialVersionUID = -2283621125897245726L;
         /**
          * 0 : {"vsid":"VSET100167308855","name":"熊猫频道-特别节目","img":"http://p1.img.cctvpic.com/fmspic/vms/image/2013/06/21/VSET_1371809044488847.jpg","enname":"其他","url":"http://tv.cntv.cn/videoset/VSET100167308855","cd":"","zy":"","bj":"","dy":"","js":"","nf":"","yz":"","fl":"熊猫直播","sbsj":"2013-05-01","sbpd":"其他","desc":"熊猫频道采访野生动物保护专家、熊猫守护使、到访基地的名人，以人类的角度展现熊猫世界。","playdesc":"","zcr":"","fcl":""}
          * count : 246
@@ -58,7 +61,8 @@ public class Live_TeBieJieMuBean {
             this.count = count;
         }
 
-        public static class _$0Bean {
+        public static class _$0Bean implements Serializable{
+            private static final long serialVersionUID = -7684040750160716236L;
             /**
              * vsid : VSET100167308855
              * name : 熊猫频道-特别节目
@@ -255,7 +259,8 @@ public class Live_TeBieJieMuBean {
         }
     }
 
-    public static class VideoBean {
+    public static class VideoBean implements Serializable{
+        private static final long serialVersionUID = -2862099058760212677L;
         /**
          * vsid : VSET100167308855
          * order : 240

@@ -1,13 +1,15 @@
 package com.jiyun.pandatv.moudle.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/7/14.
  */
 
-public class Paper_LunboBean {
+public class Paper_LunboBean implements Serializable{
 
+    private static final long serialVersionUID = 5275180370593252596L;
     /**
      * data : {"bigImg":[{"image":"http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/6/13/1497337653079_517.jpg","title":"旅日大熊猫\u201c仙女\u201d成功产下2017首胎海外熊猫幼仔","url":"http://news.ipanda.com/2017/06/12/ARTIBdwYiZE71cob9CQLUz79170612.shtml","id":"ARTIBdwYiZE71cob9CQLUz79170612","type":"5","stype":"","pid":"","vid":"","order":"1"}],"listurl":"http://api.cntv.cn/apicommon/index?path=iphoneInterface/general/getArticleAndVideoListInfo.json&primary_id=PAGE1449807494852603,PAGE1451473625420136,PAGE1449807502866458,PAGE1451473627439140,PAGE1451473547108278,PAGE1451473628934144&serviceId=panda"}
      */
@@ -22,7 +24,8 @@ public class Paper_LunboBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
+        private static final long serialVersionUID = -4709054117314488851L;
         /**
          * bigImg : [{"image":"http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/6/13/1497337653079_517.jpg","title":"旅日大熊猫\u201c仙女\u201d成功产下2017首胎海外熊猫幼仔","url":"http://news.ipanda.com/2017/06/12/ARTIBdwYiZE71cob9CQLUz79170612.shtml","id":"ARTIBdwYiZE71cob9CQLUz79170612","type":"5","stype":"","pid":"","vid":"","order":"1"}]
          * listurl : http://api.cntv.cn/apicommon/index?path=iphoneInterface/general/getArticleAndVideoListInfo.json&primary_id=PAGE1449807494852603,PAGE1451473625420136,PAGE1449807502866458,PAGE1451473627439140,PAGE1451473547108278,PAGE1451473628934144&serviceId=panda
@@ -47,7 +50,8 @@ public class Paper_LunboBean {
             this.bigImg = bigImg;
         }
 
-        public static class BigImgBean {
+        public static class BigImgBean implements Serializable{
+            private static final long serialVersionUID = 3997460203172773148L;
             /**
              * image : http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/6/13/1497337653079_517.jpg
              * title : 旅日大熊猫“仙女”成功产下2017首胎海外熊猫幼仔

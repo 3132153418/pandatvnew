@@ -1,13 +1,15 @@
 package com.jiyun.pandatv.moudle.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/15.
  */
 
-public class OriginalBean {
+public class OriginalBean implements Serializable{
 
+    private static final long serialVersionUID = 2836397184437198946L;
     private List<InteractiveBean> interactive;
 
     public List<InteractiveBean> getInteractive() {
@@ -18,7 +20,8 @@ public class OriginalBean {
         this.interactive = interactive;
     }
 
-    public static class InteractiveBean {
+    public static class InteractiveBean implements Serializable{
+        private static final long serialVersionUID = -6673285344844119351L;
         /**
          * image : http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/6/5/1496626374961_922.jpg
          * title : 二十四节气——芒种

@@ -3,6 +3,7 @@
   android:layout_width="match_parent"
     android:layout_height="48dp"
     android:gravity="center_vertical"
+    android:background="@drawable/shape_gradient_black_top"
     android:id="@+id/layout_top"
     >
     <ImageView

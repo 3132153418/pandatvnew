@@ -9,6 +9,7 @@ public interface LiveChinaContract {
     interface View extends BaseView<Presenter> {
 
 
+
     }
 
     interface Presenter extends BasePresenter {

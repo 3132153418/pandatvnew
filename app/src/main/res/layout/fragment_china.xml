@@ -30,7 +30,5 @@
    <com.androidkun.PullToRefreshRecyclerView
        android:id="@+id/gg_PulltoRef"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
-
-   </com.androidkun.PullToRefreshRecyclerView>
+       android:layout_height="match_parent" />
 </LinearLayout>

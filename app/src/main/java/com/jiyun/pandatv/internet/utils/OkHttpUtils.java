@@ -4,10 +4,12 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.internet.HttpBase.BaseHttp;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -89,6 +91,8 @@ public class OkHttpUtils implements BaseHttp {
                     public void run() {
                         //执行在主线程
                         T generic = getGeneric(jsonData, callBack);
+                        ACache aCache = ACache.get(App.context);
+                        aCache.put(generic.getClass().getSimpleName(), (Serializable) generic,5*ACache.TIME_HOUR);
                         //回调泛型对象
                         callBack.onSuccess(generic);
                     }

@@ -8,12 +8,8 @@ import android.widget.FrameLayout;
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseActivity;
-import com.jiyun.pandatv.module.home.HomeFragment;
-import com.jiyun.pandatv.module.home.Homepresenter;
 import com.jiyun.pandatv.module.home.centre.fragment.EmileFragment;
 import com.jiyun.pandatv.module.home.centre.fragment.PhoneFragment;
-import com.jiyun.pandatv.module.live.LiveFragment;
-import com.jiyun.pandatv.module.live.Livepresenter;
 
 /**
  * Created by Administrator on 2017/7/18.

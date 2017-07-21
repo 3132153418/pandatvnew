@@ -1,11 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="5"
-        android:gravity="center"
-        android:textSize="50sp"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="30dp"
+        android:background="#f9f6f6"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/zh_tab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="#faf8f8"
+                app:tabIndicatorColor="@color/colorPrimaryDark"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"/>
+
+            <LinearLayout
+                android:id="@+id/zh_lanmu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fbf8f8"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="#fcf8f8"
+                    android:gravity="center_vertical"
+                    android:text="切换栏目"
+                    />
+
+                <Button
+                    android:id="@+id/zh_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/to_sign_up_color"
+                    android:text="排序删除"
+                    android:textColor="#0fef4e"
+                    />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_ic_add"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="#faf8f8"
+            android:src="@drawable/ic_subscribe"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#d3d0d0"/>
+
+    <com.jiyun.pandatv.module.live.views.NoScrollViewPager
+        android:id="@+id/zh_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
 </LinearLayout>

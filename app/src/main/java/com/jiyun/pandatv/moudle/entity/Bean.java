@@ -1,9 +1,14 @@
 package com.jiyun.pandatv.moudle.entity;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Bean {
+public class Bean implements Serializable {
+
+
+    private static final long serialVersionUID = -4490464537741097935L;
+
     @Override
     public String toString() {
         return "Bean{" +
@@ -36,7 +41,9 @@ public class Bean {
         this.live = live;
     }
 
-    public static class BookmarkBean {
+    public static class BookmarkBean implements Serializable{
+
+        private static final long serialVersionUID = 1838903063972756217L;
         private List<MultipleBean> multiple;
         private List<WatchTalkBean> watchTalk;
 
@@ -56,7 +63,8 @@ public class Bean {
             this.watchTalk = watchTalk;
         }
 
-        public static class MultipleBean {
+        public static class MultipleBean implements Serializable{
+            private static final long serialVersionUID = 6277575220884635304L;
             /**
              * title : 多视角直播
              * url : http://www.ipanda.com/kehuduan/PAGE14501769230331752/PAGE14501787896813312/index.json
@@ -92,7 +100,8 @@ public class Bean {
             }
         }
 
-        public static class WatchTalkBean {
+        public static class WatchTalkBean implements Serializable{
+            private static final long serialVersionUID = -8746961784458067860L;
             /**
              * title : 边看边聊
              * url : zhiboye_chat
@@ -129,7 +138,9 @@ public class Bean {
         }
     }
 
-    public static class LiveBean {
+    public static class LiveBean implements Serializable{
+        private static final long serialVersionUID = 4833022891205250072L;
+
         @Override
         public String toString() {
             return "LiveBean{" +

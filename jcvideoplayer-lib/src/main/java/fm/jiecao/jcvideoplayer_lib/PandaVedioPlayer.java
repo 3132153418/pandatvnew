@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,9 +49,12 @@ public class PandaVedioPlayer extends JCVideoPlayer {
 
     private boolean isCollect = false;
     public static int currentPosition = 0;
+    private RelativeLayout layout_top;
+    private Context context;
 
     public PandaVedioPlayer(Context context) {
         super(context);
+        this.context = context;
     }
 
     public PandaVedioPlayer(Context context, AttributeSet attrs) {
@@ -68,7 +72,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         systemService = ((AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE));
         maxVolume = systemService.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         currentVolume = systemService.getStreamVolume(AudioManager.STREAM_MUSIC);
-
+        layout_top = (RelativeLayout) findViewById(R.id.layout_top);
         ivBack = (ImageView) findViewById(R.id.back);
         tvTitle = (TextView) findViewById(R.id.title);
         ivThumb = (ImageView) findViewById(R.id.thumb);
@@ -98,12 +102,12 @@ public class PandaVedioPlayer extends JCVideoPlayer {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentVolume = progress;
                 Log.d(TAG, "currentVolume:" + currentVolume);
-                if (progress==0) {
+                if (progress == 0) {
                     btn_volume.setBackgroundResource(R.drawable.volume_no);
-                    systemService.setStreamVolume(AudioManager.STREAM_MUSIC,progress,AudioManager.FLAG_PLAY_SOUND);
-                }else {
+                    systemService.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_PLAY_SOUND);
+                } else {
                     btn_volume.setBackgroundResource(R.drawable.volume_continue);
-                    systemService.setStreamVolume(AudioManager.STREAM_MUSIC,progress,AudioManager.FLAG_PLAY_SOUND);
+                    systemService.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_PLAY_SOUND);
                 }
             }
 
@@ -120,6 +124,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
 
 
     }
+
     /**
      * 设置声音图片
      *
@@ -127,12 +132,14 @@ public class PandaVedioPlayer extends JCVideoPlayer {
      */
     public void setVolumeImage(int currentVolume) {
         if (currentVolume == 0) {
-           btn_volume.setBackgroundResource(R.drawable.volume_no);
+            btn_volume.setBackgroundResource(R.drawable.volume_no);
         } else {
             btn_volume.setBackgroundResource(R.drawable.volume_continue);
         }
     }
-    private Object object ;
+
+    private Object object;
+
     //开始准备
     @Override
     public void setUrlAndObject(String url, Map<String, String> mapHeadData, Object... objects) {
@@ -144,9 +151,12 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         tvTitle.setText(objects[0].toString());
     }
 
+    private boolean isSwitchClarity = false;
+
     @Override
     public void setStateAndUi(int state) {
         super.setStateAndUi(state);
+
         switch (CURRENT_STATE) {
             case CURRENT_STATE_NORMAL: //在正常状态时
                 changeUiToNormal();
@@ -156,6 +166,9 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 changeUiToShowUiPrepareing();
                 break;
             case CURRENT_STATE_PLAYING: //在播放状态时
+                if (!isSwitchClarity) {
+                    Toast.makeText(getContext(), "上次播放到" + JCUtils.stringForTime(PandaVedioPlayer.currentPosition) + ",即将继续为您播放", Toast.LENGTH_SHORT).show();
+                }
                 changeUiToShowUiPlaying();
                 startTimer(6000);
                 break;
@@ -185,16 +198,16 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 prepareVideo();//准备播放视频
                 startTimer(6000);
             }
-        }else if (i == R.id.surface_container) {
+        } else if (i == R.id.surface_container) {
             //当播放状态时可以点击最外层布局
             startTimer(6000);
-        }else if (i == R.id.thumb) {
+        } else if (i == R.id.thumb) {
             //当准备状态时只能点击背景
             if (CURRENT_STATE == CURRENT_STATE_PREPAREING) {
                 if (llBottomContainer.getVisibility() == View.VISIBLE) {
                     llTopContainer.setVisibility(View.INVISIBLE);
                     llBottomContainer.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     llTopContainer.setVisibility(View.VISIBLE);
                     llBottomContainer.setVisibility(View.VISIBLE);
                     startTimer(5000);
@@ -211,7 +224,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 isCollect = false;
                 btn_collect.setBackgroundResource(R.drawable.collect_no);
                 //dosomething to not collect
-            }else{
+            } else {
                 //未收藏，点击收藏
                 showToast("已添加，请到[我的收藏]中查看");
                 isCollect = true;
@@ -228,11 +241,11 @@ public class PandaVedioPlayer extends JCVideoPlayer {
             if (currentVolume == 0) {
                 //如果是静音
                 btn_volume.setBackgroundResource(R.drawable.volume_continue);
-                if (lastVolume ==0) {
+                if (lastVolume == 0) {
                     //代表第一次进入就是静音
                     seekbar_volume.setProgress(maxVolume);
                     systemService.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, AudioManager.FLAG_PLAY_SOUND);
-                }else {
+                } else {
                     seekbar_volume.setProgress(lastVolume);
                     systemService.setStreamVolume(AudioManager.STREAM_MUSIC, lastVolume, AudioManager.FLAG_PLAY_SOUND);
                 }
@@ -336,7 +349,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         llTopContainer.setVisibility(View.INVISIBLE);
         llBottomContainer.setVisibility(View.INVISIBLE);
         ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE );
+        pbLoading.setVisibility(View.INVISIBLE);
         ivThumb.setVisibility(View.INVISIBLE);
     }
 
@@ -412,11 +425,12 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         cancelTimer();
     }
 
-    private TextView liuchang,gaoqing;
+    private TextView liuchang, gaoqing;
     private static final byte QING_XI_JISHU = 1;
     private static final byte QING_XI_GAOQING = 2;
     private byte currentQingXiDu = QING_XI_GAOQING;
     private PopupWindow mPopupQingXiWindow;
+
     private void CheckClarity() {
         View view = View.inflate(getContext(), R.layout.popwindow_qingxidu,
                 null);
@@ -449,19 +463,22 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 0 - vieWidth * 1 / 8, (int) (0 - vieheight * 2.5));
     }
 
-    public void setSwitchListener(Switchlistener switchlistener){
+    public void setSwitchListener(Switchlistener switchlistener) {
         this.switchlistener = switchlistener;
     }
-    interface Switchlistener{
+
+    interface Switchlistener {
         void ChangetoLiuchang(int currentPosition);
+
         void ChangetoGaoQing(int currentPosition);
     }
-    private Switchlistener switchlistener ;
+
+    private Switchlistener switchlistener;
     OnClickListener popWindowListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.app_video_qingxidu_liuchang) {
-                //如果是流畅，也就是极速
+                isSwitchClarity = true;
                 if (currentQingXiDu == QING_XI_JISHU) {
                     Log.d(TAG, "点击了流畅");
                     mPopupQingXiWindow.dismiss();
@@ -478,7 +495,9 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 //切换线路
                 currentPosition = JCMediaManager.mediaPlayer.getCurrentPosition();
                 switchlistener.ChangetoLiuchang(currentPosition);
-            }else if(v.getId() == R.id.app_video_qingxidu_gaoqing) {
+
+            } else if (v.getId() == R.id.app_video_qingxidu_gaoqing) {
+                isSwitchClarity = true;
                 if (currentQingXiDu == QING_XI_GAOQING) {
                     Log.d(TAG, "点击了高清");
                     mPopupQingXiWindow.dismiss();

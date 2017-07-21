@@ -1,13 +1,14 @@
 package com.jiyun.pandatv;
 
+
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseActivity;
 import com.jiyun.pandatv.module.china.ChinaFragment;
 import com.jiyun.pandatv.module.china.Chinapresenter;
@@ -74,7 +75,7 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         hideAllFragment();//首先隐藏所有fragment
-        Log.d("MainActivity", "全部fragment隐藏");
+        L.d("MainActivity", "全部fragment隐藏");
         switch (view.getId()) {
             case R.id.rb_home:
                 if (homeFragment == null) {
@@ -92,7 +93,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.show(liveFragment);
                 break;
             case R.id.rb_china:
-                Log.d("MainActivity", "点击了第三个");
+                L.d("MainActivity", "点击了第三个");
                 if (chinaFragment == null) {
                     chinaFragment = new ChinaFragment();
                     new Chinapresenter(chinaFragment);
@@ -140,4 +141,3 @@ public class MainActivity extends BaseActivity {
         }
     }
 }
-

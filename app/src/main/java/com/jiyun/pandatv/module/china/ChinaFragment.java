@@ -1,6 +1,7 @@
 package com.jiyun.pandatv.module.china;
 
 
+import android.os.Environment;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.androidkun.PullToRefreshRecyclerView;
 import com.bumptech.glide.Glide;
@@ -30,8 +32,14 @@ public class ChinaFragment extends BaseFragment implements ChinaContract.View,Vi
     private View inflat;
     private ImageView mImage;
     private ImageView gg_MyLogin_Image;
+import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
+import fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer;
+
+
+public class ChinaFragment extends BaseFragment implements ChinaContract.View {
     //持有P层对象
     private ChinaContract.Presenter presenter;
+    private Button playvideo;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -40,6 +48,16 @@ public class ChinaFragment extends BaseFragment implements ChinaContract.View,Vi
 
     @Override
     protected void init(View view) {
+        presenter.start();
+        playvideo = (Button) view.findViewById(R.id.playvideo);
+        playvideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String gaoqing = Environment.getExternalStorageDirectory() + "/Download/a.mp4";
+                String liuchang = Environment.getExternalStorageDirectory() + "/Download/b.mp4";
+                JCFullScreenActivity.toActivity(getActivity(), gaoqing,liuchang, null, PandaVedioPlayer.class, "嫂子真牛逼");
+            }
+        });
         inflat = LayoutInflater.from(getContext()).inflate(R.layout.fragment_china_item, null);
         mImage = (ImageView) inflat.findViewById(R.id.gg_ImageView);
         china_Image_title = (TextView) inflat.findViewById(R.id.china_Image_title);

@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <!--注册验证码-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -46,7 +46,8 @@
         <activity android:name=".module.home.original.OriginalActivity"></activity>
         <activity android:name=".module.home.centre.CentreActivity"></activity>
         <activity android:name=".module.home.pandaxiuchang.ElegantActivity"/>
-        <activity android:name=".module.home.pandajingcaiyike.AmazingActivty"/>
+        <activity android:name=".module.home.pandajingcaiyike.AmazingActivty"
+            android:screenOrientation="landscape"/>
         <activity android:name=".module.home.pandabobao.PandaNews_Btn_Safety"/>
         <activity android:name=".module.home.centre.LoginActivity"></activity>
         <activity android:name=".module.home.centre.SettingActivity"></activity>

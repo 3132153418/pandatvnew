@@ -12,4 +12,11 @@ public class Urls {
 
     public static final String PANDAORIGINAL = BASEURL+"PAGE14501767715521482/index.json";
 
+    public static final String PANDAVADIO = "http://vdn.apps.cntv.cn/api/getVideoInfoForCBox.do";
+
+    public static final String GGLIVE = BASEURL + "xmwh/index.json";
+
+    public static final String LOGIN = "https://reg.cntv.cn/login/login.action";
+
+
 }

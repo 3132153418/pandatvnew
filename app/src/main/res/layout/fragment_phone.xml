@@ -14,20 +14,41 @@
     <EditText
         android:id="@+id/phone_Edit"
         android:layout_width="350dp"
-        android:layout_height="30dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/phone_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:layout_marginLeft="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/image_Edit"
-            android:layout_marginTop="20dp"
+        <LinearLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"/>
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/image_Edit"
+                android:layout_marginTop="20dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/yanzheng_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/phone_ImageView"
             android:layout_width="150dp"
@@ -39,12 +60,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/yanzhengma_Edit"
             android:layout_marginTop="30dp"
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"/>
+
         <Button
             android:id="@+id/yanzhengma_Btn"
             android:layout_width="120dp"

@@ -1,4 +1,4 @@
-package com.jiyun.pandatv.internet.utils;
+package com.jiyun.pandatv.loginUtils;
 
 import android.util.Log;
 
@@ -6,10 +6,13 @@ import com.google.gson.Gson;
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.internet.HttpBase.BaseHttp;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
+import com.jiyun.pandatv.internet.utils.OkHttpUtils;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,22 +22,25 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class OkHttpUtils implements BaseHttp {
+/**
+ * Created by Administrator on 2017/7/21.
+ */
 
+public class LoginUtils implements BaseHttp{
     private OkHttpClient okHttpClient;
     //构造函数私有化
-    private OkHttpUtils() {
+    private LoginUtils() {
         this.okHttpClient = new OkHttpClient.Builder().build();
     }
 
 
-    private static OkHttpUtils okHttpUtils;
-    public static OkHttpUtils getInstance(){
+    private static LoginUtils okHttpUtils;
+    public static LoginUtils getInstance(){
         //加锁判断如果为空就创建对象
         if (okHttpUtils==null) {
-            synchronized (OkHttpUtils.class){
+            synchronized (LoginUtils.class){
                 if (okHttpUtils==null) {
-                    okHttpUtils = new OkHttpUtils();
+                    okHttpUtils = new LoginUtils();
                 }
             }
         }
@@ -51,7 +57,7 @@ public class OkHttpUtils implements BaseHttp {
      */
 
     @Override
-    public <T> void get(String url, Map<String, String> parmers,final MyHttpCallBack<T> callBack) {
+    public <T> void get(String url, Map<String, String> parmers, final MyHttpCallBack<T> callBack) {
         StringBuffer sb = new StringBuffer(url);
         if (parmers!=null&&parmers.size()>0) {
             sb.append("?");
@@ -63,7 +69,15 @@ public class OkHttpUtils implements BaseHttp {
             url = sb.deleteCharAt(sb.length() - 1).toString();
         }
 
-        Request request = new Request.Builder().url(url).build();
+        Request request = null;
+        try {
+            request = new Request.Builder()
+                    .addHeader("Referer", URLEncoder.encode("https://reg.cntv.cn/login/login.action", "UTF-8"))
+                    .addHeader("User-Agent",URLEncoder.encode("CNTV_APP_CLIENT_CYNTV_MOBILE", "UTF-8"))
+                    .url(url).build();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -73,7 +87,7 @@ public class OkHttpUtils implements BaseHttp {
                     @Override
                     public void run() {
                         //执行在主线程
-                       callBack.onError(404,"执行了网络请求异常");
+                        callBack.onError(404,"执行了网络请求异常");
                     }
                 });
             }

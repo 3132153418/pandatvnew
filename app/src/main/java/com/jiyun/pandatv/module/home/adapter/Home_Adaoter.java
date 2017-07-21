@@ -22,6 +22,8 @@ import com.jiyun.pandatv.moudle.entity.FirstBean;
 
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
+
 import static com.jiyun.pandatv.Application.App.context;
 
 /**
@@ -143,8 +145,11 @@ public class Home_Adaoter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     Intent intent2 = new Intent(context, AmazingActivty.class);
-
+                    intent2.putExtra("title",pandaeyeBean.getItems().get(0).getTitle());
+                    intent2.putExtra("pid",pandaeyeBean.getItems().get(1).getPid());
                     context.startActivity(intent2);
+//                    JCFullScreenActivity.toActivity(context
+//                  pandaeyeBean.getItems().get(1).getPid());
                 }
             });
             t2.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +197,7 @@ public class Home_Adaoter extends RecyclerView.Adapter{
             gridView = (GridView) itemView.findViewById(R.id.home_GridView_Amazing);
         }
 
-        public void setThree(FirstBean.DataBean.AreaBean areaBean) {
+        public void setThree(final FirstBean.DataBean.AreaBean areaBean) {
             Home_Amazing_Adapter adapter1 = new Home_Amazing_Adapter(context, areaBean.getListscroll());
             gridView.setAdapter(adapter1);
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -200,6 +205,9 @@ public class Home_Adaoter extends RecyclerView.Adapter{
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     Intent intent5 = new Intent(context, AmazingActivty.class);
+
+                    intent5.putExtra("title",areaBean.getListscroll().get(0).getTitle());
+                    intent5.putExtra("pid",areaBean.getListscroll().get(1).getPid());
                     context.startActivity(intent5);
                 }
             });
@@ -213,7 +221,7 @@ public class Home_Adaoter extends RecyclerView.Adapter{
             super(itemView);
             home_ListView = (ListView) itemView.findViewById(R.id.home_ListView);
         }
-        public void setFour(FirstBean.DataBean.WallliveBean wallliveBean){
+        public void setFour(final FirstBean.DataBean.WallliveBean wallliveBean){
             Home_Vadio_Adapter home_vadio_adapter = new Home_Vadio_Adapter(context,wallliveBean.getList());
             home_ListView.setAdapter(home_vadio_adapter);
             home_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

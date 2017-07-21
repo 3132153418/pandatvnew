@@ -54,9 +54,6 @@ public class ChinaFragment extends BaseFragment implements ChinaContract.View,Vi
         gg_MyLogin_Image = (ImageView) view.findViewById(R.id.gg_MyLogin_Image);
         gg_MyLogin_Image.setOnClickListener(this);
 
-
-
-
     }
 
     @Override

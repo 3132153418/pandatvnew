@@ -10,16 +10,9 @@ import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.biz.live.LiveMoudle;
 import com.jiyun.pandatv.moudle.biz.live.LiveMoudleIpl;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
-import com.jiyun.pandatv.moudle.entity.Live_DangXiongBuRangBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
 import com.jiyun.pandatv.moudle.entity.Live_JiangCaiBean;
 import com.jiyun.pandatv.moudle.entity.Live_MoreViewBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaEventBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTopBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
-import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
-import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
-import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
 import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 public class Livepresenter implements LiveContract.Presenter {
@@ -117,16 +110,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void dangxiongburang(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.daxiongburang(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_DangXiongBuRangBean>() {
+        liveMoudle.daxiongburang(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_DangXiongBuRangBean live_dangXiongBuRangBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.dangxiongburang(live_dangXiongBuRangBean);
-                        L.d("当熊不让", live_dangXiongBuRangBean.toString());
-
+                        liveview.jiangcai(live_jiangCaiBean);
                     }
                 });
             }
@@ -139,14 +130,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void superxiu(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.superXiu(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_SuperXiuBean>() {
+        liveMoudle.superXiu(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_SuperXiuBean paper_superXiuBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.superxiu(paper_superXiuBean);
+                        liveview.jiangcai(live_jiangCaiBean);
 //                        Log.d("Livepresenter", "live_moreV超萌滚滚秀:" + paper_superXiuBean);
                     }
                 });
@@ -161,14 +152,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void pandatxt(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.pandatxt(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_PandaTxtBean>() {
+        liveMoudle.pandatxt(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_PandaTxtBean live_pandaTxtBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.pandatxt(live_pandaTxtBean);
+                        liveview.jiangcai(live_jiangCaiBean);
 //                        Log.d("Livepresenter", "熊猫档案:" + live_pandaTxtBean);
                     }
                 });
@@ -182,15 +173,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void pandatop(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.pandaTOP(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_PandaTopBean>() {
+        liveMoudle.pandaTOP(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_PandaTopBean live_pandaTopBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.pandatop(live_pandaTopBean);
-//                        Log.d("Livepresenter", "TOP:" + live_pandaTopBean);
+                        liveview.jiangcai(live_jiangCaiBean);
                     }
                 });
             }
@@ -203,15 +193,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void pandaevent(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.PandaEvent(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_PandaEventBean>() {
+        liveMoudle.PandaEvent(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_PandaEventBean live_pandaEventBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.pandaevent(live_pandaEventBean);
-                        Log.d("Livepresenter", "熊猫那些事er" + live_pandaEventBean);
+                        liveview.jiangcai(live_jiangCaiBean);
                     }
                 });
             }
@@ -224,15 +213,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void tebiejiemu(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.twbie(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_TeBieJieMuBean>() {
+        liveMoudle.twbie(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_TeBieJieMuBean live_teBieJieMuBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.tebiejiemu(live_teBieJieMuBean);
-                        Log.d("Livepresenter", "特别" + live_teBieJieMuBean);
+                        liveview.jiangcai(live_jiangCaiBean);
                     }
                 });
             }
@@ -245,14 +233,14 @@ public class Livepresenter implements LiveContract.Presenter {
 
     @Override
     public void yuanchuang(String vsid, String n, String serviceId, String o, String of, String p) {
-        liveMoudle.yuanchaung(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_YuanChuangBean>() {
+        liveMoudle.yuanchaung(vsid, n, serviceId, o, of, p, new MyHttpCallBack<Live_JiangCaiBean>() {
             @Override
-            public void onSuccess(final Live_YuanChuangBean live_yuanChuangBean) {
+            public void onSuccess(final Live_JiangCaiBean live_jiangCaiBean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        liveview.yuanchuang(live_yuanChuangBean);
+                        liveview.jiangcai(live_jiangCaiBean);
                     }
                 });
             }
@@ -290,8 +278,5 @@ public class Livepresenter implements LiveContract.Presenter {
         String head =  "http://vdn.apps.cntv.cn/api/getVideoInfoForCBox.do?pid=";
         String s = head + pid;
         liveMoudle.video(s,myHttpCallBack);
-
     };
-
-
     }

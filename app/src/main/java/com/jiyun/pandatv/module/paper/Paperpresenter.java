@@ -9,6 +9,7 @@ import com.jiyun.pandatv.moudle.biz.paper.PaperMoudle;
 import com.jiyun.pandatv.moudle.biz.paper.PaperMoudleIpl;
 import com.jiyun.pandatv.moudle.entity.Paper_DataBean;
 import com.jiyun.pandatv.moudle.entity.Paper_LunboBean;
+import com.jiyun.pandatv.moudle.entity.Video_PaperBean;
 
 public class Paperpresenter implements PaperContract.PaperPresenter {
     //持有View层对象
@@ -75,6 +76,13 @@ public class Paperpresenter implements PaperContract.PaperPresenter {
         });
 
 
+    }
+
+    @Override
+    public void papervideo(String pid, MyHttpCallBack<Video_PaperBean> myHttpCallBack) {
+        String head =  "http://202.108.8.115/api/getVideoInfoForCBox.do?pid=";
+        String s = head + pid;
+        paperMoudle.papervideo(s,myHttpCallBack);
     }
 
 

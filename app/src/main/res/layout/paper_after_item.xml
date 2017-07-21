@@ -7,36 +7,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="100dp">
-
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            >
             <ImageView
                 android:id="@+id/paper_after_image"
-                android:layout_width="150dp"
+                android:layout_width="180dp"
                 android:layout_height="100dp"
-         />
+                />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="70dp"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/home_play_icon"
-                android:id="@+id/imageView"/>
+              android:layout_marginLeft="11dp"
+                android:src="@drawable/default_time_view"/>
 
-            <TextView
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="wrewrwe"
-                android:textColor="#f7f3f3"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="85dp"
+                android:src="@drawable/home_play_icon"/>
+
+            <TextView
                 android:id="@+id/paper_play_time"
-                android:layout_marginTop="2dp"
-                android:layout_alignTop="@+id/imageView"
-                android:layout_toRightOf="@+id/imageView"
-                android:layout_toEndOf="@+id/imageView"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="80dp"
+                android:text="wrewrwe"
+                android:textColor="#f7f3f3"/>
         </RelativeLayout>
 
 
@@ -51,19 +57,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="vertical">
-
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:id="@+id/paper_after_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
+                    android:layout_marginTop="20dp"
                     android:ellipsize="end"
+                    android:maxLines="2"
                     android:text="465465432132136"
                     android:textColor="#000"
                     android:textSize="15sp"
                     />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/paper_after_time"
                 android:layout_width="match_parent"

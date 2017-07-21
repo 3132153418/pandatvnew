@@ -2,30 +2,30 @@ package com.jiyun.pandatv.moudle.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/7/19.
+ * Created by lenovo on 2017/7/21.
  */
-
-public class VadioBean {
+public class Video_PaperBean implements Serializable{
 
 
     /**
-     * play_channel : 黑龙江卫视高清
-     * f_pgmtime : 2017-06-14 07:15:31
+     * play_channel : 东方卫视高清
+     * f_pgmtime : 2017-07-19 09:24:47
      * tag :
      * cdn_info : {"cdn_vip":"vod.cntv.lxdns.com","cdn_code":"VOD-MP4-CDN-CNC","cdn_name":"3rd网宿"}
      * editer_name : wangbaoyan
      * version : 0.2
-     * title : 东北虎五胞胎双满月 取名谐音为“东北欢迎你”
+     * title : 熊猫宝宝首次独立度夏 靠冰块消暑
      * is_fn_hot : true
      * is_protected : 0
-     * hls_url : http://asp.cntv.lxdns.com/asp/hls/main/0303000a/3/default/26097f927eb34babad51340659d08fe1/main.m3u8?maxbr=4096
+     * hls_url : http://asp.cntv.lxdns.com/asp/hls/main/0303000a/3/default/e5e1020296394beda9ea38beb64a3195/main.m3u8?maxbr=4096
      * hls_cdn_info : {"cdn_vip":"asp.cntv.lxdns.com","cdn_code":"VOD-HLS-CDN-CNC","cdn_name":"3rd网宿"}
-     * client_sid : 6ad7bcdb4a96487b9df2c5d4486b8d19
+     * client_sid : 4b609a44dba2435a9528108442cc269d
      * is_ipad_support : true
-     * video : {"totalLength":"50.00","chapters":[{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264818000nero_aac32.mp4"}],"validChapterNum":5,"chapters4":[{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264418000nero_aac32.mp4"}],"chapters3":[{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h2641200000nero_aac16.mp4"}],"lowChapters":[{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264200000nero_aac16.mp4"}],"chapters2":[{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h2642000000nero_aac16.mp4"}],"url":""}
+     * video : {"totalLength":"95.00","chapters":[{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h2642000000nero_aac16.mp4"}],"validChapterNum":5,"chapters4":[{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264418000nero_aac32.mp4"}],"lowChapters":[{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264200000nero_aac16.mp4"}],"chapters3":[{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264818000nero_aac32.mp4"}],"chapters2":[{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h2641200000nero_aac16.mp4"}],"url":""}
      * is_invalid_copyright : 0
      * produce_id : copyvd
      * default_stream : HD
@@ -276,7 +276,7 @@ public class VadioBean {
         this.produce = produce;
     }
 
-    public static class CdnInfoBean {
+    public static class CdnInfoBean implements Serializable{
         /**
          * cdn_vip : vod.cntv.lxdns.com
          * cdn_code : VOD-MP4-CDN-CNC
@@ -312,7 +312,7 @@ public class VadioBean {
         }
     }
 
-    public static class HlsCdnInfoBean {
+    public static class HlsCdnInfoBean implements Serializable{
         /**
          * cdn_vip : asp.cntv.lxdns.com
          * cdn_code : VOD-HLS-CDN-CNC
@@ -348,15 +348,15 @@ public class VadioBean {
         }
     }
 
-    public static class VideoBean {
+    public static class VideoBean implements Serializable{
         /**
-         * totalLength : 50.00
-         * chapters : [{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264818000nero_aac32.mp4"}]
+         * totalLength : 95.00
+         * chapters : [{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h2642000000nero_aac16.mp4"}]
          * validChapterNum : 5
-         * chapters4 : [{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264418000nero_aac32.mp4"}]
-         * chapters3 : [{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h2641200000nero_aac16.mp4"}]
-         * lowChapters : [{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264200000nero_aac16.mp4"}]
-         * chapters2 : [{"duration":"50","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h2642000000nero_aac16.mp4"}]
+         * chapters4 : [{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264418000nero_aac32.mp4"}]
+         * lowChapters : [{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264200000nero_aac16.mp4"}]
+         * chapters3 : [{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264818000nero_aac32.mp4"}]
+         * chapters2 : [{"duration":"95","image":"","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h2641200000nero_aac16.mp4"}]
          * url :
          */
 
@@ -365,8 +365,8 @@ public class VadioBean {
         private String url;
         private List<ChaptersBean> chapters;
         private List<Chapters4Bean> chapters4;
-        private List<Chapters3Bean> chapters3;
         private List<LowChaptersBean> lowChapters;
+        private List<Chapters3Bean> chapters3;
         private List<Chapters2Bean> chapters2;
 
         public String getTotalLength() {
@@ -409,20 +409,20 @@ public class VadioBean {
             this.chapters4 = chapters4;
         }
 
-        public List<Chapters3Bean> getChapters3() {
-            return chapters3;
-        }
-
-        public void setChapters3(List<Chapters3Bean> chapters3) {
-            this.chapters3 = chapters3;
-        }
-
         public List<LowChaptersBean> getLowChapters() {
             return lowChapters;
         }
 
         public void setLowChapters(List<LowChaptersBean> lowChapters) {
             this.lowChapters = lowChapters;
+        }
+
+        public List<Chapters3Bean> getChapters3() {
+            return chapters3;
+        }
+
+        public void setChapters3(List<Chapters3Bean> chapters3) {
+            this.chapters3 = chapters3;
         }
 
         public List<Chapters2Bean> getChapters2() {
@@ -433,11 +433,11 @@ public class VadioBean {
             this.chapters2 = chapters2;
         }
 
-        public static class ChaptersBean {
+        public static class ChaptersBean implements Serializable{
             /**
-             * duration : 50
+             * duration : 95
              * image :
-             * url : http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264818000nero_aac32.mp4
+             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h2642000000nero_aac16.mp4
              */
 
             private String duration;
@@ -469,11 +469,11 @@ public class VadioBean {
             }
         }
 
-        public static class Chapters4Bean {
+        public static class Chapters4Bean implements Serializable{
             /**
-             * duration : 50
+             * duration : 95
              * image :
-             * url : http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264418000nero_aac32.mp4
+             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264418000nero_aac32.mp4
              */
 
             private String duration;
@@ -505,11 +505,11 @@ public class VadioBean {
             }
         }
 
-        public static class Chapters3Bean {
+        public static class LowChaptersBean implements Serializable{
             /**
-             * duration : 50
+             * duration : 95
              * image :
-             * url : http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h2641200000nero_aac16.mp4
+             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264200000nero_aac16.mp4
              */
 
             private String duration;
@@ -541,11 +541,11 @@ public class VadioBean {
             }
         }
 
-        public static class LowChaptersBean {
+        public static class Chapters3Bean implements Serializable{
             /**
-             * duration : 50
+             * duration : 95
              * image :
-             * url : http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h264200000nero_aac16.mp4
+             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h264818000nero_aac32.mp4
              */
 
             private String duration;
@@ -577,11 +577,11 @@ public class VadioBean {
             }
         }
 
-        public static class Chapters2Bean {
+        public static class Chapters2Bean implements Serializable{
             /**
-             * duration : 50
+             * duration : 95
              * image :
-             * url : http://vod.cntv.lxdns.com/flash/mp4video60/TMS/2017/06/14/c1777f2df24441f8aa475df6554c232e_h2642000000nero_aac16.mp4
+             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/19/ee5b5976c6de407da7ec3c45b6974396_h2641200000nero_aac16.mp4
              */
 
             private String duration;
@@ -614,7 +614,7 @@ public class VadioBean {
         }
     }
 
-    public static class LcBean {
+    public static class LcBean implements Serializable{
         /**
          * isp_code : 1
          * city_code :

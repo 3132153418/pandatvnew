@@ -77,11 +77,4 @@ public class Urls {
     public static final String IMAGE_CODE = "http://reg.cntv.cn/simple/verificationCode.action";
 
 
-    public static final String PANDAVADIO = "http://vdn.apps.cntv.cn/api/getVideoInfoForCBox.do";
-
-    public static final String GGLIVE = BASEURL + "xmwh/index.json";
-
-    public static final String LOGIN = "https://reg.cntv.cn/login/login.action";
-
-
 }

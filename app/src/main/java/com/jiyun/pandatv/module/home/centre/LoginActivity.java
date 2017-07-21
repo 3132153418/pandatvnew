@@ -2,47 +2,29 @@ package com.jiyun.pandatv.module.home.centre;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseActivity;
-import com.jiyun.pandatv.moudle.entity.LoginEntity;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.utils.SocializeUtils;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/7/17.
  */
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener,LoginContract.View{
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private ImageView loginBack,weibo_Login,qqLogin;
     private ProgressDialog dialog;
     private TextView register;
-    private EditText editUserName,editUserPassword;
-    private Button loginBtn;
-    private LoginPresenter presenter;
-    private Boolean isLogin = true;
+
 
     @Override
     protected int getLayoutId() {
@@ -52,7 +34,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     protected void initView() {
         dialog = new ProgressDialog(this);
-        new LoginPresenter(this);
         register = (TextView) findViewById(R.id.register_Text);
         register.setOnClickListener(this);
 
@@ -62,10 +43,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         qqLogin.setOnClickListener(this);
         weibo_Login = (ImageView) findViewById(R.id.weibo_Login);
         weibo_Login.setOnClickListener(this);
-        editUserName = (EditText) findViewById(R.id.editUserName);
-        editUserPassword = (EditText) findViewById(R.id.editUserPassword);
-        loginBtn = (Button) findViewById(R.id.loginBtn);
-        loginBtn.setOnClickListener(this);
 
     }
 
@@ -88,7 +65,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 finish();
                 break;
             case R.id.qqLogin:
+
                 UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.QQ, authListener);
+
                 break;
             case R.id.weibo_Login:
                 UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.SINA, authListener);
@@ -96,14 +75,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.register_Text:
                 Intent intent = new Intent(this,RegisterActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.loginBtn:
-                presenter.loge(editUserName.getText().toString(),editUserPassword.getText().toString());
-                if (isLogin){
-                    finish();
-                }else {
-                    Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
-                }
                 break;
         }
     }
@@ -134,15 +105,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     };
 
-    @Override
-    public void setLogin(LoginEntity login) {
-        String errMsg = login.getErrMsg();
-        Log.i("susses",errMsg);
-    }
 
-    @Override
-    public void setPresenter(LoginContract.Presenter presenter) {
 
-            this.presenter= (LoginPresenter) presenter;
-    }
 }

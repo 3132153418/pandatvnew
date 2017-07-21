@@ -52,7 +52,7 @@
         <activity android:name=".module.home.centre.LoginActivity"></activity>
         <activity android:name=".module.home.centre.SettingActivity"></activity>
         <activity android:name=".module.home.centre.RegisterActivity"></activity>
-
+<activity android:name=".module.paper.PaperActivity"/>
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"

@@ -5,16 +5,9 @@ import com.jiyun.pandatv.base.BaseMoudle;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.entity.Bean;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
-import com.jiyun.pandatv.moudle.entity.Live_DangXiongBuRangBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
 import com.jiyun.pandatv.moudle.entity.Live_JiangCaiBean;
 import com.jiyun.pandatv.moudle.entity.Live_MoreViewBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaEventBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTopBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
-import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
-import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
-import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
 import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 public interface LiveMoudle extends BaseMoudle {
@@ -36,25 +29,25 @@ public interface LiveMoudle extends BaseMoudle {
     void jingcai(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     ///当熊不让
-    void daxiongburang(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_DangXiongBuRangBean> callBack);
+    void daxiongburang(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     //熊猫文档
-    void pandatxt(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_PandaTxtBean> callBack);
+    void pandatxt(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     //熊猫TOP榜
-    void pandaTOP(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_PandaTopBean> callBack);
+    void pandaTOP(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     //超萌滚滚秀
-    void superXiu(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_SuperXiuBean> callBack);
+    void superXiu(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     //熊猫那些事儿
-    void PandaEvent(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_PandaEventBean> callBack);
+    void PandaEvent(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     //特别节目
-    void twbie(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_TeBieJieMuBean> callBack);
+    void twbie(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     //原创
-    void yuanchaung(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_YuanChuangBean> callBack);
+    void yuanchaung(String vsid, String n, String serviceId, String o, String of, String p, MyHttpCallBack<Live_JiangCaiBean> callBack);
 
     void video(String pid,MyHttpCallBack<VideoTwoBean> callBack);
 }

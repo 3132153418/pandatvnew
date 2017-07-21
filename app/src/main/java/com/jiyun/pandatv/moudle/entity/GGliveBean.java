@@ -1,12 +1,13 @@
 package com.jiyun.pandatv.moudle.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/20.
  */
 
-public class GGliveBean {
+public class GGliveBean implements Serializable{
 
     private List<BigImgBean> bigImg;
     private List<ListBean> list;
@@ -27,7 +28,7 @@ public class GGliveBean {
         this.list = list;
     }
 
-    public static class BigImgBean {
+    public static class BigImgBean implements Serializable{
         /**
          * url : http://culture.ipanda.com/2017/05/23/ARTILBLSMq3qlVgygrUMJEG2170523.shtml
          * image : http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/5/23/1495533604076_403.jpg
@@ -123,7 +124,7 @@ public class GGliveBean {
         }
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable{
         /**
          * url :
          * image : http://p5.img.cctvpic.com/fmspic/2016/10/19/84f27011346547c595d78b47a48eb6de-129.jpg

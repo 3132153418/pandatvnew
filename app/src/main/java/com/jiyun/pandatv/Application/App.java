@@ -16,8 +16,6 @@ import java.util.Set;
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
-import cn.smssdk.SMSSDK;
-
 public class App extends Application {
 
     public static BaseActivity context = null;
@@ -52,7 +50,6 @@ public class App extends Application {
                 | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
         JPushInterface.setPushNotificationBuilder(1, builder);//设置消息样式
         JPushInterface.setLatestNotificationNumber(this,2);
-        SMSSDK.initSDK(this, "1e506690017a4", "a627c68689e042e44ed4177f45e65638");
         Config.DEBUG = true;
     }
 

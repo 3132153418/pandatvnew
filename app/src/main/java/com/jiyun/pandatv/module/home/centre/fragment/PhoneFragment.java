@@ -23,9 +23,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.smssdk.EventHandler;
-import cn.smssdk.OnSendMessageHandler;
-import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;

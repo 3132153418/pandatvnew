@@ -12,7 +12,7 @@
 
         <RelativeLayout
             android:layout_width="180dp"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             >
             <ImageView
                 android:id="@+id/paper_after_image"
@@ -23,7 +23,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="60dp"
               android:layout_marginLeft="11dp"
                 android:src="@drawable/default_time_view"/>
 
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="85dp"
+                android:layout_marginTop="75dp"
                 android:src="@drawable/home_play_icon"/>
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="70dp"
                 android:text="wrewrwe"
                 android:textColor="#f7f3f3"/>
         </RelativeLayout>
@@ -78,5 +78,8 @@
                 />
         </LinearLayout>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#9f9b9b"></LinearLayout>
 </LinearLayout>

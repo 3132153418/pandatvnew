@@ -26,7 +26,7 @@
             <ImageView
                 android:id="@+id/paper_data_image"
                 android:layout_width="180dp"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
                 />
 
         </RelativeLayout>
@@ -62,5 +62,8 @@
                 />
         </LinearLayout>
     </LinearLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="3dp"
+    android:background="#9f9b9b"></LinearLayout>
 </LinearLayout>

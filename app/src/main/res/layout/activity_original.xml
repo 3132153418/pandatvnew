@@ -8,7 +8,7 @@
         android:layout_height="50dp"
         android:background="#FF4621DC">
         <ImageView
-            android:id="@+id/original_Back_Image"
+            android:id="@+id/original_Back_Imagetwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_chevron_left_white_36dp"/>

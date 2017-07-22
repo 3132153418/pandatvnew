@@ -4,23 +4,23 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:background="#283dd9">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="熊猫观察"
+            android:text="熊猫播报"
             android:textColor="#fcfafa"
             android:textSize="25sp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
         <ImageView
-            android:id="@+id/poaper_person"
+            android:id="@+id/paper_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/person_sign"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="20dp"/>
     </RelativeLayout>
     <com.androidkun.PullToRefreshRecyclerView
         android:layout_width="match_parent"

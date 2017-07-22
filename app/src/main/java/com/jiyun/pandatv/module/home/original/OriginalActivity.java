@@ -1,6 +1,8 @@
 package com.jiyun.pandatv.module.home.original;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -32,8 +34,17 @@ public class OriginalActivity extends BaseActivity implements OriginalContract.V
         new OriginalPresenter(this);
         listView = (ListView) findViewById(R.id.activity_original_ListView);
         presenter.start();
-        original_Back_Image = (ImageView) findViewById(R.id.original_Back_Image);
+        original_Back_Image = (ImageView) findViewById(R.id.original_Back_Imagetwo);
         original_Back_Image.setOnClickListener(this);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(OriginalActivity.this, OriginalWebViewAcTivity.class);
+                intent.putExtra("url",list.get(0).getUrl());
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

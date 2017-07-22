@@ -53,13 +53,10 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     private List<BaseFragment> fragment_list;
     private List<String> title_list;
     private ViewPagerAdapter2 adapter;
-
-
     private RecyclerView jianjiepull;
     private PullToRefreshRecyclerView jingcaipull;
     private JianJieAdapter jianJieAdapter;
     private JingcaiAdapter jingcaiAdapter;
-
     private LiveContract.Presenter presenter;
     private List<Live_JianJieBean.LiveBean> jianjieBeanlist = new ArrayList<>();
     private List<Live_JiangCaiBean.VideoBean> jinagcaiBeanlist = new ArrayList<>();
@@ -265,6 +262,8 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
         jingcaiAdapter.setJingcaiCallback(this);
         jingcaipull.setAdapter(jingcaiAdapter);
     }
+
+
 
     @Override
     public void back(int layoutPosition) {

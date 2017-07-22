@@ -1,18 +1,22 @@
 package com.jiyun.pandatv.module.paper;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
+import com.jiyun.pandatv.module.home.centre.CentreActivity;
 import com.jiyun.pandatv.module.paper.paper.PaperDataAdaPter;
 import com.jiyun.pandatv.module.paper.paper.PaperLunboAdaPter;
 import com.jiyun.pandatv.moudle.entity.Paper_DataBean;
@@ -24,24 +28,27 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
 import fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer;
 
-public class PaperFragment extends BaseFragment implements PaperContract.View,PaperDataAdaPter.PaperCallBack{
+public class PaperFragment extends BaseFragment implements PaperContract.View, PaperDataAdaPter.PaperCallBack {
     @BindView(R.id.paper_pull)
     PullToRefreshRecyclerView paperPull;
     Unbinder unbinder;
+    @BindView(R.id.paper_person)
+    ImageView paperPerson;
     //持有P层对象
     private PaperContract.PaperPresenter presenter;
     private PaperLunboAdaPter paperLunboAdaPter;
     private PaperDataAdaPter paperDataAdaPter;
-   private PullToRefreshRecyclerView paperdatapull;
-  private List<Paper_LunboBean.DataBean.BigImgBean> listlunbo=new ArrayList<>();
-  private List<Paper_DataBean.ListBean> listdata=new ArrayList<>();
+    private PullToRefreshRecyclerView paperdatapull;
+    private List<Paper_LunboBean.DataBean.BigImgBean> listlunbo = new ArrayList<>();
+    private List<Paper_DataBean.ListBean> listdata = new ArrayList<>();
     private List<Paper_DataBean.ListBean> list = new ArrayList<>();
-
-
+//缓存
+    private ACache aCache = ACache.get(App.context);
     @Override
     protected int getFragmentLayoutId() {
         return R.layout.fragment_paper;
@@ -56,6 +63,7 @@ public class PaperFragment extends BaseFragment implements PaperContract.View,Pa
     private void shujumamger() {
 
     }
+
     private void lunbomanger() {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -149,22 +157,20 @@ public class PaperFragment extends BaseFragment implements PaperContract.View,Pa
     public void lunbo(Paper_LunboBean paperLunboBean) {
         listlunbo.addAll(paperLunboBean.getData().getBigImg());
 
-        paperLunboAdaPter = new PaperLunboAdaPter(getContext(),listlunbo);
+        paperLunboAdaPter = new PaperLunboAdaPter(getContext(), listlunbo);
         paperPull.setAdapter(paperLunboAdaPter);
 
     }
-
 
 
     @Override
     public void shuju(Paper_DataBean paperDataBean) {
         listdata.addAll(paperDataBean.getList());
         list.addAll(listdata);
-        paperDataAdaPter = new PaperDataAdaPter(getContext(),list);
+        paperDataAdaPter = new PaperDataAdaPter(getContext(), list);
         paperDataAdaPter.setPaperCallBack(this);
         paperdatapull.setAdapter(paperDataAdaPter);
     }
-
 
 
     @Override
@@ -183,22 +189,25 @@ public class PaperFragment extends BaseFragment implements PaperContract.View,Pa
 
     @Override
     public void back(int layoutPosition) {
-        String pid = list.get(0).getGuid();
-presenter.papervideo(pid, new MyHttpCallBack<Video_PaperBean>() {
-    @Override
-    public void onSuccess(Video_PaperBean paper_videoBean) {
-        String gaoqing = paper_videoBean.getVideo().getChapters4().get(0).getUrl();
-        String liuchang = paper_videoBean.getVideo().getChapters().get(0).getUrl();
-        String title = paper_videoBean.getTitle();
-        JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
+    String pid = list.get(0).getGuid();
+    presenter.papervideo(pid, new MyHttpCallBack<Video_PaperBean>() {
+        @Override
+        public void onSuccess(Video_PaperBean paper_videoBean) {
+            String gaoqing = paper_videoBean.getVideo().getChapters4().get(0).getUrl();
+            String liuchang = paper_videoBean.getVideo().getChapters().get(0).getUrl();
+            String title = paper_videoBean.getTitle();
+            JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
+        }
+        @Override
+        public void onError(int errorCode, String errorMsg) {
+        }
+    });
+}
 
+    @OnClick(R.id.paper_person)
+    public void onViewClicked() {
+    Intent intent = new Intent(getContext(),CentreActivity.class);
+    startActivity(intent);
     }
 
-    @Override
-    public void onError(int errorCode, String errorMsg) {
-
-    }
-});
-
-    }
 }

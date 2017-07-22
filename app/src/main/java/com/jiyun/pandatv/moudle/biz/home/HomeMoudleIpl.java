@@ -5,6 +5,7 @@ import com.jiyun.pandatv.httpadress.Urls;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.entity.Bean;
 import com.jiyun.pandatv.moudle.entity.FirstBean;
+import com.jiyun.pandatv.moudle.entity.UpdateBean;
 import com.jiyun.pandatv.moudle.entity.Video_home_TuiJianBean;
 
 public class HomeMoudleIpl implements HomeMoudle {
@@ -21,6 +22,11 @@ public class HomeMoudleIpl implements HomeMoudle {
     @Override
     public void video_home_tuijian(String url,MyHttpCallBack<Video_home_TuiJianBean> callBack) {
         okHttpUtils.get(url,null,callBack);
+    }
+
+    @Override
+    public void version(MyHttpCallBack<UpdateBean> callBack) {
+        okHttpUtils.get(Urls.UPDATE_URL,null,callBack);
     }
 
 }

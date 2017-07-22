@@ -19,13 +19,15 @@ import java.util.List;
  */
 public class PaperDataAdaPter extends BaseAdapter<Paper_DataBean.ListBean> {
     private PaperCallBack paperCallBack;
+
     public void setPaperCallBack(PaperCallBack paperCallBack) {
         this.paperCallBack = paperCallBack;
     }
 
-    public  interface PaperCallBack{
+    public interface PaperCallBack {
         void back(int layoutPosition);
     }
+
     public PaperDataAdaPter(Context context, List<Paper_DataBean.ListBean> datas) {
         super(context, R.layout.paper_data_item, datas);
     }
@@ -37,7 +39,6 @@ public class PaperDataAdaPter extends BaseAdapter<Paper_DataBean.ListBean> {
         holder.setText(R.id.paper_data_time, convert((listBean.getFocus_date())));
         ImageView imageView = (ImageView) holder.itemView.findViewById(R.id.paper_data_image);
         Glide.with(context).load(listBean.getPicurl()).into(imageView);//名字
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,16 +46,16 @@ public class PaperDataAdaPter extends BaseAdapter<Paper_DataBean.ListBean> {
             }
         });
     }
-    public String convert(long mill){
-        Date date=new Date(mill);
-        String strs="";
+
+    public String convert(long mill) {
+        Date date = new Date(mill);
+        String strs = "";
         try {
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            strs=sdf.format(date);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            strs = sdf.format(date);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return strs;
     }
-
 }

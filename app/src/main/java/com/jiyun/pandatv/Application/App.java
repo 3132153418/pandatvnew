@@ -18,16 +18,16 @@ import cn.jpush.android.api.JPushInterface;
 public class App extends Application {
 
     public static BaseActivity context = null;
-
     {
         PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
         PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad",         "http://sns.whalecloud.com");
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(getApplicationContext());
         UMShareAPI.get(this);
         JPushInterface.setDebugMode(true);//开启极光推送的debug模式
         JPushInterface.init(this);//初始化极光推送
@@ -49,5 +49,4 @@ public class App extends Application {
         JPushInterface.setPushNotificationBuilder(1, builder);//设置消息样式
         JPushInterface.setLatestNotificationNumber(this,2);
     }
-
 }

@@ -72,9 +72,6 @@ public class Urls {
     //登录
     public static final String LOGIN_URL = "https://reg.cntv.cn/login/login.action";
 //    https://reg.cntv.cn/login/login.action?service=client_transactio&username=13522508321&password=123qwe...&from=https://reg.cntv.cn/login/login.action
-
     //验证码
     public static final String IMAGE_CODE = "http://reg.cntv.cn/simple/verificationCode.action";
-
-
 }

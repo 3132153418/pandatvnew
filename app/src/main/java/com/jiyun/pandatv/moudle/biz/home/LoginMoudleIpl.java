@@ -22,5 +22,4 @@ public class LoginMoudleIpl implements LoginMoudle {
 
         loginUtils.get(Urls.LOGIN,map,callBack);
     }
-
 }

@@ -14,16 +14,9 @@ import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.module.live.liveadapter.LiveBianKanBianLiaoAdapter;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
-import com.jiyun.pandatv.moudle.entity.Live_DangXiongBuRangBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
 import com.jiyun.pandatv.moudle.entity.Live_JiangCaiBean;
 import com.jiyun.pandatv.moudle.entity.Live_MoreViewBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaEventBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTopBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
-import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
-import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
-import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,40 +123,7 @@ public class LiveBianKanBianLiao extends BaseFragment implements LiveContract.Vi
 
     }
 
-    @Override
-    public void dangxiongburang(Live_DangXiongBuRangBean paperDangXiongBuRangBean) {
 
-    }
-
-    @Override
-    public void superxiu(Live_SuperXiuBean paperSuperXiuBean) {
-
-    }
-
-    @Override
-    public void pandatxt(Live_PandaTxtBean paperPandaTxtBean) {
-
-    }
-
-    @Override
-    public void pandatop(Live_PandaTopBean paperPandaTopBean) {
-
-    }
-
-    @Override
-    public void pandaevent(Live_PandaEventBean paperPandaEventBean) {
-
-    }
-
-    @Override
-    public void tebiejiemu(Live_TeBieJieMuBean paperTeBieJieMuBean) {
-
-    }
-
-    @Override
-    public void yuanchuang(Live_YuanChuangBean paperYuanChuangBean) {
-
-    }
 
 
     @Override

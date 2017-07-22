@@ -6,26 +6,26 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by lenovo on 2017/7/20.
+ * Created by lenovo on 2017/7/21.
  */
 
-public class VideoTwoBean implements Serializable{
+public class Video_home_TuiJianBean implements Serializable{
 
     /**
      * play_channel : 直播中国
-     * f_pgmtime : 2017-07-20 14:06:50
-     * tag : 精彩一刻，大熊猫，熊猫基地，国宝，动物
-     * cdn_info : {"cdn_vip":"vod.cntv.lxdns.com","cdn_code":"VOD-MP4-CDN-CNC","cdn_name":"3rd网宿"}
-     * editer_name : huoxinlei
+     * f_pgmtime : 2017-06-12 11:50:38
+     * tag : 精彩一刻搓澡小公主熊猫
+     * cdn_info : {"cdn_vip":"cntv.vod.cdn.myqcloud.com","cdn_code":"VOD-MP4-CDN-QQ","cdn_name":"3rd腾讯云"}
+     * editer_name : fangjin
      * version : 0.2
+     * title : 《精彩一刻》 20170612 搓澡的呢？小公主都要睡着了
      * is_fn_hot : true
-     * title : 《精彩一刻》 20170720 我猜中了开头，没猜中这结尾
      * is_protected : 0
-     * hls_url : http://asp.cntv.lxdns.com/asp/hls/main/0303000a/3/default/d7d80f55f0f342ed9a25073f26425b3f/main.m3u8?maxbr=4096
+     * hls_url : http://asp.cntv.lxdns.com/asp/hls/main/0303000a/3/default/d2a828ca5cd0400f82c2adee5581fc17/main.m3u8?maxbr=4096
      * hls_cdn_info : {"cdn_vip":"asp.cntv.lxdns.com","cdn_code":"VOD-HLS-CDN-CNC","cdn_name":"3rd网宿"}
-     * client_sid : ec15e94c8e3b4b3db34c012af0aa7c43
+     * client_sid : b88d61ab71dd45fe8f287c8e2a100a36
      * is_ipad_support : true
-     * video : {"totalLength":"50.00","chapters":[{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264418000nero_aac32.mp4","duration":"50"}],"validChapterNum":5,"chapters4":[{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h2642000000nero_aac16.mp4","duration":"50"}],"lowChapters":[{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264200000nero_aac16.mp4","duration":"50"}],"chapters3":[{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h2641200000nero_aac16.mp4","duration":"50"}],"chapters2":[{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264818000nero_aac32.mp4","duration":"50"}],"url":""}
+     * video : {"totalLength":"19.00","chapters":[{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264418000nero_aac32.mp4"}],"validChapterNum":5,"chapters4":[{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h2642000000nero_aac16.mp4"}],"chapters3":[{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h2641200000nero_aac16.mp4"}],"lowChapters":[{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264200000nero_aac16.mp4"}],"chapters2":[{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264818000nero_aac32.mp4"}],"url":""}
      * is_invalid_copyright : 0
      * produce_id : wxsb01
      * default_stream : HD
@@ -34,7 +34,7 @@ public class VideoTwoBean implements Serializable{
      * embed :
      * asp_error_code : 0
      * column : 熊猫频道精彩一刻高清
-     * lc : {"isp_code":"2","city_code":"","provice_code":"BJ","country_code":"CN","ip":"61.148.242.28"}
+     * lc : {"isp_code":"1","city_code":"","provice_code":"BJ","country_code":"CN","ip":"115.171.32.120"}
      * public : 1
      * is_p2p_use : false
      * produce :
@@ -46,8 +46,8 @@ public class VideoTwoBean implements Serializable{
     private CdnInfoBean cdn_info;
     private String editer_name;
     private String version;
-    private String is_fn_hot;
     private String title;
+    private String is_fn_hot;
     private String is_protected;
     private String hls_url;
     private HlsCdnInfoBean hls_cdn_info;
@@ -116,20 +116,20 @@ public class VideoTwoBean implements Serializable{
         this.version = version;
     }
 
-    public String getIs_fn_hot() {
-        return is_fn_hot;
-    }
-
-    public void setIs_fn_hot(String is_fn_hot) {
-        this.is_fn_hot = is_fn_hot;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getIs_fn_hot() {
+        return is_fn_hot;
+    }
+
+    public void setIs_fn_hot(String is_fn_hot) {
+        this.is_fn_hot = is_fn_hot;
     }
 
     public String getIs_protected() {
@@ -276,11 +276,11 @@ public class VideoTwoBean implements Serializable{
         this.produce = produce;
     }
 
-    public static class CdnInfoBean implements Serializable{
+    public static class CdnInfoBean {
         /**
-         * cdn_vip : vod.cntv.lxdns.com
-         * cdn_code : VOD-MP4-CDN-CNC
-         * cdn_name : 3rd网宿
+         * cdn_vip : cntv.vod.cdn.myqcloud.com
+         * cdn_code : VOD-MP4-CDN-QQ
+         * cdn_name : 3rd腾讯云
          */
 
         private String cdn_vip;
@@ -350,13 +350,13 @@ public class VideoTwoBean implements Serializable{
 
     public static class VideoBean implements Serializable{
         /**
-         * totalLength : 50.00
-         * chapters : [{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264418000nero_aac32.mp4","duration":"50"}]
+         * totalLength : 19.00
+         * chapters : [{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264418000nero_aac32.mp4"}]
          * validChapterNum : 5
-         * chapters4 : [{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h2642000000nero_aac16.mp4","duration":"50"}]
-         * lowChapters : [{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264200000nero_aac16.mp4","duration":"50"}]
-         * chapters3 : [{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h2641200000nero_aac16.mp4","duration":"50"}]
-         * chapters2 : [{"image":"http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg","url":"http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264818000nero_aac32.mp4","duration":"50"}]
+         * chapters4 : [{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h2642000000nero_aac16.mp4"}]
+         * chapters3 : [{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h2641200000nero_aac16.mp4"}]
+         * lowChapters : [{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264200000nero_aac16.mp4"}]
+         * chapters2 : [{"duration":"19","image":"http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg","url":"http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264818000nero_aac32.mp4"}]
          * url :
          */
 
@@ -365,8 +365,8 @@ public class VideoTwoBean implements Serializable{
         private String url;
         private List<ChaptersBean> chapters;
         private List<Chapters4Bean> chapters4;
-        private List<LowChaptersBean> lowChapters;
         private List<Chapters3Bean> chapters3;
+        private List<LowChaptersBean> lowChapters;
         private List<Chapters2Bean> chapters2;
 
         public String getTotalLength() {
@@ -409,20 +409,20 @@ public class VideoTwoBean implements Serializable{
             this.chapters4 = chapters4;
         }
 
-        public List<LowChaptersBean> getLowChapters() {
-            return lowChapters;
-        }
-
-        public void setLowChapters(List<LowChaptersBean> lowChapters) {
-            this.lowChapters = lowChapters;
-        }
-
         public List<Chapters3Bean> getChapters3() {
             return chapters3;
         }
 
         public void setChapters3(List<Chapters3Bean> chapters3) {
             this.chapters3 = chapters3;
+        }
+
+        public List<LowChaptersBean> getLowChapters() {
+            return lowChapters;
+        }
+
+        public void setLowChapters(List<LowChaptersBean> lowChapters) {
+            this.lowChapters = lowChapters;
         }
 
         public List<Chapters2Bean> getChapters2() {
@@ -435,14 +435,22 @@ public class VideoTwoBean implements Serializable{
 
         public static class ChaptersBean implements Serializable{
             /**
-             * image : http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg
-             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264418000nero_aac32.mp4
-             * duration : 50
+             * duration : 19
+             * image : http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg
+             * url : http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264418000nero_aac32.mp4
              */
 
+            private String duration;
             private String image;
             private String url;
-            private String duration;
+
+            public String getDuration() {
+                return duration;
+            }
+
+            public void setDuration(String duration) {
+                this.duration = duration;
+            }
 
             public String getImage() {
                 return image;
@@ -458,27 +466,27 @@ public class VideoTwoBean implements Serializable{
 
             public void setUrl(String url) {
                 this.url = url;
-            }
-
-            public String getDuration() {
-                return duration;
-            }
-
-            public void setDuration(String duration) {
-                this.duration = duration;
             }
         }
 
         public static class Chapters4Bean implements Serializable{
             /**
-             * image : http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg
-             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h2642000000nero_aac16.mp4
-             * duration : 50
+             * duration : 19
+             * image : http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg
+             * url : http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h2642000000nero_aac16.mp4
              */
 
+            private String duration;
             private String image;
             private String url;
-            private String duration;
+
+            public String getDuration() {
+                return duration;
+            }
+
+            public void setDuration(String duration) {
+                this.duration = duration;
+            }
 
             public String getImage() {
                 return image;
@@ -494,63 +502,27 @@ public class VideoTwoBean implements Serializable{
 
             public void setUrl(String url) {
                 this.url = url;
-            }
-
-            public String getDuration() {
-                return duration;
-            }
-
-            public void setDuration(String duration) {
-                this.duration = duration;
-            }
-        }
-
-        public static class LowChaptersBean implements Serializable{
-            /**
-             * image : http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg
-             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264200000nero_aac16.mp4
-             * duration : 50
-             */
-
-            private String image;
-            private String url;
-            private String duration;
-
-            public String getImage() {
-                return image;
-            }
-
-            public void setImage(String image) {
-                this.image = image;
-            }
-
-            public String getUrl() {
-                return url;
-            }
-
-            public void setUrl(String url) {
-                this.url = url;
-            }
-
-            public String getDuration() {
-                return duration;
-            }
-
-            public void setDuration(String duration) {
-                this.duration = duration;
             }
         }
 
         public static class Chapters3Bean implements Serializable{
             /**
-             * image : http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg
-             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h2641200000nero_aac16.mp4
-             * duration : 50
+             * duration : 19
+             * image : http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg
+             * url : http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h2641200000nero_aac16.mp4
              */
 
+            private String duration;
             private String image;
             private String url;
-            private String duration;
+
+            public String getDuration() {
+                return duration;
+            }
+
+            public void setDuration(String duration) {
+                this.duration = duration;
+            }
 
             public String getImage() {
                 return image;
@@ -567,6 +539,18 @@ public class VideoTwoBean implements Serializable{
             public void setUrl(String url) {
                 this.url = url;
             }
+        }
+
+        public static class LowChaptersBean implements Serializable{
+            /**
+             * duration : 19
+             * image : http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg
+             * url : http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264200000nero_aac16.mp4
+             */
+
+            private String duration;
+            private String image;
+            private String url;
 
             public String getDuration() {
                 return duration;
@@ -574,19 +558,43 @@ public class VideoTwoBean implements Serializable{
 
             public void setDuration(String duration) {
                 this.duration = duration;
+            }
+
+            public String getImage() {
+                return image;
+            }
+
+            public void setImage(String image) {
+                this.image = image;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
             }
         }
 
         public static class Chapters2Bean implements Serializable{
             /**
-             * image : http://p2.img.cctvpic.com/fmspic/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f-35.jpg
-             * url : http://vod.cntv.lxdns.com/flash/mp4video61/TMS/2017/07/20/d7d80f55f0f342ed9a25073f26425b3f_h264818000nero_aac32.mp4
-             * duration : 50
+             * duration : 19
+             * image : http://p5.img.cctvpic.com/fmspic/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17-9.jpg
+             * url : http://cntv.vod.cdn.myqcloud.com/flash/mp4video60/TMS/2017/06/12/d2a828ca5cd0400f82c2adee5581fc17_h264818000nero_aac32.mp4
              */
 
+            private String duration;
             private String image;
             private String url;
-            private String duration;
+
+            public String getDuration() {
+                return duration;
+            }
+
+            public void setDuration(String duration) {
+                this.duration = duration;
+            }
 
             public String getImage() {
                 return image;
@@ -602,25 +610,17 @@ public class VideoTwoBean implements Serializable{
 
             public void setUrl(String url) {
                 this.url = url;
-            }
-
-            public String getDuration() {
-                return duration;
-            }
-
-            public void setDuration(String duration) {
-                this.duration = duration;
             }
         }
     }
 
     public static class LcBean implements Serializable{
         /**
-         * isp_code : 2
+         * isp_code : 1
          * city_code :
          * provice_code : BJ
          * country_code : CN
-         * ip : 61.148.242.28
+         * ip : 115.171.32.120
          */
 
         private String isp_code;

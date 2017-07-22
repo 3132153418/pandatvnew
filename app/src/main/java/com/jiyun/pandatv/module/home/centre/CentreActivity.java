@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseActivity;
@@ -54,6 +53,7 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.gunakanLiShi:
+
                 break;
             case R.id.myShouCang:
                 break;

@@ -1,10 +1,15 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    greendao{
+        schemaVersion 1
+        daoPackage 'com.jiyun.com.day07_greendao'
+        targetGenDir 'src/main/java'
+    }
     defaultConfig {
         applicationId "com.jiyun.pandatv"
         minSdkVersion 17
@@ -84,5 +89,5 @@ dependencies {
     compile project(':jcvideoplayer-lib')
     compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
     compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
-
+    compile 'org.greenrobot:greendao:3.2.0'
 }

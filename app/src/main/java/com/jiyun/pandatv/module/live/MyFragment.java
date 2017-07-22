@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,29 +13,16 @@ import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
-import com.jiyun.pandatv.module.live.liveadapter.DangXiongBuRangAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JianJieAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JingcaiAdapter;
-import com.jiyun.pandatv.module.live.liveadapter.PandaEventAdapter;
-import com.jiyun.pandatv.module.live.liveadapter.PandaTOPAdapter;
-import com.jiyun.pandatv.module.live.liveadapter.PandaTeBieAdapter;
-import com.jiyun.pandatv.module.live.liveadapter.PandaTxtAdapter;
-import com.jiyun.pandatv.module.live.liveadapter.PandaYuanChuangAdapter;
-import com.jiyun.pandatv.module.live.liveadapter.SuPterXiuAdapter;
 import com.jiyun.pandatv.module.live.views.NoScrollViewPager;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
-import com.jiyun.pandatv.moudle.entity.Live_DangXiongBuRangBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
 import com.jiyun.pandatv.moudle.entity.Live_JiangCaiBean;
 import com.jiyun.pandatv.moudle.entity.Live_MoreViewBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaEventBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTopBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
-import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
-import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
-import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
 import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 import java.util.ArrayList;
@@ -67,29 +53,14 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     private List<BaseFragment> fragment_list;
     private List<String> title_list;
     private ViewPagerAdapter2 adapter;
-
-
     private RecyclerView jianjiepull;
     private PullToRefreshRecyclerView jingcaipull;
     private JianJieAdapter jianJieAdapter;
     private JingcaiAdapter jingcaiAdapter;
-    private SuPterXiuAdapter suPterXiuAdapter;
-    private DangXiongBuRangAdapter dangxiongburangadapter;
-    private PandaTxtAdapter pandatxtadapter;
-    private PandaTOPAdapter pandatopadapter;
-    private PandaEventAdapter pandaeventadapter;
-    private PandaTeBieAdapter pandatebieadapter;
-    private PandaYuanChuangAdapter pandayuanchuangadapter;
     private LiveContract.Presenter presenter;
     private List<Live_JianJieBean.LiveBean> jianjieBeanlist = new ArrayList<>();
     private List<Live_JiangCaiBean.VideoBean> jinagcaiBeanlist = new ArrayList<>();
-    private List<Live_DangXiongBuRangBean.VideoBean> dangxionglist = new ArrayList<>();
-    private List<Live_SuperXiuBean.VideoBean> superxiulist = new ArrayList<>();
-    private List<Live_PandaTxtBean.VideoBean> pandatxtlist = new ArrayList<>();
-    private List<Live_PandaTopBean.VideoBean> pandaTOPlist = new ArrayList<>();
-    private List<Live_PandaEventBean.VideoBean> pandaeventlist = new ArrayList<>();
-    private List<Live_TeBieJieMuBean.VideoBean> pandaTeBielist = new ArrayList<>();
-    private List<Live_YuanChuangBean.VideoBean> pandaYuanChuanglist = new ArrayList<>();
+
     private static int p = 1;
 
     @Override
@@ -187,8 +158,8 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         jingcaipull.setLayoutManager(manager);
-        jingcaipull.setPullRefreshEnabled(false);
-        jingcaipull.setLoadingMoreEnabled(false);
+        jingcaipull.setPullRefreshEnabled(true);
+        jingcaipull.setLoadingMoreEnabled(true);
         jingcaipull.setPullToRefreshListener(new PullToRefreshListener() {
             @Override
             public void onRefresh() {
@@ -227,8 +198,6 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         jianjiepull.setLayoutManager(manager);
-//        jianjiepull.setPullRefreshEnabled(false);
-//        jianjiepull.setLoadingMoreEnabled(false);
     }
 
     @Override
@@ -294,63 +263,6 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
         jingcaipull.setAdapter(jingcaiAdapter);
     }
 
-    @Override
-    public void dangxiongburang(Live_DangXiongBuRangBean paperDangXiongBuRangBean) {
-        dangxionglist.addAll(paperDangXiongBuRangBean.getVideo());
-        dangxiongburangadapter = new DangXiongBuRangAdapter(App.context, dangxionglist);
-        jingcaipull.setAdapter(dangxiongburangadapter);
-        dangxiongburangadapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void superxiu(Live_SuperXiuBean paperSuperXiuBean) {
-        superxiulist.addAll(paperSuperXiuBean.getVideo());
-        suPterXiuAdapter = new SuPterXiuAdapter(App.context, superxiulist);
-        jingcaipull.setAdapter(suPterXiuAdapter);
-        suPterXiuAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void pandatxt(Live_PandaTxtBean paperPandaTxtBean) {
-        pandatxtlist.addAll(paperPandaTxtBean.getVideo());
-        pandatxtadapter = new PandaTxtAdapter(getContext(), pandatxtlist);
-//        Log.d("MyFragment", "熊猫档案" + pandatxtlist);
-        jingcaipull.setAdapter(pandatxtadapter);
-    }
-
-    @Override
-    public void pandatop(Live_PandaTopBean paperPandaTopBean) {
-        pandaTOPlist.addAll(paperPandaTopBean.getVideo());
-        pandatopadapter = new PandaTOPAdapter(getContext(), pandaTOPlist);
-//        Log.d("MyFragment", "熊猫top" + pandaTOPlist);
-        jingcaipull.setAdapter(pandatopadapter);
-    }
-
-    @Override
-    public void pandaevent(Live_PandaEventBean paperPandaEventBean) {
-        pandaeventlist.addAll(paperPandaEventBean.getVideo());
-        pandaeventadapter = new PandaEventAdapter(getContext(), pandaeventlist);
-        Log.d("MyFragment", "熊猫那些事儿" + pandaeventlist);
-        jingcaipull.setAdapter(pandaeventadapter);
-    }
-
-    @Override
-    public void tebiejiemu(Live_TeBieJieMuBean paperTeBieJieMuBean) {
-        pandaTeBielist.addAll(paperTeBieJieMuBean.getVideo());
-        pandatebieadapter = new PandaTeBieAdapter(getContext(), pandaTeBielist);
-//        Log.d("MyFragment", "特别节目" + pandaTeBielist);
-        jingcaipull.setAdapter(pandatebieadapter);
-    }
-
-    @Override
-
-    public void yuanchuang(Live_YuanChuangBean paperYuanChuangBean) {
-        pandaYuanChuanglist.addAll(paperYuanChuangBean.getVideo());
-        pandayuanchuangadapter = new PandaYuanChuangAdapter(getContext(), pandaYuanChuanglist);
-//        Log.d("MyFragment", "原创新闻" + pandaYuanChuanglist);
-        jingcaipull.setAdapter(pandayuanchuangadapter);
-    }
-
 
 
     @Override
@@ -359,6 +271,7 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
         presenter.video(videoBean.getVid(), new MyHttpCallBack<VideoTwoBean>() {
             @Override
             public void onSuccess(VideoTwoBean videoTwoBean) {
+                L.d("精彩一课视频",videoBean.getLen().toString());
                 List<VideoTwoBean.VideoBean.ChaptersBean> chapters = videoTwoBean.getVideo().getChapters();//流畅
                 String liuchangurl = chapters.get(0).getUrl();
                 List<VideoTwoBean.VideoBean.Chapters4Bean> chapters4 = videoTwoBean.getVideo().getChapters4();//高清

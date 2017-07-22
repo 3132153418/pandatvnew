@@ -150,7 +150,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void setLogin(LoginEntity login) {
         String errMsg = login.getErrMsg();
-       // user_seq_id = login.getUser_seq_id();
         Log.i("susses",errMsg);
     }
 

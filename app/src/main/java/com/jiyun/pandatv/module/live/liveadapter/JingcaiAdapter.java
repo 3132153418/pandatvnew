@@ -21,14 +21,17 @@ public class JingcaiAdapter extends BaseAdapter<Live_JiangCaiBean.VideoBean> {
     public JingcaiAdapter(Context context, List<Live_JiangCaiBean.VideoBean> datas) {
         super(context, R.layout.paper_after_item, datas);
     }
-
+//    接口回调
     public void setJingcaiCallback(JingCaiCallback callback) {
         this.jingcaiCallback = callback;
     }
+
     private JingCaiCallback jingcaiCallback;
-   public interface JingCaiCallback{
+
+    public interface JingCaiCallback {
         void back(int layoutPosition);
     }
+
     @Override
     public void convert(ViewHolder holder, Live_JiangCaiBean.VideoBean videoBean) {
         holder.setText(R.id.paper_after_title, videoBean.getT());

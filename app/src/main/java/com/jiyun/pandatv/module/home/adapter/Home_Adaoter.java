@@ -15,22 +15,46 @@ import android.widget.TextView;
 import com.androidkun.adapter.ViewHolder;
 import com.bumptech.glide.Glide;
 import com.jiyun.pandatv.R;
-import com.jiyun.pandatv.module.home.pandabobao.PandaNews_Btn_Safety;
 import com.jiyun.pandatv.module.home.pandajingcaiyike.AmazingActivty;
 import com.jiyun.pandatv.module.home.pandaxiuchang.ElegantActivity;
 import com.jiyun.pandatv.moudle.entity.FirstBean;
 
 import java.util.List;
 
-import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
-
-import static com.jiyun.pandatv.Application.App.context;
-
 /**
  * Created by Administrator on 2017/7/14.
  */
+/*视频
+area:精彩推荐
+pandaeye”熊猫观察
+* 光影中国list*/
+    /*
+    xml
+    * cctv:央视明栏
+    *interactive:特别侧划 */
+    /*
+    * 直播
+    * chinalive“直播中国
+    * walllive长城直播
+    * pandalive:熊猫直播*/
 
-public class Home_Adaoter extends RecyclerView.Adapter{
+public class Home_Adaoter extends RecyclerView.Adapter {
+    //接口回调
+    public ShouYeCallback backs;
+
+    public void setBack(ShouYeCallback backs) {
+        this.backs = backs;
+    }
+
+  public   interface ShouYeCallback {
+        void jingcaituijianback(int position);//精彩推荐
+
+        void xiongmaoguanchaback(int position);//熊猫观察
+        void xiongmaoguanchaback2(int position);//熊猫观察
+
+
+    }
+
     private List<Object> mlist;
     private LayoutInflater inflater;
     private Context context;
@@ -78,11 +102,11 @@ public class Home_Adaoter extends RecyclerView.Adapter{
                 break;
             case TYPE4:
                 View view3 = inflater.inflate(R.layout.home_vadio, parent, false);
-                viewHolder = new ViewHolder(context,view3);
+                viewHolder = new ViewHolder(context, view3);
                 break;
             case TYPE5:
                 View view4 = inflater.inflate(R.layout.home_china, parent, false);
-                viewHolder = new ViewHolder(context,view4);
+                viewHolder = new ViewHolder(context, view4);
                 break;
         }
         return viewHolder;
@@ -123,9 +147,7 @@ public class Home_Adaoter extends RecyclerView.Adapter{
         return mlist.size();
     }
 
-    }
-
-    class FirstViewHolder extends RecyclerView.ViewHolder{
+    class FirstViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView t1, t2;
@@ -137,27 +159,20 @@ public class Home_Adaoter extends RecyclerView.Adapter{
             t2 = (TextView) itemView.findViewById(R.id.pandalive_content);
         }
 
-        public void setFirst(final FirstBean.DataBean.PandaeyeBean pandaeyeBean) {
+        public void setFirst(final FirstBean.DataBean.PandaeyeBean pandaeyeBean) {//熊猫观察
             Glide.with(context).load(pandaeyeBean.getPandaeyelogo()).into(imageView);
             t1.setText(pandaeyeBean.getItems().get(0).getTitle());
             t2.setText(pandaeyeBean.getItems().get(1).getTitle());
             t1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent2 = new Intent(context, AmazingActivty.class);
-                    intent2.putExtra("title",pandaeyeBean.getItems().get(0).getTitle());
-                    intent2.putExtra("pid",pandaeyeBean.getItems().get(1).getPid());
-                    context.startActivity(intent2);
-//                    JCFullScreenActivity.toActivity(context
-//                  pandaeyeBean.getItems().get(1).getPid());
+                    backs.xiongmaoguanchaback(getPosition());
                 }
             });
             t2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent3 = new Intent(context,PandaNews_Btn_Safety.class);
-                    intent3.putExtra("url",pandaeyeBean.getItems().get(0).getUrl());
-                    context.startActivity(intent3);
+                    backs.xiongmaoguanchaback2(getPosition());
                 }
             });
 
@@ -197,32 +212,31 @@ public class Home_Adaoter extends RecyclerView.Adapter{
             gridView = (GridView) itemView.findViewById(R.id.home_GridView_Amazing);
         }
 
-        public void setThree(final FirstBean.DataBean.AreaBean areaBean) {
+
+        public void setThree(FirstBean.DataBean.AreaBean areaBean) {//精彩推荐
             Home_Amazing_Adapter adapter1 = new Home_Amazing_Adapter(context, areaBean.getListscroll());
             gridView.setAdapter(adapter1);
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Intent intent5 = new Intent(context, AmazingActivty.class);
-
-                    intent5.putExtra("title",areaBean.getListscroll().get(0).getTitle());
-                    intent5.putExtra("pid",areaBean.getListscroll().get(1).getPid());
-                    context.startActivity(intent5);
+                    backs.jingcaituijianback(getPosition());
                 }
             });
 
         }
     }
-    class FourViewHolder extends RecyclerView.ViewHolder{
+
+    class FourViewHolder extends RecyclerView.ViewHolder {
 
         ListView home_ListView;
+
         public FourViewHolder(View itemView) {
             super(itemView);
             home_ListView = (ListView) itemView.findViewById(R.id.home_ListView);
         }
-        public void setFour(final FirstBean.DataBean.WallliveBean wallliveBean){
-            Home_Vadio_Adapter home_vadio_adapter = new Home_Vadio_Adapter(context,wallliveBean.getList());
+
+        public void setFour(FirstBean.DataBean.WallliveBean wallliveBean) {
+            Home_Vadio_Adapter home_vadio_adapter = new Home_Vadio_Adapter(context, wallliveBean.getList());
             home_ListView.setAdapter(home_vadio_adapter);
             home_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -235,23 +249,30 @@ public class Home_Adaoter extends RecyclerView.Adapter{
 
         }
     }
-    class FiveViewHolder extends RecyclerView.ViewHolder{
+
+    class FiveViewHolder extends RecyclerView.ViewHolder {
 
         GridView home_GridView_China;
+
         public FiveViewHolder(View itemView) {
             super(itemView);
             home_GridView_China = (GridView) itemView.findViewById(R.id.home_GridView_China);
         }
-        public void setFive(FirstBean.DataBean.ChinaliveBean chinaliveBean){
-            Home_China_Adapter home_china_adapter = new Home_China_Adapter(context,chinaliveBean.getList());
+
+        public void setFive(FirstBean.DataBean.ChinaliveBean chinaliveBean) {
+            Home_China_Adapter home_china_adapter = new Home_China_Adapter(context, chinaliveBean.getList());
             home_GridView_China.setAdapter(home_china_adapter);
             home_GridView_China.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent6= new Intent(context, ElegantActivity.class);
+                    Intent intent6 = new Intent(context, ElegantActivity.class);
                     context.startActivity(intent6);
+
                 }
             });
 
         }
     }
+}
+
+

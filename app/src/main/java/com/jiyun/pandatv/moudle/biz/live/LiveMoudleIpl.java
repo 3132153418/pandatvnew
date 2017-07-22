@@ -5,21 +5,15 @@ import com.jiyun.pandatv.httpadress.Urls;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.entity.Bean;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
-import com.jiyun.pandatv.moudle.entity.Live_DangXiongBuRangBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
 import com.jiyun.pandatv.moudle.entity.Live_JiangCaiBean;
 import com.jiyun.pandatv.moudle.entity.Live_MoreViewBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaEventBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTopBean;
-import com.jiyun.pandatv.moudle.entity.Live_PandaTxtBean;
-import com.jiyun.pandatv.moudle.entity.Live_SuperXiuBean;
-import com.jiyun.pandatv.moudle.entity.Live_TeBieJieMuBean;
-import com.jiyun.pandatv.moudle.entity.Live_YuanChuangBean;
 import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+* 参数*/
 public class LiveMoudleIpl implements LiveMoudle {
     @Override
     public void start(MyHttpCallBack<Bean> callBack) {
@@ -63,13 +57,15 @@ public class LiveMoudleIpl implements LiveMoudle {
         map.put("o",o);
         map.put("of",of);
         map.put("p",p);
-
         okHttpUtils.get(Urls.LIVE_BASEURL, map, callBack);
     }
 
+
+
+
     //当熊不让
     @Override
-    public void daxiongburang(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_DangXiongBuRangBean> callBack) {
+    public void daxiongburang(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);
@@ -82,7 +78,7 @@ public class LiveMoudleIpl implements LiveMoudle {
 
     //熊猫文档
     @Override
-    public void pandatxt(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_PandaTxtBean> callBack) {
+    public void pandatxt(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);
@@ -95,7 +91,7 @@ public class LiveMoudleIpl implements LiveMoudle {
 
     //熊猫TOP榜
     @Override
-    public void pandaTOP(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_PandaTopBean> callBack) {
+    public void pandaTOP(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);
@@ -108,7 +104,7 @@ public class LiveMoudleIpl implements LiveMoudle {
 
     //超萌滚滚秀
     @Override
-    public void superXiu(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_SuperXiuBean> callBack) {
+    public void superXiu(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);
@@ -121,7 +117,7 @@ public class LiveMoudleIpl implements LiveMoudle {
 
     //熊猫那些事儿
     @Override
-    public void PandaEvent(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_PandaEventBean> callBack) {
+    public void PandaEvent(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);
@@ -134,7 +130,7 @@ public class LiveMoudleIpl implements LiveMoudle {
 
     //特别节目
     @Override
-    public void twbie(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_TeBieJieMuBean> callBack) {
+    public void twbie(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);
@@ -147,7 +143,7 @@ public class LiveMoudleIpl implements LiveMoudle {
 
     //原创
     @Override
-    public void yuanchaung(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_YuanChuangBean> callBack) {
+    public void yuanchaung(String vsid,String n,String serviceId,String o,String of,String p,MyHttpCallBack<Live_JiangCaiBean> callBack) {
         Map<String,String> map=new HashMap<>();
         map.put("vsid",vsid);
         map.put("n",n);

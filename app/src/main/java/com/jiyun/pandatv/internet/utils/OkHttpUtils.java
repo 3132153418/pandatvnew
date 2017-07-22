@@ -1,5 +1,6 @@
 package com.jiyun.pandatv.internet.utils;
 
+
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -92,7 +93,10 @@ public class OkHttpUtils implements BaseHttp {
                         //执行在主线程
                         T generic = getGeneric(jsonData, callBack);
                         ACache aCache = ACache.get(App.context);
-                        aCache.put(generic.getClass().getSimpleName(), (Serializable) generic,5*ACache.TIME_HOUR);
+                        String simpleName = generic.getClass().getSimpleName();
+                        if (!simpleName.equals("Live_JiangCaiBean")) {
+                            aCache.put(simpleName, (Serializable) generic,5*ACache.TIME_HOUR);
+                        }
                         //回调泛型对象
                         callBack.onSuccess(generic);
                     }

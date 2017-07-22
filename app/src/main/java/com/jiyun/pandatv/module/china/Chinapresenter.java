@@ -8,8 +8,10 @@ import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.biz.china.ChinaMoudle;
 import com.jiyun.pandatv.moudle.biz.china.ChinaMoudleIpl;
 import com.jiyun.pandatv.moudle.entity.Bean;
+import com.jiyun.pandatv.moudle.entity.GGliveBean;
 
 public class Chinapresenter implements ChinaContract.Presenter {
+
     //持有View层对象
     private ChinaContract.View chinaview;
     //持有Moudle层对象
@@ -28,14 +30,15 @@ public class Chinapresenter implements ChinaContract.Presenter {
         Log.d("LiveChinapresenter", "start");
 
 
-        chinaMoudle.start(new MyHttpCallBack<Bean>() {
+        chinaMoudle.setGGImage(new MyHttpCallBack<GGliveBean>() {
             @Override
-            public void onSuccess(final Bean bean) {
+            public void onSuccess(final GGliveBean bean) {
                 //成功的回调
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Log.d("LiveChinapresenter", "bean:" + bean.toString());
+                        chinaview.setResult(bean);
 
                     }
                 });

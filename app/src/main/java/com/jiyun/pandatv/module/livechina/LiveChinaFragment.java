@@ -1,114 +1,67 @@
 package com.jiyun.pandatv.module.livechina;
 
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
+
 
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.base.BaseFragment;
-import com.jiyun.pandatv.module.live.ViewPagerAdapter2;
-import com.jiyun.pandatv.module.livechina.bdl.BDLFragment;
-import com.jiyun.pandatv.module.livechina.liveadapter.DragAdapter;
-import com.jiyun.pandatv.module.livechina.viewtwo.DragGridView;
-import com.jiyun.pandatv.moudle.entity.LivechinaTabBean;
+import com.jiyun.pandatv.module.home.centre.CentreActivity;
+import com.jiyun.pandatv.module.livechina.adapter.PandaDirectAdapter;
+import com.jiyun.pandatv.module.livechina.fragment.LiveFragment;
+import com.jiyun.pandatv.moudle.entity.PopupBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View,View.OnClickListener{
 
-    ImageView livechinaFragmentAdd;
-    ViewPager myLiveviewpager;
-    TabLayout myLivetablayout;
-    private ViewPagerAdapter2 myLivechinaAdapter;
-    private List<String> mTabListName;
+    private List<String> mListName;
     private List<BaseFragment> mList;
-    private LiveChinaContract.Presenter presenter;
-
-    private PopupWindow popupWindow;
-    private DragGridView gridView;
-    private DragGridView gridView_other;
-    private DragAdapter dragAdapter;
-    private DragAdapter other_adapter;
-    private CheckBox checkBox;
-    private List<String> channels = new ArrayList<>();
-    private List<String> channels_other = new ArrayList<>();
-    private Map<String, String> tagUrlMap;
+    private List<String> mListNameUrl;
+    private Map<String,String> mMapAllUrl;
+    private ViewPager liveChenaViewPager;
+    private ImageButton liveChenaIBtn;
+    private TabLayout liveChenaTabLayout;
+    private ImageView personal_Cente;
+    private PandaDirectAdapter adapter;
+    private LiveChinapresenter presenter;
 
     @Override
     protected int getFragmentLayoutId() {
-        return R.layout.fragment_open;
+
+        return R.layout.livechina_fragment;
     }
 
     @Override
     protected void init(View view) {
-        myLivetablayout = (TabLayout) view.findViewById(R.id.livechina_fragment_tablayout);
-        myLiveviewpager = (ViewPager) view.findViewById(R.id.livechina_fragment_viewpager);
-        livechinaFragmentAdd = (ImageView) view.findViewById(R.id.livechina_fragment_add);
+        new LiveChinapresenter(this);
 
-        upWopwindowo();
-    }
-
-    private void upWopwindowo() {
-
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_popup_columns, null);
-
-        popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        popupWindow.setFocusable(true);
-        popupWindow.setBackgroundDrawable(null);
-        popupWindow.setOutsideTouchable(true);
-        ImageView imageView = (ImageView) view.findViewById(R.id.fanhui);
-        gridView = (DragGridView) view.findViewById(R.id.gridView_channel);
-        gridView_other = (DragGridView) view.findViewById(R.id.gridView_channel_other);
-        checkBox = (CheckBox) view.findViewById(R.id.licechina_add_button);
-        checkBox.setOnCheckedChangeListener(this);
-
-        gridView.setNumColumns(3);
-        dragAdapter = new DragAdapter(getActivity(), channels);
-        gridView.setAdapter(dragAdapter);
-
-        other_adapter = new DragAdapter(getActivity(), channels_other);
-        gridView_other.setAdapter(other_adapter);
-        gridView_other.setNumColumns(3);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-    }
-
-    private void initDataOther(List<LivechinaTabBean.AlllistBean> alllistBeanList) {
-        for (LivechinaTabBean.AlllistBean alllistBean : alllistBeanList) {
-            channels_other.add(alllistBean.getTitle());
-        }
-
-    }
-
-    private void initDatatitle(List<LivechinaTabBean.TablistBean> tablistBeanList) {
-        for (LivechinaTabBean.TablistBean alllistBean : tablistBeanList) {
-            channels.add(alllistBean.getTitle());
-        }
-
+        liveChenaViewPager = (ViewPager) view.findViewById(R.id.live_chena_viewPager);
+        liveChenaIBtn = (ImageButton) view.findViewById(R.id.live_chena_IBtn);
+        liveChenaTabLayout = (TabLayout) view.findViewById(R.id.live_chena_TabLayout);
+        personal_Cente = (ImageView) view.findViewById(R.id.personal_Cente);
+        personal_Cente.setOnClickListener(this);
     }
 
 
     @Override
     protected void initData() {
 
+
+        presenter.start();
     }
 
     @Override
@@ -121,129 +74,71 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
 
     }
 
-
-    public void add_Fragment(LivechinaTabBean popupBean) {//添加fragment
-        mTabListName = new ArrayList<>();
+    public void add_Fragment(PopupBean popupBean) {
+        mListName = new ArrayList<>();
         mList = new ArrayList<>();
-        tagUrlMap = new HashMap<>();
-        List<LivechinaTabBean.TablistBean> tablist = popupBean.getTablist();
-        List<LivechinaTabBean.AlllistBean> alllist = popupBean.getAlllist();
-        BDLFragment badaLingFragment = null;
+        mListNameUrl = new ArrayList<>();
+        mMapAllUrl = new HashMap<>();
+        List<PopupBean.TablistBean> tablist = popupBean.getTablist();
+        List<PopupBean.AlllistBean> alllist = popupBean.getAlllist();
+        LiveFragment badaLingFragment = null;
         Bundle bundle = null;
-        for (LivechinaTabBean.TablistBean tablistBean : tablist) {
-            mTabListName.add(tablistBean.getTitle());
-            badaLingFragment = new BDLFragment();
+        for (PopupBean.TablistBean tablistBean : tablist) {
+            mListName.add(tablistBean.getTitle());
+            badaLingFragment = new LiveFragment();
             bundle = new Bundle();
             bundle.putString("url", tablistBean.getUrl());
             badaLingFragment.setParams(bundle);
-            tagUrlMap.put(tablistBean.getTitle(), tablistBean.getUrl());
             mList.add(badaLingFragment);
+            mListNameUrl.add(tablistBean.getUrl());
+            mMapAllUrl.put(tablistBean.getTitle(), tablistBean.getUrl());
         }
-        for (LivechinaTabBean.AlllistBean alllistBean : alllist) {
-            tagUrlMap.put(alllistBean.getTitle(), alllistBean.getUrl());
+        for (PopupBean.AlllistBean alllistBean : alllist) {
+            mMapAllUrl.put(alllistBean.getTitle(), alllistBean.getUrl());
         }
-        myLivetablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-        myLivechinaAdapter = new ViewPagerAdapter2(getChildFragmentManager(), mList, mTabListName);
-        myLiveviewpager.setAdapter(myLivechinaAdapter);
-        myLivetablayout.setupWithViewPager(myLiveviewpager);
+        adapter = new PandaDirectAdapter(getChildFragmentManager(), mListName, mList);
+        liveChenaViewPager.setAdapter(adapter);
+        liveChenaTabLayout.setupWithViewPager(liveChenaViewPager);
+    }
+
+
+    @Override
+    public void setPresenter(LiveChinaContract.Presenter presenter) {
+
+        this.presenter = (LiveChinapresenter) presenter;
+    }
+
+    @Override
+    public void showProgressDialog() {
 
     }
 
     @Override
-    public void setPresenter(LiveChinaContract.Presenter presenter) {
+    public void dismissDialog() {
+
+    }
+
+    @Override
+    public void getChinaLiveTab(PopupBean popupBean) {
+
+        add_Fragment(popupBean);
+    }
+
+    @Override
+    public void showMessage(String msg) {
 
     }
 
     @Override
     public void onClick(View v) {
-
-    }
-
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-        if (isChecked) {
-            checkBox.setText("完成");
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (isChecked && channels != null && channels.size() > 4) {
-                        String channel = channels.get(position);
-                        channels.remove(position);
-                        channels_other.add(channel);
-                        dragAdapter.notifyDataSetChanged();
-                        other_adapter.notifyDataSetChanged();
-
-                    } else {
-                        Toast.makeText(getContext(), "总数不能小于4", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            gridView_other.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (isChecked) {
-                        String channel = channels_other.get(position);
-                        channels_other.remove(position);
-                        channels.add(channel);
-                        dragAdapter.notifyDataSetChanged();
-                        other_adapter.notifyDataSetChanged();
-                    }
-
-                }
-            });
-        } else {
-            setRefresh();
-            checkBox.setText("编辑");
+        switch (v.getId()){
+            case R.id.personal_Cente:
+                Intent intent = new Intent(getActivity(), CentreActivity.class);
+                startActivity(intent);
+                break;
         }
     }
-
-    public void setRefresh() {
-        mTabListName = new ArrayList<>();
-        mList = new ArrayList<>();
-        BDLFragment badaLingFragment = null;
-        Bundle bundle = null;
-        for (String title : channels) {
-            String url = tagUrlMap.get(title);
-            mTabListName.add(title);
-            badaLingFragment = new BDLFragment();
-            bundle = new Bundle();
-            bundle.putString("url", url);
-            badaLingFragment.setParams(bundle);
-            mList.add(badaLingFragment);
-        }
-        myLivechinaAdapter = new ViewPagerAdapter2(getChildFragmentManager(), mList, mTabListName);
-        myLiveviewpager.setAdapter(myLivechinaAdapter);
-        myLivetablayout.setupWithViewPager(myLiveviewpager);
-    }
-
-    public void setSave() {
-        LivechinaTabBean.TablistBean tablistBean;
-        List<LivechinaTabBean.TablistBean> tablistBeanList = new ArrayList<>();
-        List<LivechinaTabBean.AlllistBean> alllistBeanList = new ArrayList<>();
-        LivechinaTabBean.AlllistBean alllistBean;
-
-        LivechinaTabBean livechinaTabbean = new LivechinaTabBean();
-        for (String title : channels) {
-            tablistBean = new LivechinaTabBean.TablistBean();
-            tablistBean.setTitle(title);
-            tablistBean.setUrl(tagUrlMap.get(title));
-            tablistBeanList.add(tablistBean);
-        }
-        for (String title : channels_other) {
-            alllistBean = new LivechinaTabBean.AlllistBean();
-            alllistBean.setUrl(tagUrlMap.get(title));
-            alllistBean.setTitle(title);
-            alllistBeanList.add(alllistBean);
-        }
-        livechinaTabbean.setAlllist(alllistBeanList);
-        livechinaTabbean.setTablist(tablistBeanList);
-
-
-    }
-
-
 }
 
 

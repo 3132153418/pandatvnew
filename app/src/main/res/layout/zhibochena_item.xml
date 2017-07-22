@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/custom_videoplayer_standard_with_share_button"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminateDrawable="@drawable/jc_loading"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/start"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/jc_click_play_selector" />
+
+</RelativeLayout>
+    <TextView
+        android:id="@+id/ZhiboChena_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="[正在直播]八达岭南四楼"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"
+        />
+    <LinearLayout
+        android:id="@+id/ZhiboChena_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简介"
+        />
+       <ImageButton
+           android:id="@+id/ZhiboChena_chebox"
+           android:layout_width="match_parent"
+           android:layout_height="20dp"
+           android:src="@drawable/lives"
+           android:background="#fff"
+           />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#e9e1e1"
+        android:layout_marginTop="10dp"
+        ></LinearLayout>
+
+    <TextView
+        android:id="@+id/ZhiboChena_Jianjie"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight="0.14"
+        android:visibility="gone"
+
+        />
+
+
+
+
+</LinearLayout>

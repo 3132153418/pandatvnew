@@ -1,5 +1,6 @@
 package com.jiyun.pandatv.internet;
 
+import com.jiyun.pandatv.emileregutils.EmileRegUtils;
 import com.jiyun.pandatv.internet.HttpBase.BaseHttp;
 import com.jiyun.pandatv.internet.utils.OkHttpUtils;
 import com.jiyun.pandatv.internet.utils.RetrofitUtils;
@@ -18,5 +19,8 @@ public class HttpFactroy {
     }
     public static BaseHttp createLoginUtils(){
         return LoginUtils.getInstance();
+    }
+    public static BaseHttp createEmileRegUtils(){
+        return EmileRegUtils.getInstance();
     }
 }

@@ -36,7 +36,7 @@ import okhttp3.Response;
  * Created by Administrator on 2017/7/18.
  */
 
-public class PhoneFragment extends BaseFragment implements View.OnClickListener {
+public class PhoneFragment extends BaseFragment implements View.OnClickListener,PhoneContract.View {
     private ImageView phone_ImageView;
     private EditText phone_Edit, image_Edit, yanzhengma_Edit, pwd_Edit;
     private CheckBox login_CheckBox;
@@ -46,6 +46,7 @@ public class PhoneFragment extends BaseFragment implements View.OnClickListener 
     byte[] bytes;
     private OkHttpClient client = new OkHttpClient();
     private String jsonId;
+    private PhonePresenter presenter;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -54,6 +55,7 @@ public class PhoneFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     protected void init(View view) {
+        new PhonePresenter(this);
         phone_Edit = (EditText) view.findViewById(R.id.phone_Edit);
         image_Edit = (EditText) view.findViewById(R.id.image_Edit);
         yanzhengma_Edit = (EditText) view.findViewById(R.id.yanzhengma_Edit);
@@ -72,8 +74,7 @@ public class PhoneFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     protected void initData() {
-        // Glide.with(getActivity()).load("http://reg.cntv.cn/simple/verificationCode.action").into(phone_ImageView);
-        getPersonalRegImgCheck();
+        presenter.start();
     }
 
     @Override
@@ -100,153 +101,46 @@ public class PhoneFragment extends BaseFragment implements View.OnClickListener 
             case R.id.image_Edit:
                 break;
             case R.id.phone_ImageView:
-                getPersonalRegImgCheck();
+               presenter.start();
                 break;
             case R.id.login_CheckBox:
                 break;
             case R.id.yanzhengma_Btn:
-                getPhoneCode();
+                presenter.getPhoneYz(phone_Edit.getText().toString(),image_Edit.getText().toString());
                 break;
             case R.id.login_Button:
-
-                if (phone_Edit.getText().toString().equals("") || image_Edit.getText().toString().equals("") || yanzhengma_Edit.getText().toString().equals("") || pwd_Edit.getText().toString().equals("")){
-                    Toast.makeText(getContext(), "注册失败", Toast.LENGTH_SHORT).show();
+                presenter.getStrPhone(phone_Edit.getText().toString(),yanzhengma_Edit.getText().toString(),pwd_Edit.getText().toString());
+                if (phone_Edit.getText().toString().equals("")
+                        || yanzhengma_Edit.getText().toString().equals("")
+                        || pwd_Edit.getText().toString().equals("")){
+                    Toast.makeText(getContext(), "注册失败，手机号和验证码和密码不能为空", Toast.LENGTH_SHORT).show();
                 }else {
-                    register();
                     getActivity().finish();
                 }
+
                 break;
         }
     }
 
-    //获取图片验证码
-    public void getPersonalRegImgCheck() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Request build = new Request.Builder().url("http://reg.cntv.cn/simple/verificationCode.action").build();
-                client.newCall(build).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Headers headers = response.headers();
-                        jsonId = headers.get("Set-Cookie");
-                        bytes = response.body().bytes();
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Drawable captchaImage = byteToDrawable(bytes);
-                                phone_ImageView.setImageDrawable(captchaImage);
-                            }
-                        });
-                    }
-                });
-            }
-        }).start();
-    }
-
-    public static Drawable byteToDrawable(byte[] byteArray) {
-        try {
-            String string = new String(byteArray, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        ByteArrayInputStream ins = new ByteArrayInputStream(byteArray);
-        return Drawable.createFromStream(ins, null);
-    }
-    //获取手机验证码
-    public void getPhoneCode() {
-        String url = "http://reg.cntv.cn/regist/getVerifiCode.action";
-        String from = "http://cbox_mobile.regclientuser.cntv.cn";
-//                    手机号
-        String tPhoneNumber = phone_Edit.getText().toString().trim();
-//                    验证码
-        String imgyanzhengma = image_Edit.getText().toString().trim();
-
-        RequestBody body = new FormBody.Builder()
-                .add("method", "getRequestVerifiCodeM")
-                .add("mobile", tPhoneNumber)
-                .add("verfiCodeType", "1")
-                .add("verificationCode", imgyanzhengma)
-                .build();
-
-        try {
-            Request request = new Request.Builder().url(url)
-                    .addHeader("Referer", URLEncoder.encode(from, "UTF-8"))
-                    .addHeader("User-Agent", URLEncoder.encode("CNTV_APP_CLIENT_CBOX_MOBILE", "UTF-8"))
-                    .addHeader("Cookie", jsonId)
-                    .post(body).build();
-
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.i("TAG", "失败");
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String string = response.body().string();
-                    Log.i("TAG", "手机验证码打印：" + string);
-                }
-            });
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void setPhoneReg(Drawable drawable) {
+        phone_ImageView.setImageDrawable(drawable);
 
     }
 
-    //注册
-    public void register() {
-        String url = "https://reg.cntv.cn/regist/mobileRegist.do";
-//                    手机号
-        String tPhoneNumber = phone_Edit.getText().toString().trim();
-//                    验证码
-        String imgyanzhengma = image_Edit.getText().toString().trim();
-
-        String tCheckPhone = yanzhengma_Edit.getText().toString().trim();
-        String tPassWord = pwd_Edit.getText().toString();
-
-        RequestBody body = null;
-        try {
-            body = new FormBody.Builder()
-                    .add("method", "saveMobileRegisterM")
-                    .add("mobile", tPhoneNumber)
-                    .add("verfiCodeType", "1")
-                    .add("verfiCode", tCheckPhone)
-                    .add("passWd", URLEncoder.encode(tPassWord, "UTF-8"))
-                    .add("addons",URLEncoder.encode("http://cbox_mobile.regclientuser.cntv.cn", "UTF-8"))
-                    .build();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Request request = new Request.Builder().url(url)
-                    .addHeader("Referer", URLEncoder.encode("http://cbox_mobile.regclientuser.cntv.cn", "UTF-8"))
-                    .addHeader("User-Agent", URLEncoder.encode("CNTV_APP_CLIENT_CBOX_MOBILE", "UTF-8"))
-                    .post(body).build();
-
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.i("TAG", "失败");
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String string = response.body().string();
-                    Log.i("TAG", "注册：" + string);
-                }
-            });
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void setStrPhone(String strPhone) {
 
     }
 
+    @Override
+    public void setRegsPhone(String string) {
 
+    }
+
+    @Override
+    public void setPresenter(PhoneContract.Presenter presenter) {
+
+        this.presenter = (PhonePresenter) presenter;
+    }
 }

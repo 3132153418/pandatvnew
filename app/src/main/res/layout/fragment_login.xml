@@ -155,13 +155,17 @@
         android:layout_height="wrap_content"
         android:paddingLeft="280dp"
         android:text="忘记密码?"
+        android:layout_marginTop="20dp"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="42dp"
         android:text="登录"
-        android:textColor="#000"
-        android:textSize="15sp" />
+        android:textColor="#fff"
+        android:textSize="15sp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"/>
 </LinearLayout>

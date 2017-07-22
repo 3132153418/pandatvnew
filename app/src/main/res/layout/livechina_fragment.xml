@@ -2,41 +2,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#beb8b8"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#1151bf"
+        android:id="@+id/toolbar">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="直播中国"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <ImageView
+            android:id="@+id/personal_Cente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/person_sign"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:background="#fbf9f9"
-        android:layout_height="wrap_content">
+        android:background="#fffeee"
+        >
+        <android.support.design.widget.TabLayout
+            android:id="@+id/live_chena_TabLayout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            app:tabMode="scrollable"
+            >
+        </android.support.design.widget.TabLayout>
 
-<android.support.design.widget.TabLayout
-    android:id="@+id/livechina_fragment_tablayout"
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    app:tabSelectedTextColor="@color/colorPrimary"
-    app:tabIndicatorHeight="3dp"
-    app:tabIndicatorColor="@color/colorPrimary"
-    android:layout_height="match_parent">
+        <ImageButton
+            android:id="@+id/live_chena_IBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:src="@drawable/live_china_add"
+            />
 
-</android.support.design.widget.TabLayout>
-    <ImageView
-        android:id="@+id/livechina_fragment_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/live_china_add"/>
     </LinearLayout>
-    <com.jiyun.pandatv.module.live.views.NoScrollViewPager
-        android:id="@+id/livechina_fragment_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </com.jiyun.pandatv.module.live.views.NoScrollViewPager>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/live_chena_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
 
 </LinearLayout>

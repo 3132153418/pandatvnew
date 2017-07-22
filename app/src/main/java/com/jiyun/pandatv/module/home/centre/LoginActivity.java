@@ -43,6 +43,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Button loginBtn;
     private LoginPresenter presenter;
     private Boolean isLogin = true;
+    private  String user_seq_id;
+    private TextView forget_password;
 
     @Override
     protected int getLayoutId() {
@@ -66,6 +68,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         editUserPassword = (EditText) findViewById(R.id.editUserPassword);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(this);
+        forget_password = (TextView) findViewById(R.id.forget_password);
+        forget_password.setOnClickListener(this);
 
     }
 
@@ -100,10 +104,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.loginBtn:
                 presenter.loge(editUserName.getText().toString(),editUserPassword.getText().toString());
                 if (isLogin){
+                   /* Intent intent1 = new Intent(LoginActivity.this,CentreActivity.class);
+                    intent1.putExtra("id","央视网友"+user_seq_id);
+                    startActivity(intent1);*/
                     finish();
                 }else {
                     Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.forget_password:
+
+                Intent intent1 = new Intent(LoginActivity.this,PassWordActivity.class);
+                startActivity(intent1);
+                finish();
                 break;
         }
     }
@@ -137,6 +150,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void setLogin(LoginEntity login) {
         String errMsg = login.getErrMsg();
+       // user_seq_id = login.getUser_seq_id();
         Log.i("susses",errMsg);
     }
 

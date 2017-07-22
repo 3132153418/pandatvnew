@@ -23,7 +23,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
         android:hint="账号：请输入邮箱"
-        android:background="#fff"/>
+        android:background="#fff"
+        android:layout_marginLeft="10dp"/>
     <EditText
         android:id="@+id/register_youxiang_pass"
         android:layout_width="370dp"
@@ -35,7 +36,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
         android:hint="请输入密码"
-        android:background="#fff"/>
+        android:background="#fff"
+        android:layout_marginLeft="10dp"/>
 
     <EditText
         android:id="@+id/register_youxiang_querenpass"
@@ -48,7 +50,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
         android:hint="请输入密码"
-        android:background="#fff"/>
+        android:background="#fff"
+        android:layout_marginLeft="10dp"/>
 
     <LinearLayout
         android:layout_width="370dp"
@@ -68,7 +71,8 @@
             android:layout_gravity="center_vertical"
             android:paddingLeft="5dp"
             android:hint="请输入图片验证码"
-            android:background="#fff"/>
+            android:background="#fff"
+            android:layout_marginLeft="10dp"/>
         <ImageView
             android:id="@+id/register_youxiang_receivebut"
             android:layout_width="90dp"
@@ -88,7 +92,8 @@
         android:layout_gravity="center"
         android:drawableLeft="@drawable/checkbox"
         android:text="我已阅读并同意《央视网网络服务使用协议》"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="10dp"/>
 
     <Button
         android:id="@+id/register_youxiang_button"

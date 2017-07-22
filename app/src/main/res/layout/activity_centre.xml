@@ -27,7 +27,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,10 +34,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"/>
     <TextView
+        android:id="@+id/name_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点击登录"
         android:layout_marginTop="35dp"
+        android:text="点击登录"
         android:textSize="17sp"
         android:layout_marginLeft="10dp"/>
 

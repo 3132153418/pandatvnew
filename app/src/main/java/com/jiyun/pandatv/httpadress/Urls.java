@@ -76,12 +76,19 @@ public class Urls {
     //验证码
     public static final String IMAGE_CODE = "http://reg.cntv.cn/simple/verificationCode.action";
 
-
     public static final String PANDAVADIO = "http://vdn.apps.cntv.cn/api/getVideoInfoForCBox.do";
 
     public static final String GGLIVE = BASEURL + "xmwh/index.json";
 
     public static final String LOGIN = "https://reg.cntv.cn/login/login.action";
 
+    public static final String EMILEREGIS = "https://reg.cntv.cn/api/register.action";
 
+    public static final String EMILEYANZHENG = "http://reg.cntv.cn/simple/verificationCode.action";
+
+    public static final String PHONENUM = "http://reg.cntv.cn/regist/getVerifiCode.action";
+
+    public static final String PHONEREGISTER = "https://reg.cntv.cn/regist/mobileRegist.do";
+
+    public static final String PANDA_LIVE_CHINA_TAB=BASEURL+"PAGE14501775094142282/index.json";
 }

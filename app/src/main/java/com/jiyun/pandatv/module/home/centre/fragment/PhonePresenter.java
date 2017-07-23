@@ -14,7 +14,8 @@ import com.jiyun.pandatv.moudle.biz.home.PhoneMoudleIpl;
 public class PhonePresenter implements PhoneContract.Presenter {
     private PhoneContract.View phoneView;
     private PhoneMoudle phoneMoudle;
-    public PhonePresenter(PhoneContract.View phoneView){
+
+    public PhonePresenter(PhoneContract.View phoneView) {
         phoneView.setPresenter(this);
         this.phoneView = phoneView;
         phoneMoudle = new PhoneMoudleIpl();

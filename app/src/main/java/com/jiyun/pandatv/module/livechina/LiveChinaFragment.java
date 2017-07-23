@@ -31,12 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View,View.OnClickListener{
+public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View, View.OnClickListener {
 
     private List<String> mListName;
     private List<BaseFragment> mList;
     private List<String> mListNameUrl;
-    private Map<String,String> mMapAllUrl;
+    private Map<String, String> mMapAllUrl;
     private ViewPager liveChenaViewPager;
     private ImageButton liveChenaIBtn;
     private TabLayout liveChenaTabLayout;
@@ -55,16 +55,6 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     private ArrayList<String> channels = new ArrayList<>();
     private ArrayList<String> channels_other = new ArrayList<>();
     private ZHPagerAdapter title_adapter;*/
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -162,7 +152,7 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.personal_Cente:
                 Intent intent = new Intent(getActivity(), CentreActivity.class);
                 startActivity(intent);
@@ -234,6 +224,6 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
             }
         });
 */
-    }
+}
 
 

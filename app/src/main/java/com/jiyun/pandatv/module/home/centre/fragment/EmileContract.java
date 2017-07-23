@@ -10,13 +10,15 @@ import com.jiyun.pandatv.base.BaseView;
  */
 
 public interface EmileContract {
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void setYanZheng(Drawable drawable);
+
         void setLog(String string);
     }
-    interface Presenter extends BasePresenter{
-        void getRegis(String emile,String pwd,String yzm);
+
+    interface Presenter extends BasePresenter {
+        void getRegis(String emile, String pwd, String yzm);
 
     }
 }

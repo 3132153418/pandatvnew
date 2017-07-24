@@ -69,7 +69,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:gravity="center_horizontal"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
@@ -77,7 +77,7 @@
             android:divider="#f0f0f0"
             android:dividerHeight="@dimen/y15"
             android:id="@+id/history_listview">
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:id="@+id/liner_chooseAnddelete"
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fbf9f9"
+                android:background="#1f2cdb"
                 android:text="全选"
                 android:id="@+id/history_item_chooseBtn"/>
             <Button
@@ -99,7 +99,7 @@
                 android:textColor="#fbf9f9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fbf9f9"
+                android:background="#1c31b7"
                 android:text="删除"
                 android:id="@+id/history_item_deleteBtn"/>
 

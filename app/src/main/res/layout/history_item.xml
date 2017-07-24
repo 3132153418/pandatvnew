@@ -4,18 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/history_linear"
+        >
 
-        <CheckBox
-            android:visibility="gone"
+        <RadioButton
             android:id="@+id/history_item_checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"/>
-
+            android:visibility="gone"
+            android:button="@null"
+            android:checked="false"
+            android:background="@drawable/history_selector"
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/y65"
+            android:layout_gravity="center_vertical"
+            />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +31,7 @@
                 android:id="@+id/history_item_imge"
                 android:layout_width="150dp"
                 android:layout_height="100dp"
-                android:src="@drawable/_no_net" />
+            android:src="@drawable/_no_net" />
 
             <TextView
                 android:id="@+id/history_item_durationText"
@@ -82,9 +88,6 @@
                 android:layout_marginLeft="@dimen/x20"
                 android:text="123132132132"
                 />
-
-
-
 
         </LinearLayout>
     </LinearLayout>

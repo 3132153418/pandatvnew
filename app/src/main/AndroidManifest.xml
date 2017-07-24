@@ -52,12 +52,13 @@
         <activity android:name=".module.home.centre.SettingActivity"></activity>
         <activity android:name=".module.home.centre.RegisterActivity"></activity>
         <activity android:name=".module.home.centre.PassWordActivity"></activity>
+        <activity android:name=".moudle.db.HistoryActivity"/>
         <activity android:name=".module.home.AboutActivity"/>
         <activity android:name=".module.home.centre.PersonhelpActivity"/>
         <activity android:name=".module.home.centre.GeRenXinXiActivity"></activity>
         <activity android:name=".module.home.centre.XiuGaiNameActivity"></activity>
-<activity android:name=".moudle.db.HistoryActivity"/>
         <activity android:name=".LogoActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

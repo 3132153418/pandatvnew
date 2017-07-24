@@ -42,7 +42,6 @@ public class GeRenXinXiActivity extends BaseActivity implements View.OnClickList
     private static String path = "/sdcard/myHead/";// sd路径
     private LinearLayout touXiang_TiaoZhuan;
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.login_tiaozhuan_geren;
@@ -63,7 +62,7 @@ public class GeRenXinXiActivity extends BaseActivity implements View.OnClickList
         touXiang_TiaoZhuan = (LinearLayout) findViewById(R.id.touXiang_TiaoZhuan);
         touXiang_TiaoZhuan.setOnClickListener(this);
         Intent intent = getIntent();
-        String uesrname = intent.getStringExtra("names");
+        String uesrname = intent.getStringExtra("name");
         gerenXinXi_name.setText(uesrname);
 
     }
@@ -89,7 +88,6 @@ public class GeRenXinXiActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.tuichu_Login:
-
                 Intent intent1 = getIntent();
                 intent1.putExtra("user","点击登录");
                 setResult(20,intent1);

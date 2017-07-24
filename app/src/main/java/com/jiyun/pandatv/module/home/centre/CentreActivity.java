@@ -49,16 +49,15 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.click_Login_LinearLayout:
-                if (name_TextView.getText().toString().equals("点击登录") ) {
+                if (name_TextView.getText().toString().equals("点击登录")) {
                     Intent intent = new Intent(this, LoginActivity.class);
-                    startActivityForResult(intent, 10);
-                }else {
+                    startActivityForResult(intent, 0);
+                } else {
                     Intent intent1 = new Intent(CentreActivity.this, GeRenXinXiActivity.class);
-
-                    intent1.putExtra("names",name_TextView.getText().toString());
-                    startActivityForResult(intent1,20);
+                    intent1.putExtra("name", name_TextView.getText().toString());
+                    startActivityForResult(intent1, 20);
                 }
-                    break;
+                break;
 
             case R.id.gunakanLiShi:
 
@@ -79,13 +78,17 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data!=null) {
+        if (data != null) {
             switch (resultCode) {
                 case 0:
                     name_TextView.setText(data.getStringExtra("name"));
                     break;
                 case 20:
                     name_TextView.setText(data.getStringExtra("user"));
+                    break;
+                case 10:
+                    name_TextView.setText(data.getStringExtra("names"));
+                    break;
             }
         }
     }

@@ -39,7 +39,6 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   /**
    * 刚启动全屏时的播放状态
    */
-
   static int CURRENT_STATE = -1;      //当前的状态
   public static String GAOQINGURL;     //高清
   public static String LIUCHANGURL;     //流畅
@@ -285,6 +284,16 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
               }
             })//回调监听器
             .share();
+
+  }
+
+  @Override
+  public void addToCollect() {
+
+  }
+
+  @Override
+  public void removeCollect() {
 
   }
 

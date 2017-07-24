@@ -224,12 +224,16 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 isCollect = false;
                 btn_collect.setBackgroundResource(R.drawable.collect_no);
                 //dosomething to not collect
+                switchlistener.removeCollect();
+
             } else {
                 //未收藏，点击收藏
                 showToast("已添加，请到[我的收藏]中查看");
                 isCollect = true;
                 btn_collect.setBackgroundResource(R.drawable.collect_yes);
                 //dosomething to collect
+                switchlistener.addToCollect();
+
             }
 
         } else if (i == R.id.btn_share) {
@@ -472,6 +476,9 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         void ChangetoGaoQing(int currentPosition);
 
         void onShare();
+
+        void addToCollect();
+        void removeCollect();
     }
 
     private Switchlistener switchlistener;

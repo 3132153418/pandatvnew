@@ -62,6 +62,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void loadData() {
 
+
     }
 
     @Override

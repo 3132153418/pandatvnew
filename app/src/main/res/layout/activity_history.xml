@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_history"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0"
+  >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        android:orientation="horizontal"
+        android:background="#212ae4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/history_backImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/personal_back_img"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="历史记录"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#fbf9f9"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/history_editBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="编辑"
+                android:background="#1026f0"
+                android:textSize="20sp"
+                android:layout_marginLeft="@dimen/x50"
+                android:textColor="#fbf9f9"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/y20"
+            android:divider="#f0f0f0"
+            android:dividerHeight="@dimen/y15"
+            android:id="@+id/history_listview">
+        </ListView>
+
+        <LinearLayout
+            android:id="@+id/liner_chooseAnddelete"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y100"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+            <Button
+                android:textColor="#fbf9f9"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fbf9f9"
+                android:text="全选"
+                android:id="@+id/history_item_chooseBtn"/>
+            <Button
+                android:layout_weight="1"
+                android:textColor="#fbf9f9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fbf9f9"
+                android:text="删除"
+                android:id="@+id/history_item_deleteBtn"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

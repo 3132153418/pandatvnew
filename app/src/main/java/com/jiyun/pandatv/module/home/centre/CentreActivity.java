@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseActivity;
+import com.jiyun.pandatv.moudle.db.HistoryActivity;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -59,7 +60,8 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
                     break;
 
             case R.id.gunakanLiShi:
-
+Intent intent = new Intent(CentreActivity.this, HistoryActivity.class);
+startActivity(intent);
                 break;
             case R.id.myShouCang:
                 break;

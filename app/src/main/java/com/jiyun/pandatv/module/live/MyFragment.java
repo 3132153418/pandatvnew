@@ -23,6 +23,7 @@ import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 import com.jiyun.pandatv.module.live.liveadapter.JianJieAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JingcaiAdapter;
 import com.jiyun.pandatv.module.live.views.NoScrollViewPager;
+import com.jiyun.pandatv.moudle.db.HistoryUtils;
 import com.jiyun.pandatv.moudle.entity.Live_BianKanBianLiaoBean;
 import com.jiyun.pandatv.moudle.entity.Live_JianJieBean;
 import com.jiyun.pandatv.moudle.entity.Live_JiangCaiBean;
@@ -49,7 +50,8 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     public static final int Special_programs = 7;//特别节目
     public static final int Original_news = 8;//原创新闻
     private int type;
-
+   private String img;
+    private  String len;
     //    多视角直播 边看边聊
     private TabLayout livetabLayout;
     private NoScrollViewPager liveviewPager;
@@ -280,6 +282,10 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     @Override
     public void jiangcai(Live_JiangCaiBean paperJingCaiBean) {
         jinagcaiBeanlist.addAll(paperJingCaiBean.getVideo());
+
+        len = paperJingCaiBean.getVideo().get(0).getLen();
+
+        img = paperJingCaiBean.getVideo().get(0).getImg();
         jingcaiAdapter = new JingcaiAdapter(getContext(), jinagcaiBeanlist);
         jingcaiAdapter.setJingcaiCallback(this);
         jingcaipull.setAdapter(jingcaiAdapter);
@@ -298,6 +304,7 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
                 List<VideoTwoBean.VideoBean.Chapters4Bean> chapters4 = videoTwoBean.getVideo().getChapters4();//高清
                 String gaoqingurl = chapters4.get(0).getUrl();
                 String title = videoTwoBean.getTitle();
+                HistoryUtils.getInstance(getActivity()).instert(title,img,len);
                 JCFullScreenActivity.toActivity(getContext(), gaoqingurl, liuchangurl, null, PandaVedioPlayer.class, title);
             }
 

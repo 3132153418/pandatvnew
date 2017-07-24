@@ -1,12 +1,12 @@
 package com.jiyun.pandatv;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.jiyun.pandatv.base.BaseActivity;
-import com.jiyun.pandatv.module.yindaofragment.OneFragment;
-import com.jiyun.pandatv.module.yindaofragment.ThreeFragment;
-import com.jiyun.pandatv.module.yindaofragment.TwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SplashActivity extends BaseActivity {
     ViewPager viewPager;
-    private List<Fragment> list = new ArrayList<>();
+    private List<ImageView> list = new ArrayList<>();
     private FragmentAdapter adapter;
 
     @Override
@@ -30,9 +30,8 @@ public class SplashActivity extends BaseActivity {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         addViewPager();
-        adapter = new FragmentAdapter(getSupportFragmentManager(),list);
+        adapter = new FragmentAdapter(list);
         viewPager.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -41,13 +40,27 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void addViewPager(){
-        OneFragment oneFragment=new OneFragment();
-        TwoFragment twoFragment=new TwoFragment();
-        ThreeFragment threeFragment=new ThreeFragment();
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        ImageView img1 = new ImageView(this);
+        img1.setLayoutParams(params);
+        img1.setImageResource(R.drawable.guide_one);
+        ImageView img2 = new ImageView(this);
+        img2.setLayoutParams(params);
+        img2.setImageResource(R.drawable.guide_two);
+        ImageView img3 = new ImageView(this);
+        img3.setLayoutParams(params);
+        img3.setImageResource(R.drawable.guide_three);
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+            }
+        });
 
-        list.add(oneFragment);
-        list.add(twoFragment);
-        list.add(threeFragment);
+
+        list.add(img1);
+        list.add(img2);
+        list.add(img3);
 
     }
 

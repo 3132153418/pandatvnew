@@ -1,8 +1,9 @@
 package com.jiyun.pandatv;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -10,20 +11,31 @@ import java.util.List;
  * Created by Administrator on 2017/6/14.
  */
 
-public class FragmentAdapter extends FragmentPagerAdapter {
-    private List<Fragment> mlist;
-    public FragmentAdapter(FragmentManager fm, List<Fragment> list) {
-        super(fm);
-        this.mlist = list;
-    }
+public class FragmentAdapter extends PagerAdapter {
+    private List<ImageView> mlist;
 
-    @Override
-    public Fragment getItem(int position) {
-        return mlist.get(position);
+    public FragmentAdapter(List<ImageView> mlist){
+        this.mlist = mlist;
     }
-
     @Override
     public int getCount() {
         return mlist.size();
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView(mlist.get(position));
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        ImageView imageView = mlist.get(position);
+        container.addView(imageView);
+        return imageView;
     }
 }

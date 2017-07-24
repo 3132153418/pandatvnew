@@ -31,7 +31,7 @@
             android:layout_marginLeft="100dp"
             android:textSize="15dp"/>
     </LinearLayout>
-    <EditText
+    <com.jiyun.pandatv.module.home.centre.AmendEditText
         android:id="@+id/xiuGai_EditText"
         android:layout_width="340dp"
         android:layout_height="45dp"

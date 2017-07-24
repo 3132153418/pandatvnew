@@ -80,20 +80,27 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp" />
     </LinearLayout>
-    <RadioButton
-        android:id="@+id/register_shouji_radiobutton"
-        android:layout_width="370dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:button="@null"
-        android:layout_marginTop="40dp"
-        android:textSize="15dp"
-        android:checked="true"
-        android:drawablePadding="5dp"
-        android:layout_gravity="center"
-        android:drawableLeft="@drawable/checkbox"
-        android:text="我已阅读并同意《央视网网络服务使用协议》"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginTop="10dp">
+
+        <CheckBox
+            android:id="@+id/login_CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/checkbox"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我已阅读并同意  《央视网网络服务使用协议》"/>
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/register_youxiang_button"

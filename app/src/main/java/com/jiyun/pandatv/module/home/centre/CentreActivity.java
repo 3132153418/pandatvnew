@@ -1,6 +1,8 @@
 package com.jiyun.pandatv.module.home.centre;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +28,6 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-
         click_Login_LinearLayout = (LinearLayout) findViewById(R.id.click_Login_LinearLayout);
         click_Login_LinearLayout.setOnClickListener(this);
         gunakanLiShi = (LinearLayout) findViewById(R.id.gunakanLiShi);
@@ -51,13 +52,13 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
             case R.id.click_Login_LinearLayout:
                 if (name_TextView.getText().toString().equals("点击登录")) {
                     Intent intent = new Intent(this, LoginActivity.class);
-                    startActivityForResult(intent, 10);
-                }else {
+                    startActivityForResult(intent, 0);
+                } else {
                     Intent intent1 = new Intent(CentreActivity.this, GeRenXinXiActivity.class);
-                    intent1.putExtra("names",name_TextView.getText().toString());
-                    startActivityForResult(intent1,20);
+                    intent1.putExtra("name", name_TextView.getText().toString());
+                    startActivityForResult(intent1, 20);
                 }
-                    break;
+                break;
 
             case R.id.gunakanLiShi:
 Intent intent = new Intent(CentreActivity.this, HistoryActivity.class);
@@ -79,13 +80,17 @@ startActivity(intent);
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data!=null) {
+        if (data != null) {
             switch (resultCode) {
                 case 0:
                     name_TextView.setText(data.getStringExtra("name"));
                     break;
                 case 20:
                     name_TextView.setText(data.getStringExtra("user"));
+                    break;
+                case 10:
+                    name_TextView.setText(data.getStringExtra("names"));
+                    break;
             }
         }
     }

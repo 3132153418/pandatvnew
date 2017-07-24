@@ -1,7 +1,9 @@
 package com.jiyun.pandatv.module.home.centre;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -44,6 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private LoginPresenter presenter;
     private TextView forget_password;
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_login;
@@ -51,6 +55,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void initView() {
+
         dialog = new ProgressDialog(this);
         new LoginPresenter(this);
         register = (TextView) findViewById(R.id.register_Text);
@@ -104,6 +109,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (editUserName.getText().toString().equals("") && editUserPassword.getText().toString().equals("")){
                     Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
                 }else {
+
                     presenter.loge(editUserName.getText().toString(),editUserPassword.getText().toString());
                 }
                 break;
@@ -126,6 +132,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
             SocializeUtils.safeCloseDialog(dialog);
             Toast.makeText(LoginActivity.this, "成功了", Toast.LENGTH_LONG).show();
+            Set<String> keySet = data.keySet();
+            String s;
+            for (String key : keySet) {
+                s = data.get(key);
+                Log.i("===========", s);
+            }
+            String names = data.get("names");
+            String iconurl = data.get("iconurl");
+            Log.i("==", names + iconurl);
+            Intent in = getIntent();
+            in.putExtra("names", names);
+            setResult(10, in);
+            finish();
 
         }
 

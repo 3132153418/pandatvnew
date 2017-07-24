@@ -1,9 +1,7 @@
 package com.jiyun.pandatv;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-
 
 import com.jiyun.pandatv.base.BaseActivity;
 import com.jiyun.pandatv.module.yindaofragment.OneFragment;
@@ -12,8 +10,6 @@ import com.jiyun.pandatv.module.yindaofragment.TwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/6/14.

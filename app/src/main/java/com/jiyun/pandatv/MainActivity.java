@@ -3,15 +3,12 @@ package com.jiyun.pandatv;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.jiyun.pandatv.Application.App;
-import com.jiyun.pandatv.apputils.ACache;
-import com.jiyun.pandatv.apputils.DataCleanManager;
 import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseActivity;
 import com.jiyun.pandatv.module.china.ChinaFragment;
@@ -68,19 +65,7 @@ public class MainActivity extends BaseActivity {
 //        String s = ACache.get(App.context).CacheSize();
 //        Log.d("TAG", "缓存大小为" + s);
 
-        try {
-            String totalCacheSize = DataCleanManager.getTotalCacheSize(App.context);
-            Log.d("TAG", "缓存大小为" + totalCacheSize);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ACache.get(App.context).clear();
-        try {
-            String totalCacheSize = DataCleanManager.getTotalCacheSize(App.context);
-            Log.d("TAG", "缓存大小为" + totalCacheSize);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         homeFragment = new HomeFragment();
         new Homepresenter(homeFragment);

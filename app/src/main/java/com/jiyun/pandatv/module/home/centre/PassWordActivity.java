@@ -27,6 +27,7 @@ public class PassWordActivity extends BaseActivity implements PassWordContract.V
     protected void initView() {
         new PassWordPresenter(this);
         pwd_ImageView = (ImageView) findViewById(R.id.pwd_ImageView);
+        pwd_ImageView.setOnClickListener(this);
         pwd_yanzhengma_Btn = (Button) findViewById(R.id.pwd_yanzhengma_Btn);
         pwd_yanzhengma_Btn.setOnClickListener(this);
         find_pwd_Button = (Button) findViewById(R.id.find_pwd_Button);
@@ -79,8 +80,7 @@ public class PassWordActivity extends BaseActivity implements PassWordContract.V
             case R.id.find_pwd_Button:
                 presenter.getStrPwd(pwd_Edit.getText().toString()
                         ,pwd_yanzhengma_Edit.getText().toString()
-                        ,pwd_pwd_Edit.getText().toString()
-                        );
+                        ,pwd_pwd_Edit.getText().toString());
                 finish();
                 break;
         }

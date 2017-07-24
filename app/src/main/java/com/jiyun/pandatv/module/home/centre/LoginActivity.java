@@ -42,8 +42,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText editUserName,editUserPassword;
     private Button loginBtn;
     private LoginPresenter presenter;
-    private Boolean isLogin = true;
-    private  String user_seq_id;
     private TextView forget_password;
 
     @Override
@@ -58,7 +56,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         register = (TextView) findViewById(R.id.register_Text);
         register.setOnClickListener(this);
 
-        loginBack = (ImageView) findViewById(R.id.loginBack);
+        loginBack = (ImageView) findViewById(R.id.loginBacks);
         loginBack.setOnClickListener(this);
         qqLogin = (ImageView) findViewById(R.id.qqLogin);
         qqLogin.setOnClickListener(this);
@@ -88,8 +86,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.loginBack:
-                finish();
+            case R.id.loginBacks:
+               finish();
                 break;
             case R.id.qqLogin:
                 UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.QQ, authListener);
@@ -102,14 +100,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(intent);
                 break;
             case R.id.loginBtn:
-                presenter.loge(editUserName.getText().toString(),editUserPassword.getText().toString());
-                if (isLogin){
-                    Intent intent1 = new Intent(LoginActivity.this,CentreActivity.class);
-                    intent1.putExtra("id","央视网友"+user_seq_id);
-                    startActivity(intent1);
-                    finish();
-                }else {
+
+                if (editUserName.getText().toString().equals("") && editUserPassword.getText().toString().equals("")){
                     Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
+                }else {
+                    presenter.loge(editUserName.getText().toString(),editUserPassword.getText().toString());
                 }
                 break;
             case R.id.forget_password:
@@ -150,8 +145,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void setLogin(LoginEntity login) {
         String errMsg = login.getErrMsg();
-        user_seq_id = login.getUser_seq_id();
+        String user_seq_id = login.getUser_seq_id();
         Log.i("susses",errMsg);
+        if (errMsg.equals("成功")) {
+            Intent intent = getIntent();
+            intent.putExtra("name", "央视" + user_seq_id);
+            setResult(0, intent);
+            finish();
+        }else {
+            Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
@@ -20,6 +21,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private PhoneFragment phoneFragment = null;
     private EmileFragment emileFragment = null;
     private FrameLayout  frameLayout;
+    private ImageView registerBack;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_register;
@@ -40,6 +42,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         phone.setOnClickListener(this);
         emile = (Button) findViewById(R.id.emile_Button);
         emile.setOnClickListener(this);
+        registerBack = (ImageView) findViewById(R.id.registerBack);
+        registerBack.setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +72,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     fragmentTransaction.add(R.id.register_FrameLayout, emileFragment, "LiveFragment");
                 }
                 fragmentTransaction.show(emileFragment);
+                break;
+            case R.id.registerBack:
+                finish();
                 break;
         }
         fragmentTransaction.commit();

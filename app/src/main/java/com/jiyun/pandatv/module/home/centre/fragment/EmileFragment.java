@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseFragment;
@@ -79,10 +80,17 @@ public class EmileFragment extends BaseFragment implements EmileContract.View, V
                 presenter.start();
                 break;
             case R.id.register_youxiang_button:
-                presenter.getRegis(register_youxiang_zhanghao.getText().toString()
-                        , register_youxiang_pass.getText().toString()
-                        , register_youxiang_yanzhengma.getText().toString());
-                getActivity().finish();
+                if (register_youxiang_zhanghao.getText().toString().equals("")
+                        || register_youxiang_pass.getText().toString().equals("")
+                        || register_youxiang_yanzhengma.getText().toString().equals("") || register_youxiang_querenpass.getText().toString().equals("")){
+                    Toast.makeText(getContext(), "注册失败", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    presenter.getRegis(register_youxiang_zhanghao.getText().toString(),
+                            register_youxiang_pass.getText().toString(),
+                            register_youxiang_yanzhengma.getText().toString());
+                    getActivity().finish();
+                }
                 break;
         }
     }

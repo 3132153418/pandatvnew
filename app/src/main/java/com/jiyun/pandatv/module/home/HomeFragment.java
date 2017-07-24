@@ -85,7 +85,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         pullToRefreshRecyclerView.setLayoutManager(manager);
         pullToRefreshRecyclerView.setPullRefreshEnabled(true);
-        pullToRefreshRecyclerView.setLoadingMoreEnabled(true);
 
         //添加轮播图布局
         inflate = LayoutInflater.from(getContext()).inflate(R.layout.home_viewpager, null);
@@ -99,11 +98,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
 
     @Override
     protected void initData() {
-        presenter.start();
+
         setListenre();
         //获取当前版本
         getAppVersionName(getActivity());
         getVersion();
+        presenter.start();
     }
 
     public static String getAppVersionName(Context context) {
@@ -488,6 +488,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
                         linearLayout.removeAllViews();
                         viewList.clear();
                         presenter.start();
+                        pullToRefreshRecyclerView.setRefreshComplete();
                     }
                 }, 2000);
             }
@@ -499,8 +500,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
                     @Override
                     public void run() {
 
+                        pullToRefreshRecyclerView.setLoadMoreComplete();
                     }
-                }, 2000);
+                }, 0);
             }
         });
     }

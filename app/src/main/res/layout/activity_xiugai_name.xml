@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF4621DC">
+        <ImageView
+
+            android:id="@+id/geRenXinXi_Back_Image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_left_white_36dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改名称"
+            android:textSize="25sp"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:layout_marginLeft="75dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:layout_gravity="center_vertical"
+            android:textColor="#fff"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"/>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/xiuGai_EditText"
+        android:layout_width="340dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:textSize="15dp"
+        android:layout_marginTop="25dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="用户昵称只能为汉字、字母、数字、下划线组成;长度为3-10个汉字（6-20个飞汉字字符）;不能为空;不能有禁词;敏感词;不能重复"/>
+</LinearLayout>

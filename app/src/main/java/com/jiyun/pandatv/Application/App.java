@@ -6,6 +6,7 @@ import android.app.Notification;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseActivity;
+import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
@@ -21,7 +22,7 @@ public class App extends Application {
     {
         PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
-        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad",         "http://sns.whalecloud.com");
+        PlatformConfig.setSinaWeibo("948448713", "d33629de2d0eee707fe2a46a7faed79b",         "http://sns.whalecloud.com");
     }
     @Override
     public void onCreate() {
@@ -48,5 +49,6 @@ public class App extends Application {
                 | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
         JPushInterface.setPushNotificationBuilder(1, builder);//设置消息样式
         JPushInterface.setLatestNotificationNumber(this,2);
+        Config.DEBUG = true;
     }
 }

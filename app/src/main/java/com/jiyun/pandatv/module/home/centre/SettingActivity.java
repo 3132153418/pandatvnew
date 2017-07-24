@@ -81,6 +81,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         ButterKnife.bind(this);
     }
 
+
+
+
     @OnClick({R.id.panda_setting_help, R.id.panda_setting_shengji, R.id.panda_setting_haoping, R.id.panda_setting_about})
     public void onViewClicked(View view) {
         switch (view.getId()) {

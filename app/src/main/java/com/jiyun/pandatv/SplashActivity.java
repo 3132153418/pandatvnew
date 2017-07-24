@@ -19,6 +19,7 @@ public class SplashActivity extends BaseActivity {
     ViewPager viewPager;
     private List<ImageView> list = new ArrayList<>();
     private FragmentAdapter adapter;
+    private int[] imgs = {R.drawable.guide_one,R.drawable.guide_two,R.drawable.guide_three};
 
     @Override
     protected int getLayoutId() {
@@ -41,26 +42,20 @@ public class SplashActivity extends BaseActivity {
 
     public void addViewPager(){
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-        ImageView img1 = new ImageView(this);
-        img1.setLayoutParams(params);
-        img1.setImageResource(R.drawable.guide_one);
-        ImageView img2 = new ImageView(this);
-        img2.setLayoutParams(params);
-        img2.setImageResource(R.drawable.guide_two);
-        ImageView img3 = new ImageView(this);
-        img3.setLayoutParams(params);
-        img3.setImageResource(R.drawable.guide_three);
-        img3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+        for (int i = 0; i < 3; i++){
+            ImageView img = new ImageView(this);
+            img.setLayoutParams(params);
+            img.setImageResource(imgs[i]);
+            list.add(img);
+            if(i == 2){
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                    }
+                });
             }
-        });
-
-
-        list.add(img1);
-        list.add(img2);
-        list.add(img3);
+        }
 
     }
 

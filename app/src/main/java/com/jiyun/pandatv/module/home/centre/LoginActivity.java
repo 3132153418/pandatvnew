@@ -104,9 +104,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.loginBtn:
                 presenter.loge(editUserName.getText().toString(),editUserPassword.getText().toString());
                 if (isLogin){
-                   /* Intent intent1 = new Intent(LoginActivity.this,CentreActivity.class);
+                    Intent intent1 = new Intent(LoginActivity.this,CentreActivity.class);
                     intent1.putExtra("id","央视网友"+user_seq_id);
-                    startActivity(intent1);*/
+                    startActivity(intent1);
                     finish();
                 }else {
                     Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
@@ -150,6 +150,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void setLogin(LoginEntity login) {
         String errMsg = login.getErrMsg();
+        user_seq_id = login.getUser_seq_id();
         Log.i("susses",errMsg);
     }
 

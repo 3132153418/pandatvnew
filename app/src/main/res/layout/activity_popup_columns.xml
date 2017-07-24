@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e3303f9f"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,11 +12,11 @@
         android:paddingLeft="10dp">
 
         <ImageView
-            android:id="@+id/fanhui"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/Fanhui"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="right"
-            android:padding="5dp"
+            android:paddingBottom="5dp"
             android:src="@drawable/com_facebook_tooltip_black_xout" />
 
         <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="切换栏目"
-                android:textColor="#f9f8f8"
+                android:textColor="#fff"
                 android:textSize="20dp" />
 
             <CheckBox
@@ -47,17 +47,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.jiyun.pandatv.module.livechina.viewtwo.DragGridView
+            <com.jiyun.pandatv.module.livechina.DragGridView
                 android:id="@+id/gridView_channel"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-
-            <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" -->
-            <!--/>-->
+            </com.jiyun.pandatv.module.livechina.DragGridView>>
         </RelativeLayout>
 
         <TextView
@@ -66,15 +62,15 @@
             android:text="点击添加更多栏目"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="20dp" />
 
-        <com.jiyun.pandatv.module.livechina.viewtwo.DragGridView
+        <com.jiyun.pandatv.module.livechina.DragGridView
             android:id="@+id/gridView_channel_other"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-
+        </com.jiyun.pandatv.module.livechina.DragGridView>
 
     </LinearLayout>
 

@@ -40,11 +40,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".module.home.original.OriginalActivity"></activity>
         <activity android:name=".module.home.centre.CentreActivity"></activity>
@@ -56,6 +52,15 @@
         <activity android:name=".module.home.centre.SettingActivity"></activity>
         <activity android:name=".module.home.centre.RegisterActivity"></activity>
         <activity android:name=".module.home.centre.PassWordActivity"></activity>
+        <activity android:name=".LogoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SplashActivity"></activity>
+
 
 <activity android:name=".module.paper.PaperActivity"/>
         <activity android:name=".module.home.original.OriginalWebViewAcTivity"/>

@@ -175,6 +175,7 @@ public class EmileRegUtils implements BaseHttp {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String string = response.body().string();
+                Log.i("yanzhengma",string);
                 //执行在子线程中
                 App.context.runOnUiThread(new Runnable() {
                     @Override

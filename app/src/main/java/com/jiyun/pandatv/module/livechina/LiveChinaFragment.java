@@ -3,6 +3,7 @@ package com.jiyun.pandatv.module.livechina;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -22,7 +23,9 @@ import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.module.home.centre.CentreActivity;
+import com.jiyun.pandatv.module.livechina.adapter.DragAdapter;
 import com.jiyun.pandatv.module.livechina.adapter.PandaDirectAdapter;
+import com.jiyun.pandatv.module.livechina.adapter.ZHPagerAdapter;
 import com.jiyun.pandatv.module.livechina.fragment.LiveFragment;
 import com.jiyun.pandatv.moudle.entity.PopupBean;
 
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View, View.OnClickListener {
 
@@ -38,13 +42,12 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     private List<String> mListNameUrl;
     private Map<String, String> mMapAllUrl;
     private ViewPager liveChenaViewPager;
-    private ImageButton liveChenaIBtn;
     private TabLayout liveChenaTabLayout;
-    private ImageView personal_Cente;
+    private ImageView personal_Cente,imageView;
     private PandaDirectAdapter adapter;
     private LiveChinapresenter presenter;
     private ImageButton live_chena_IBtn;
-  /*  private DragGridView gridView;
+    private DragGridView gridView;
     private DragGridView gridView_other;
     private DragAdapter dragAdapter;
     private DragAdapter other_adapter;
@@ -54,7 +57,7 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     private ArrayList<BaseFragment> fragmentList = new ArrayList<BaseFragment>(); //碎片链表
     private ArrayList<String> channels = new ArrayList<>();
     private ArrayList<String> channels_other = new ArrayList<>();
-    private ZHPagerAdapter title_adapter;*/
+    private ZHPagerAdapter title_adapter;
 
 
     @Override
@@ -68,12 +71,15 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
         new LiveChinapresenter(this);
 
         liveChenaViewPager = (ViewPager) view.findViewById(R.id.live_chena_viewPager);
-        liveChenaIBtn = (ImageButton) view.findViewById(R.id.live_chena_IBtn);
         liveChenaTabLayout = (TabLayout) view.findViewById(R.id.live_chena_TabLayout);
         personal_Cente = (ImageView) view.findViewById(R.id.personal_Cente);
         personal_Cente.setOnClickListener(this);
         live_chena_IBtn = (ImageButton) view.findViewById(R.id.live_chena_IBtn);
         live_chena_IBtn.setOnClickListener(this);
+        title_adapter = new ZHPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList, channels);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        }
+
     }
 
 
@@ -139,14 +145,41 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
 
     }
 
+    private void initDataOther(List<PopupBean.AlllistBean> alllistBeanList) {
+        for (PopupBean.AlllistBean alllistBean : alllistBeanList) {
+            channels_other.add(alllistBean.getTitle());
+        }
+
+    }
+
+    private void initDatatitle(List<PopupBean.TablistBean> tablistBeanList) {
+        for (PopupBean.TablistBean alllistBean : tablistBeanList) {
+            channels.add(alllistBean.getTitle());
+        }
+
+    }
+
+
     @Override
     public void getChinaLiveTab(PopupBean popupBean) {
 
+
         add_Fragment(popupBean);
+        List<PopupBean.TablistBean> tablist = popupBean.getTablist();
+        initDatatitle(tablist);
+
+        List<PopupBean.AlllistBean> alllist = popupBean.getAlllist();
+        initDataOther(alllist);
     }
 
     @Override
     public void showMessage(String msg) {
+
+        ACache aCache = ACache.get(getContext());
+        PopupBean asObject = (PopupBean) aCache.getAsObject("PopupBean");
+
+
+        add_Fragment(asObject);
 
     }
 
@@ -159,13 +192,17 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
                 break;
             case R.id.live_chena_IBtn:
 
+                View view = LayoutInflater.from(getActivity()).inflate(R.layout.livechina_fragment, null);
+                upPopupWindow(view);
+                break;
+            case R.id.Fanhui:
+                popupWindow.dismiss();
                 break;
         }
     }
 
-
- /*   public void upPopupWindow(View view) {
-        View v = LayoutInflater.from(App.activity).inflate(R.layout.activity_popup_columns, null);
+  public void upPopupWindow(View view) {
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.activity_popup_columns, null);
         popupView(v);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         popupWindow.setFocusable(true);
@@ -174,15 +211,16 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     }
 
     public void popupView(View v) {
-        ImageView imageView = (ImageView) v.findViewById(R.id.Fanhui);
+        imageView  = (ImageView) v.findViewById(R.id.Fanhui);
+        imageView.setOnClickListener(this);
         gridView = (DragGridView) v.findViewById(R.id.gridView_channel);
         gridView_other = (DragGridView) v.findViewById(R.id.gridView_channel_other);
         button = (CheckBox) v.findViewById(R.id.licechina_add_button);
         gridView.setNumColumns(3);
-        dragAdapter = new DragAdapter(App.activity, channels);
+        dragAdapter = new DragAdapter(getActivity(), channels);
         gridView.setAdapter(dragAdapter);
 
-        other_adapter = new DragAdapter(App.activity, channels_other);
+        other_adapter = new DragAdapter(getActivity(), channels_other);
         gridView_other.setAdapter(other_adapter);
         gridView_other.setNumColumns(3);
 
@@ -196,7 +234,7 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             String channel = channels.get(position);
-                            if(channels.size()>4) {
+                            if (channels.size() > 4) {
                                 channels.remove(position);
                                 channels_other.add(channel);
                                 dragAdapter.notifyDataSetChanged();
@@ -223,7 +261,32 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
                 }
             }
         });
-*/
-}
+
+    }
+
+        public void setRefresh() {
+            mListName.clear();
+            mList.clear();
+            mListName.addAll(channels) ;
+            Set<String> strings = mMapAllUrl.keySet();
+
+            LiveFragment badaLingFragment = null;
+            Bundle bundle = null;
+            String url=null;
+            for (String nameTab : mListName) {
+                url = mMapAllUrl.get(nameTab);
+                badaLingFragment = new LiveFragment();
+                bundle = new Bundle();
+                bundle.putString("url", url);
+                badaLingFragment.setParams(bundle);
+                mList.add(badaLingFragment);
+            }
+            adapter = new PandaDirectAdapter(getChildFragmentManager(), mListName, mList);
+            liveChenaViewPager.setAdapter(adapter);
+            liveChenaTabLayout.setupWithViewPager(liveChenaViewPager);
+
+        }
+
+    }
 
 

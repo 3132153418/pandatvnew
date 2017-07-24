@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,39 +16,13 @@
             android:src="@drawable/personal_back_img"/>
     </LinearLayout>
 
-    <RadioGroup
-        android:layout_width="fill_parent"
-        android:layout_height="122px"
-        android:background="@color/pe_bg_light_blue"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/feedback_rb_left"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="@string/set_back_myquestion"
-            android:textColor="#1E539C"
-            android:textSize="@dimen/text_size_four"/>
-
-        <RadioButton
-            android:id="@+id/feedback_rb_right"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/set_back_commonquestion"
-            android:textSize="@dimen/text_size_four"/>
-    </RadioGroup>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/help_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/feedback_content_viewpager"
+        android:id="@+id/help_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginTop="30px"

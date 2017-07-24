@@ -1,6 +1,8 @@
 package com.jiyun.pandatv.module.home.centre;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +27,6 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-
         click_Login_LinearLayout = (LinearLayout) findViewById(R.id.click_Login_LinearLayout);
         click_Login_LinearLayout.setOnClickListener(this);
         gunakanLiShi = (LinearLayout) findViewById(R.id.gunakanLiShi);
@@ -48,11 +49,12 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.click_Login_LinearLayout:
-                if (name_TextView.getText().toString().equals("点击登录")) {
+                if (name_TextView.getText().toString().equals("点击登录") ) {
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivityForResult(intent, 10);
                 }else {
                     Intent intent1 = new Intent(CentreActivity.this, GeRenXinXiActivity.class);
+
                     intent1.putExtra("names",name_TextView.getText().toString());
                     startActivityForResult(intent1,20);
                 }

@@ -113,7 +113,7 @@ public class PhoneFragment extends BaseFragment implements View.OnClickListener,
                 if (phone_Edit.getText().toString().equals("")
                         || yanzhengma_Edit.getText().toString().equals("")
                         || pwd_Edit.getText().toString().equals("")){
-                    Toast.makeText(getContext(), "注册失败，手机号和验证码和密码不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "注册失败", Toast.LENGTH_SHORT).show();
                 }else {
                     getActivity().finish();
                 }

@@ -22,6 +22,8 @@ import com.jiyun.pandatv.R;
 public class ThreeFragment extends Fragment {
     private LinearLayout linearLayout;
     private SharedPreferences preferences;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

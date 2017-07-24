@@ -78,8 +78,9 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
             case live:
                 View inflate = inflater.inflate(R.layout.live_live_pull, null);
                 jianjiepull = (RecyclerView) inflate.findViewById(R.id.jianjie);
-                jianjieManager();
                 presenter.jianjieData();
+                jianjieManager();
+
                 livetabLayout = (TabLayout) inflate.findViewById(R.id.livetablayout);
                 liveviewPager = (NoScrollViewPager) inflate.findViewById(R.id.liveviewpager);
                 fragment_list = new ArrayList<>();
@@ -264,20 +265,19 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     }
 
 
-
     @Override
     public void back(int layoutPosition) {
         final Live_JiangCaiBean.VideoBean videoBean = jinagcaiBeanlist.get(layoutPosition);
         presenter.video(videoBean.getVid(), new MyHttpCallBack<VideoTwoBean>() {
             @Override
             public void onSuccess(VideoTwoBean videoTwoBean) {
-                L.d("精彩一课视频",videoBean.getLen().toString());
+                L.d("精彩一课视频", videoBean.getLen().toString());
                 List<VideoTwoBean.VideoBean.ChaptersBean> chapters = videoTwoBean.getVideo().getChapters();//流畅
                 String liuchangurl = chapters.get(0).getUrl();
                 List<VideoTwoBean.VideoBean.Chapters4Bean> chapters4 = videoTwoBean.getVideo().getChapters4();//高清
                 String gaoqingurl = chapters4.get(0).getUrl();
                 String title = videoTwoBean.getTitle();
-                JCFullScreenActivity.toActivity(getContext(),gaoqingurl,liuchangurl,null, PandaVedioPlayer.class,title);
+                JCFullScreenActivity.toActivity(getContext(), gaoqingurl, liuchangurl, null, PandaVedioPlayer.class, title);
             }
 
             @Override

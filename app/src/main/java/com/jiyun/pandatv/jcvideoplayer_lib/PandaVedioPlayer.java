@@ -1,4 +1,4 @@
-package fm.jiecao.jcvideoplayer_lib;
+package com.jiyun.pandatv.jcvideoplayer_lib;
 
 
 import android.app.Activity;
@@ -204,12 +204,12 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         } else if (i == R.id.thumb) {
             //当准备状态时只能点击背景
             if (CURRENT_STATE == CURRENT_STATE_PREPAREING) {
-                if (llBottomContainer.getVisibility() == View.VISIBLE) {
-                    llTopContainer.setVisibility(View.INVISIBLE);
-                    llBottomContainer.setVisibility(View.INVISIBLE);
+                if (llBottomContainer.getVisibility() == VISIBLE) {
+                    llTopContainer.setVisibility(INVISIBLE);
+                    llBottomContainer.setVisibility(INVISIBLE);
                 } else {
-                    llTopContainer.setVisibility(View.VISIBLE);
-                    llBottomContainer.setVisibility(View.VISIBLE);
+                    llTopContainer.setVisibility(VISIBLE);
+                    llBottomContainer.setVisibility(VISIBLE);
                     startTimer(5000);
                 }
             }
@@ -224,17 +224,20 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                 isCollect = false;
                 btn_collect.setBackgroundResource(R.drawable.collect_no);
                 //dosomething to not collect
+                switchlistener.removeCollect();
+
             } else {
                 //未收藏，点击收藏
                 showToast("已添加，请到[我的收藏]中查看");
                 isCollect = true;
                 btn_collect.setBackgroundResource(R.drawable.collect_yes);
                 //dosomething to collect
+                switchlistener.addToCollect();
+
             }
 
         } else if (i == R.id.btn_share) {
-            //分享
-            Toast.makeText(getContext(), "点击了分享", Toast.LENGTH_SHORT).show();
+            switchlistener.onShare();
         } else if (i == R.id.btn_clarity) {
             CheckClarity();
         } else if (i == R.id.btn_volume) {
@@ -262,7 +265,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     private void showToast(String text) {
         Toast toast = Toast.makeText(getContext(), "恭喜您收藏成功啦", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
-        View inflate = View.inflate(getContext(), R.layout.item_toast, null);
+        View inflate = inflate(getContext(), R.layout.item_toast, null);
         ((TextView) inflate.findViewById(R.id.tv_toast)).setText(text);
         toast.setView(inflate);
         toast.show();
@@ -298,7 +301,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void showAndHideUI() {
-        if (llBottomContainer.getVisibility() == View.VISIBLE) {
+        if (llBottomContainer.getVisibility() == VISIBLE) {
             changeUiToClear();
         } else {
             changeUiToShowUiPlaying();
@@ -307,59 +310,59 @@ public class PandaVedioPlayer extends JCVideoPlayer {
 
     private void changeUiToNormal() {
         Log.d(TAG, "正常状态正常状态正常状态正常状态正常状态正常状态正常状态正常状态正常状态");
-        llTopContainer.setVisibility(View.VISIBLE);//顶部布局
-        llBottomContainer.setVisibility(View.VISIBLE);//底部布局
-        ivStart.setVisibility(View.VISIBLE);//播放按钮
-        pbLoading.setVisibility(View.INVISIBLE);//加载条
-        ivThumb.setVisibility(View.VISIBLE);//背景图
+        llTopContainer.setVisibility(VISIBLE);//顶部布局
+        llBottomContainer.setVisibility(VISIBLE);//底部布局
+        ivStart.setVisibility(VISIBLE);//播放按钮
+        pbLoading.setVisibility(INVISIBLE);//加载条
+        ivThumb.setVisibility(VISIBLE);//背景图
         updateIvStartState();
     }
 
     private void changeUiToShowUiPrepareing() {
         Log.d(TAG, "准备状态准备状态准备状态准备状态准备状态准备状态准备状态准备状态准备状态");
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.VISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.VISIBLE);
-        ivThumb.setVisibility(View.VISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(VISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(VISIBLE);
+        ivThumb.setVisibility(VISIBLE);
     }
 
     private void changeUiToShowUiPlaying() {
         Log.d(TAG, "播放状态播放状态播放状态播放状态播放状态播放状态播放状态播放状态播放状态");
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.VISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(VISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
     private void changeUiToShowUiPause() {
         Log.d(TAG, "暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态");
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.VISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(VISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
     private void changeUiToClear() {
         Log.d(TAG, "清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui");
-        llTopContainer.setVisibility(View.INVISIBLE);
-        llBottomContainer.setVisibility(View.INVISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(INVISIBLE);
+        llBottomContainer.setVisibility(INVISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
     }
 
     private void changeUiToError() {
         Log.d(TAG, "异常状态异常状态异常状态异常状态异常状态异常状态异常状态异常状态异常状态");
-        llTopContainer.setVisibility(View.INVISIBLE);
-        llBottomContainer.setVisibility(View.INVISIBLE);
-        ivStart.setVisibility(View.INVISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(INVISIBLE);
+        llBottomContainer.setVisibility(INVISIBLE);
+        ivStart.setVisibility(INVISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
@@ -396,8 +399,8 @@ public class PandaVedioPlayer extends JCVideoPlayer {
                             if (CURRENT_STATE != CURRENT_STATE_NORMAL
                                     && CURRENT_STATE != CURRENT_STATE_ERROR) {
                                 //当前状态不在正常并且不在异常状态时
-                                llBottomContainer.setVisibility(View.INVISIBLE);
-                                llTopContainer.setVisibility(View.INVISIBLE);
+                                llBottomContainer.setVisibility(INVISIBLE);
+                                llTopContainer.setVisibility(INVISIBLE);
                             }
                         }
                     });
@@ -416,7 +419,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
 
     public static void setJcBuriedPointStandard(JCBuriedPointStandard jcBuriedPointStandard) {
         jc_BuriedPointStandard = jcBuriedPointStandard;
-        JCVideoPlayer.setJcBuriedPoint(jcBuriedPointStandard);
+        setJcBuriedPoint(jcBuriedPointStandard);
     }
 
     @Override
@@ -432,14 +435,14 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     private PopupWindow mPopupQingXiWindow;
 
     private void CheckClarity() {
-        View view = View.inflate(getContext(), R.layout.popwindow_qingxidu,
+        View view = inflate(getContext(), R.layout.popwindow_qingxidu,
                 null);
         liuchang = (TextView) view
                 .findViewById(R.id.app_video_qingxidu_liuchang);
         gaoqing = (TextView) view
                 .findViewById(R.id.app_video_qingxidu_gaoqing);
         view.findViewById(R.id.app_video_qingxidu_gaoqing_underline)
-                .setVisibility(View.GONE);
+                .setVisibility(GONE);
         if (currentQingXiDu == QING_XI_JISHU) {
             liuchang.setBackgroundColor(getResources()
                     .getColor(R.color.media_qingxidu));
@@ -467,10 +470,15 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         this.switchlistener = switchlistener;
     }
 
-    interface Switchlistener {
+    public interface Switchlistener {
         void ChangetoLiuchang(int currentPosition);
 
         void ChangetoGaoQing(int currentPosition);
+
+        void onShare();
+
+        void addToCollect();
+        void removeCollect();
     }
 
     private Switchlistener switchlistener;

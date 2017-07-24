@@ -6,17 +6,16 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/home_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp">
-
+        android:layout_height="200dp">
     </android.support.v4.view.ViewPager>
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/home_viewpager_linearlayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+        android:layout_height="10dp">
     </LinearLayout>
 </RelativeLayout>

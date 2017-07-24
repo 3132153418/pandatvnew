@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.jiyun.pandatv.MainActivity;
@@ -28,6 +27,7 @@ public class ThreeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_three,container,false);
+
         preferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
         linearLayout = (LinearLayout) view.findViewById(R.id.image_LinearLayout);

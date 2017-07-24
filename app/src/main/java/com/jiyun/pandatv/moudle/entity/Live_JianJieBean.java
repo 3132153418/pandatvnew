@@ -148,6 +148,19 @@ public class Live_JianJieBean implements Serializable{
         private String isshow;
         private String url;
 
+
+        @Override
+        public String toString() {
+            return "LiveBean{" +
+                    "title='" + title + '\'' +
+                    ", brief='" + brief + '\'' +
+                    ", image='" + image + '\'' +
+                    ", id='" + id + '\'' +
+                    ", isshow='" + isshow + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         public String getTitle() {
             return title;
         }

@@ -1,4 +1,4 @@
-package fm.jiecao.jcvideoplayer_lib;
+package com.jiyun.pandatv.jcvideoplayer_lib;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;

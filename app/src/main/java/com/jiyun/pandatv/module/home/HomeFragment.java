@@ -24,11 +24,15 @@ import android.widget.Toast;
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.bumptech.glide.Glide;
+import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.JCFullScreenActivity;
 import com.jiyun.pandatv.MainActivity;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.L;
+import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
+import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 import com.jiyun.pandatv.module.home.adapter.Home_Adaoter;
 import com.jiyun.pandatv.module.home.adapter.Home_viewpager_Adapter;
 import com.jiyun.pandatv.module.home.centre.CentreActivity;
@@ -45,9 +49,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
-import fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer;
 
 public class HomeFragment extends BaseFragment implements HomeContract.View, View.OnClickListener, Home_Adaoter.ShouYeCallback {
     private ArrayList<FirstBean> list = new ArrayList<>();
@@ -78,8 +79,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
 
     @Override
     protected void init(View view) {
-        home_Original_Image = (ImageView) view.findViewById(R.id.home_Original_Image);
-        home_MyLogin_Image = (ImageView) view.findViewById(R.id.home_MyLogin_Image);
+        ShowPopuUtils.getInsent().create(App.context);
+        View viewById = view.findViewById(R.id.homefragment_common);
+        home_Original_Image = (ImageView) viewById.findViewById(R.id.iv_top_hudong);
+        home_MyLogin_Image = (ImageView) viewById.findViewById(R.id.iv_top_Image);
+
+
         pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.home_PullToRefreshRecyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -312,6 +317,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
 
     @Override
     public void setResult(FirstBean firstBean) {
+        ShowPopuUtils.getInsent().popuUtilsDismiss();
         //取出javaBean里面的所有集合   添加到list里面   放入适配器
         list.add(firstBean);
         FirstBean.DataBean data = firstBean.getData();
@@ -463,13 +469,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.home_Original_Image:
+            case R.id.iv_top_hudong:
                 //获取跳转的第一个activity
                 MainActivity activity = (MainActivity) getActivity();
                 Intent intent = new Intent(activity, OriginalActivity.class);
                 activity.startActivity(intent);
                 break;
-            case R.id.home_MyLogin_Image:
+            case R.id.iv_top_Image:
                 MainActivity activity1 = (MainActivity) getActivity();
                 Intent intent1 = new Intent(activity1, CentreActivity.class);
                 activity1.startActivity(intent1);

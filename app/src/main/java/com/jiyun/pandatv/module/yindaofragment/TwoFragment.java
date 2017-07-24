@@ -17,6 +17,7 @@ public class TwoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_two,container,false);
+        View inflate = inflater.inflate(R.layout.guide_page3,container,false);
+        return inflate;
     }
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="68dp">
+    <LinearLayout
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:background="#FF4621DC"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/iv_top_logo"
+            android:src="@drawable/panda_sign"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="20dp"/>
+        <TextView
+            android:textSize="25sp"
+            android:layout_weight="1.2"
+            android:id="@+id/tv_top_title"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <!--原创互动图片-->
+        <ImageView
+            android:id="@+id/iv_top_hudong"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/hudong_sign"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="35dp" />
+
+        <!--登录图片-->
+        <ImageView
+            android:id="@+id/iv_top_Image"
+            android:src="@drawable/person_sign"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:background="#FAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"></LinearLayout>
+
+</LinearLayout>
+

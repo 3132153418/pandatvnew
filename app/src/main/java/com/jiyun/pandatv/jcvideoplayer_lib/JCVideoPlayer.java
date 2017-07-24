@@ -1,4 +1,4 @@
-package fm.jiecao.jcvideoplayer_lib;
+package com.jiyun.pandatv.jcvideoplayer_lib;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -22,6 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jiyun.pandatv.JCFullScreenActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -375,13 +377,13 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
   private void showProgressDialog(float deltaX) {
     if (dlgProgress == null) {
-      View localView = LayoutInflater.from(getContext()).inflate(fm.jiecao.jcvideoplayer_lib.R.layout.jc_progress_dialog, null);
-      dlgProgressProgressBar = ((ProgressBar) localView.findViewById(fm.jiecao.jcvideoplayer_lib.R.id.duration_progressbar));
-      dlgProgressCurrent = ((TextView) localView.findViewById(fm.jiecao.jcvideoplayer_lib.R.id.tv_current));
-      dlgProgressTotal = ((TextView) localView.findViewById(fm.jiecao.jcvideoplayer_lib.R.id.tv_duration));
-      dlgProgressIcon = ((ImageView) localView.findViewById(fm.jiecao.jcvideoplayer_lib.R.id.duration_image_tip));
+      View localView = LayoutInflater.from(getContext()).inflate(com.jiyun.pandatv.jcvideoplayer_lib.R.layout.jc_progress_dialog, null);
+      dlgProgressProgressBar = ((ProgressBar) localView.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.duration_progressbar));
+      dlgProgressCurrent = ((TextView) localView.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.tv_current));
+      dlgProgressTotal = ((TextView) localView.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.tv_duration));
+      dlgProgressIcon = ((ImageView) localView.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.duration_image_tip));
 
-      dlgProgress = new Dialog(getContext(), fm.jiecao.jcvideoplayer_lib.R.style.jc_style_dialog_progress);
+      dlgProgress = new Dialog(getContext(), com.jiyun.pandatv.jcvideoplayer_lib.R.style.jc_style_dialog_progress);
       dlgProgress.setContentView(localView);
       dlgProgress.getWindow().addFlags(Window.FEATURE_ACTION_BAR);
       dlgProgress.getWindow().addFlags(32);
@@ -389,7 +391,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
       dlgProgress.getWindow().setLayout(-2, -2);
       WindowManager.LayoutParams localLayoutParams = dlgProgress.getWindow().getAttributes();
       localLayoutParams.gravity = 49;
-      localLayoutParams.y = getResources().getDimensionPixelOffset(fm.jiecao.jcvideoplayer_lib.R.dimen.jc_progress_dialog_margin_top);
+      localLayoutParams.y = getResources().getDimensionPixelOffset(com.jiyun.pandatv.jcvideoplayer_lib.R.dimen.jc_progress_dialog_margin_top);
       dlgProgress.getWindow().setAttributes(localLayoutParams);
     }
     if (!dlgProgress.isShowing()) {

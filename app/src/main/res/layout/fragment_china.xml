@@ -4,29 +4,10 @@
     android:layout_height="match_parent"
     >
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="50dp"
-       android:background="#FF4621DC">
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="滚滚视频"
-          android:textSize="30dp"
-          android:textColor="#fff"
-          android:layout_marginLeft="130dp"
-          android:layout_marginTop="5dp"/>
-
-      <ImageView
-          android:id="@+id/gg_MyLogin_Image"
-          android:src="@drawable/person_sign"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="5dp"
-          android:layout_marginLeft="80dp"/>
-   </LinearLayout>
-
+   <include layout="@layout/fragment_top_layout_common"
+      android:layout_width="match_parent"
+      android:layout_height="68dp"
+      android:id="@+id/chinafragment_common"></include>
    <com.androidkun.PullToRefreshRecyclerView
        android:id="@+id/gg_PulltoRef"
        android:layout_width="match_parent"

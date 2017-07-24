@@ -7,15 +7,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.JCFullScreenActivity;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.ACache;
+import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
+import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 import com.jiyun.pandatv.module.home.centre.CentreActivity;
 import com.jiyun.pandatv.module.paper.paper.PaperDataAdaPter;
 import com.jiyun.pandatv.module.paper.paper.PaperLunboAdaPter;
@@ -28,17 +31,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
-import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
-import fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer;
 
 public class PaperFragment extends BaseFragment implements PaperContract.View, PaperDataAdaPter.PaperCallBack {
     @BindView(R.id.paper_pull)
     PullToRefreshRecyclerView paperPull;
     Unbinder unbinder;
-    @BindView(R.id.paper_person)
-    ImageView paperPerson;
+
     //持有P层对象
     private PaperContract.PaperPresenter presenter;
     private PaperLunboAdaPter paperLunboAdaPter;
@@ -56,6 +55,21 @@ public class PaperFragment extends BaseFragment implements PaperContract.View, P
 
     @Override
     protected void init(View view) {
+        ShowPopuUtils.getInsent().create(App.context);
+
+        View viewById = view.findViewById(R.id.paperfragment_common);
+        viewById.findViewById(R.id.iv_top_logo).setVisibility(View.INVISIBLE);
+        ((TextView) viewById.findViewById(R.id.tv_top_title)).setText("熊猫播报");
+        viewById.findViewById(R.id.iv_top_hudong).setVisibility(View.INVISIBLE);
+        viewById.findViewById(R.id.iv_top_Image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CentreActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         lunbomanger();
         shujumamger();
     }
@@ -156,10 +170,9 @@ public class PaperFragment extends BaseFragment implements PaperContract.View, P
     @Override
     public void lunbo(Paper_LunboBean paperLunboBean) {
         listlunbo.addAll(paperLunboBean.getData().getBigImg());
-
         paperLunboAdaPter = new PaperLunboAdaPter(getContext(), listlunbo);
         paperPull.setAdapter(paperLunboAdaPter);
-
+        ShowPopuUtils.getInsent().popuUtilsDismiss();
     }
 
 
@@ -170,6 +183,7 @@ public class PaperFragment extends BaseFragment implements PaperContract.View, P
         paperDataAdaPter = new PaperDataAdaPter(getContext(), list);
         paperDataAdaPter.setPaperCallBack(this);
         paperdatapull.setAdapter(paperDataAdaPter);
+        ShowPopuUtils.getInsent().popuUtilsDismiss();
     }
 
 
@@ -204,10 +218,6 @@ public class PaperFragment extends BaseFragment implements PaperContract.View, P
     });
 }
 
-    @OnClick(R.id.paper_person)
-    public void onViewClicked() {
-    Intent intent = new Intent(getContext(),CentreActivity.class);
-    startActivity(intent);
-    }
+
 
 }

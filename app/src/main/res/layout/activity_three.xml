@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/image_LinearLayout"
-    android:background="@drawable/guide_three"
    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/line1_three"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/guide_three"/>
 </LinearLayout>

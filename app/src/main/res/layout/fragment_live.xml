@@ -4,26 +4,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <RelativeLayout
+    <include layout="@layout/fragment_top_layout_common"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#283dd9">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="熊猫直播"
-            android:textColor="#fcfafa"
-            android:textSize="25sp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:id="@+id/live_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/person_sign"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"/>
-    </RelativeLayout>
+        android:layout_height="68dp"
+        android:id="@+id/livefragment_common"></include>
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,13 +1,17 @@
 package com.jiyun.pandatv;
 
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.ACache;
+import com.jiyun.pandatv.apputils.DataCleanManager;
 import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseActivity;
 import com.jiyun.pandatv.module.china.ChinaFragment;
@@ -20,9 +24,11 @@ import com.jiyun.pandatv.module.livechina.LiveChinaFragment;
 import com.jiyun.pandatv.module.livechina.LiveChinapresenter;
 import com.jiyun.pandatv.module.paper.PaperFragment;
 import com.jiyun.pandatv.module.paper.Paperpresenter;
+import com.umeng.socialize.UMShareAPI;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jiguang.analytics.android.api.JAnalyticsInterface;
 
 public class MainActivity extends BaseActivity {
 
@@ -46,7 +52,11 @@ public class MainActivity extends BaseActivity {
     private ChinaFragment chinaFragment = null;
     private PaperFragment paperFragment = null;
     private LiveChinaFragment liveChinaFragment = null;
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);//完成回调
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -54,8 +64,24 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         App.context = this;
+//        String s = ACache.get(App.context).CacheSize();
+//        Log.d("TAG", "缓存大小为" + s);
+
+        try {
+            String totalCacheSize = DataCleanManager.getTotalCacheSize(App.context);
+            Log.d("TAG", "缓存大小为" + totalCacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ACache.get(App.context).clear();
+        try {
+            String totalCacheSize = DataCleanManager.getTotalCacheSize(App.context);
+            Log.d("TAG", "缓存大小为" + totalCacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         homeFragment = new HomeFragment();
         new Homepresenter(homeFragment);
 
@@ -63,6 +89,7 @@ public class MainActivity extends BaseActivity {
                 .add(R.id.framelayout, homeFragment, "HomeFragment")
                 .show(homeFragment)
                 .commit();
+        rbHome.performClick();
     }
 
     @Override
@@ -78,6 +105,7 @@ public class MainActivity extends BaseActivity {
         L.d("MainActivity", "全部fragment隐藏");
         switch (view.getId()) {
             case R.id.rb_home:
+                JAnalyticsInterface.onPageStart(App.context, "首页");
                 if (homeFragment == null) {
                     homeFragment = new HomeFragment();
                     new Homepresenter(homeFragment);
@@ -85,6 +113,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.show(homeFragment);
                 break;
             case R.id.rb_live:
+                JAnalyticsInterface.onPageStart(App.context, "熊猫直播");
                 if (liveFragment == null) {
                     liveFragment = new LiveFragment();
                     new Livepresenter(liveFragment);
@@ -93,6 +122,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.show(liveFragment);
                 break;
             case R.id.rb_china:
+                JAnalyticsInterface.onPageStart(App.context, "滚滚视频");
                 L.d("MainActivity", "点击了第三个");
                 if (chinaFragment == null) {
                     chinaFragment = new ChinaFragment();
@@ -102,6 +132,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.show(chinaFragment);
                 break;
             case R.id.rb_paper:
+                JAnalyticsInterface.onPageStart(App.context, "熊猫播报");
                 if (paperFragment == null) {
                     paperFragment = new PaperFragment();
                     new Paperpresenter(paperFragment);
@@ -110,6 +141,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.show(paperFragment);
                 break;
             case R.id.rb_live_china:
+                JAnalyticsInterface.onPageStart(App.context, "直播中国");
                 if (liveChinaFragment == null) {
                     liveChinaFragment = new LiveChinaFragment();
                     new LiveChinapresenter(liveChinaFragment);

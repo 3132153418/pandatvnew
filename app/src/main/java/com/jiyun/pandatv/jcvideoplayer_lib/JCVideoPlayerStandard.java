@@ -1,4 +1,4 @@
-package fm.jiecao.jcvideoplayer_lib;
+package com.jiyun.pandatv.jcvideoplayer_lib;
 
 import android.app.Activity;
 import android.content.Context;
@@ -85,7 +85,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
             //设置进入全屏的图片为开启全屏
             ivFullScreen.setImageResource(R.drawable.jc_enlarge);
             //设置返回按钮为隐藏
-            ivBack.setVisibility(View.GONE);
+            ivBack.setVisibility(GONE);
         }
 
     }
@@ -213,7 +213,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
     //点击  ui  切换
     private void onClickUiToggle() {
         if (CURRENT_STATE == CURRENT_STATE_PREPAREING) {
-              if (llBottomContainer.getVisibility() == View.VISIBLE) {
+              if (llBottomContainer.getVisibility() == VISIBLE) {
                 changeUiToClearUiPrepareing();
                 Log.d(TAG, "在      准备状态下      隐藏了播放器两边");
             } else {
@@ -222,7 +222,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
             }
         } else if (CURRENT_STATE == CURRENT_STATE_PLAYING) {
 
-            if (llBottomContainer.getVisibility() == View.VISIBLE) {
+            if (llBottomContainer.getVisibility() == VISIBLE) {
                 changeUiToClearUiPlaying();
                 Log.d(TAG, "在      播放状态下      隐藏了播放器两边");
             } else {
@@ -231,7 +231,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
             }
         } else if (CURRENT_STATE == CURRENT_STATE_PAUSE) {
 
-            if (llBottomContainer.getVisibility() == View.VISIBLE) {
+            if (llBottomContainer.getVisibility() == VISIBLE) {
                 changeUiToClearUiPause();
                 Log.d(TAG, "在      暂停状态下      隐藏了播放器两边");
             } else {
@@ -262,87 +262,87 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
     
     //Unified management Ui
     private void changeUiToNormal() {
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.INVISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.VISIBLE);
-        ivCover.setVisibility(View.VISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(INVISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(VISIBLE);
+        ivCover.setVisibility(VISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
     private void changeUiToShowUiPrepareing() {
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.VISIBLE);
-        ivStart.setVisibility(View.INVISIBLE);
-        pbLoading.setVisibility(View.VISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
-        ivCover.setVisibility(View.VISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(VISIBLE);
+        ivStart.setVisibility(INVISIBLE);
+        pbLoading.setVisibility(VISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
+        ivCover.setVisibility(VISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
     }
 
     private void changeUiToClearUiPrepareing() {
 //        changeUiToClearUi();
-        llTopContainer.setVisibility(View.INVISIBLE);
-        llBottomContainer.setVisibility(View.INVISIBLE);
-        ivStart.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(INVISIBLE);
+        llBottomContainer.setVisibility(INVISIBLE);
+        ivStart.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
 //        pbLoading.setVisibility(View.VISIBLE);
-        ivCover.setVisibility(View.VISIBLE);
+        ivCover.setVisibility(VISIBLE);
     }
 
     private void changeUiToShowUiPlaying() {
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.VISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
-        ivCover.setVisibility(View.INVISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(VISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
+        ivCover.setVisibility(INVISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
     private void changeUiToClearUiPlaying() {
         changeUiToClearUi();
-        pbBottom.setVisibility(View.VISIBLE);
+        pbBottom.setVisibility(VISIBLE);
     }
 
     private void changeUiToShowUiPause() {
-        llTopContainer.setVisibility(View.VISIBLE);
-        llBottomContainer.setVisibility(View.VISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
-        ivCover.setVisibility(View.INVISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(VISIBLE);
+        llBottomContainer.setVisibility(VISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
+        ivCover.setVisibility(INVISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
     private void changeUiToClearUiPause() {
         changeUiToClearUi();
-        pbBottom.setVisibility(View.VISIBLE);
+        pbBottom.setVisibility(VISIBLE);
     }
 
     private void changeUiToClearUi() {
-        llTopContainer.setVisibility(View.INVISIBLE);
-        llBottomContainer.setVisibility(View.INVISIBLE);
-        ivStart.setVisibility(View.INVISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
-        ivCover.setVisibility(View.INVISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(INVISIBLE);
+        llBottomContainer.setVisibility(INVISIBLE);
+        ivStart.setVisibility(INVISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
+        ivCover.setVisibility(INVISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
     }
 
     private void changeUiToError() {
-        llTopContainer.setVisibility(View.INVISIBLE);
-        llBottomContainer.setVisibility(View.INVISIBLE);
-        ivStart.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-        ivThumb.setVisibility(View.INVISIBLE);
-        ivCover.setVisibility(View.VISIBLE);
-        pbBottom.setVisibility(View.INVISIBLE);
+        llTopContainer.setVisibility(INVISIBLE);
+        llBottomContainer.setVisibility(INVISIBLE);
+        ivStart.setVisibility(VISIBLE);
+        pbLoading.setVisibility(INVISIBLE);
+        ivThumb.setVisibility(INVISIBLE);
+        ivCover.setVisibility(VISIBLE);
+        pbBottom.setVisibility(INVISIBLE);
         updateIvStartState();
     }
 
@@ -373,10 +373,10 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
                                     && CURRENT_STATE != CURRENT_STATE_ERROR) {
                                 //当前状态不在正常并且不在异常状态时
 
-                                llBottomContainer.setVisibility(View.INVISIBLE);
-                                llTopContainer.setVisibility(View.INVISIBLE);
-                                pbBottom.setVisibility(View.VISIBLE);
-                                ivStart.setVisibility(View.INVISIBLE);
+                                llBottomContainer.setVisibility(INVISIBLE);
+                                llTopContainer.setVisibility(INVISIBLE);
+                                pbBottom.setVisibility(VISIBLE);
+                                ivStart.setVisibility(INVISIBLE);
                             }
                         }
                     });
@@ -395,7 +395,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
     public static void setJcBuriedPointStandard(JCBuriedPointStandard jcBuriedPointStandard) {
         jc_BuriedPointStandard = jcBuriedPointStandard;
-        JCVideoPlayer.setJcBuriedPoint(jcBuriedPointStandard);
+        setJcBuriedPoint(jcBuriedPointStandard);
     }
 
     @Override

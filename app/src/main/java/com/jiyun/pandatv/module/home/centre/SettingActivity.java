@@ -13,11 +13,13 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseActivity;
@@ -37,6 +39,7 @@ import java.net.URL;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by Administrator on 2017/7/17.
@@ -90,6 +93,19 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         new Homepresenter(this);
         settingBack = (ImageView) findViewById(R.id.settingBack);
         settingBack.setOnClickListener(this);
+        isPush.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    //如果选中就关闭
+                    JPushInterface.stopPush(App.context);
+                    Toast.makeText(context, "已关闭推送服务", Toast.LENGTH_SHORT).show();
+                }else{
+                    JPushInterface.resumePush(App.context);
+                    Toast.makeText(context, "推送服务开启", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

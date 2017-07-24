@@ -35,6 +35,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return titles.length;
     }
+//
+//    @Override
+//    public boolean isViewFromObject(View view, Object object) {
+//        return view==object;
+//    }
 
     @Override
     public CharSequence getPageTitle(int position) {

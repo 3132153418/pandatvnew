@@ -1,4 +1,4 @@
-package fm.jiecao.jcvideoplayer_lib;
+package com.jiyun.pandatv.jcvideoplayer_lib;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

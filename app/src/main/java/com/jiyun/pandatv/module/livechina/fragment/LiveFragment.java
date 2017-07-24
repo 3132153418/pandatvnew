@@ -6,14 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.ACache;
+import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.module.livechina.adapter.ZhiBochenaAdapter;
 import com.jiyun.pandatv.moudle.entity.ChangchengBean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -34,6 +38,21 @@ public class LiveFragment extends BaseFragment implements LiveContract.View{
     @Override
     protected int getFragmentLayoutId() {
         return R.layout.zhibochena_listview;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            ShowPopuUtils.getInsent().create(App.context);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    ShowPopuUtils.getInsent().popuUtilsDismiss();
+                }
+            },300);
+        }
     }
 
     @Override

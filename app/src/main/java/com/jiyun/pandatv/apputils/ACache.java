@@ -71,6 +71,8 @@ public class ACache {
 		return get(f, MAX_SIZE, MAX_COUNT);
 	}
 
+
+
 	public static ACache get(File cacheDir) {
 		return get(cacheDir, MAX_SIZE, MAX_COUNT);
 	}

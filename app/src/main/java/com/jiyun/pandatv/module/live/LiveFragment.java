@@ -3,10 +3,8 @@ package com.jiyun.pandatv.module.live;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseFragment;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class LiveFragment extends BaseFragment implements LiveContract.View {
@@ -32,8 +28,7 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
     @BindView(R.id.viewpager)
     NoScrollViewPager viewpager;
     Unbinder unbinder;
-    @BindView(R.id.live_person)
-    ImageView livePerson;
+
     private List<BaseFragment> fragment_list;
     private ViewPagerAdapter adapter;
     //持有P层对象
@@ -48,6 +43,18 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
 
     @Override
     protected void init(View view) {
+        View viewById = view.findViewById(R.id.livefragment_common);
+        viewById.findViewById(R.id.iv_top_logo).setVisibility(View.INVISIBLE);
+        ((TextView) viewById.findViewById(R.id.tv_top_title)).setText("熊猫直播");
+        viewById.findViewById(R.id.iv_top_hudong).setVisibility(View.INVISIBLE);
+        viewById.findViewById(R.id.iv_top_Image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CentreActivity.class);
+                startActivity(intent);
+            }
+        });
+
         presenter.start();
     }
 
@@ -71,7 +78,6 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
         adapter = new ViewPagerAdapter(fragment_list, titles, getChildFragmentManager(), getContext());
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
-
     }
 
     @Override
@@ -91,13 +97,7 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+
 
     @Override
     public void onDestroyView() {
@@ -126,12 +126,4 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
 
     }
 
-
-
-
-    @OnClick(R.id.live_person)
-    public void onViewClicked() {
-        Intent intent = new Intent(getContext(), CentreActivity.class);
-        startActivity(intent);
-    }
 }

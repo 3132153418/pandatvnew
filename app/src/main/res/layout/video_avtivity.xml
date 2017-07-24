@@ -3,9 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer
+    <com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer
         android:id="@+id/pandatv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer>
+        android:layout_height="match_parent"></com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer>
 
 </LinearLayout>

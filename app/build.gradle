@@ -88,6 +88,7 @@ dependencies {
 //    compile name:'SMSSDKGUI-2.1.4',ext:'aar'
     compile project(':jcvideoplayer-lib')
     compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
+    compile 'cn.jiguang.sdk:janalytics:1.1.1' // 此处以JAnalytics 1.1.1 版本为例。
     compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
     compile 'org.greenrobot:greendao:3.2.0'
 }

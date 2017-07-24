@@ -1,4 +1,4 @@
-package fm.jiecao.jcvideoplayer_lib;
+package com.jiyun.pandatv;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -18,12 +18,24 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.jiyun.pandatv.jcvideoplayer_lib.JCMediaManager;
+import com.jiyun.pandatv.jcvideoplayer_lib.JCVideoPlayer;
+import com.jiyun.pandatv.jcvideoplayer_lib.NetUtil;
+import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.Switchlistener{
+public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.Switchlistener {
   /**
    * 刚启动全屏时的播放状态
    */
@@ -40,7 +52,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   private MyVolumeReceiver mVolumeReceiver;
 
   //从正常状态下进入视频播放
-  static void toActivityFromNormal(Context context, int state, String GAOQINGURL, Class videoPlayClass, Object... obj) {
+  public static void toActivityFromNormal(Context context, int state, String GAOQINGURL, Class videoPlayClass, Object... obj) {
     CURRENT_STATE = state;
     DIRECT_FULLSCREEN = false;
     GAOQINGURL = GAOQINGURL;
@@ -70,6 +82,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    UMShareAPI.get(JCFullScreenActivity.this);
     //注册广播接受者获取系统音量
     audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
     setAndRegisterVolumeReceiver();
@@ -115,6 +128,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
     try {
       Constructor<PandaVedioPlayer> constructor = VIDEO_PLAYER_CLASS.getConstructor(Context.class);
       pandaVedioPlayer = constructor.newInstance(this);
+      pandaVedioPlayer = new PandaVedioPlayer(this);
       setContentView(pandaVedioPlayer);
     } catch (InstantiationException e) {
       e.printStackTrace();
@@ -123,9 +137,9 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
     }
   }
   public void showTipPop() {
-    View dialogView = View.inflate(JCFullScreenActivity.this,R.layout.popwindow_iswifi,null);
+    View dialogView = View.inflate(JCFullScreenActivity.this, com.jiyun.pandatv.jcvideoplayer_lib.R.layout.popwindow_iswifi,null);
     // 提示信息
-    final TextView tipTv = (TextView) dialogView.findViewById(R.id.tv_tip);
+    final TextView tipTv = (TextView) dialogView.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.tv_tip);
     // 创建弹出对话框，设置弹出对话框的背景为圆角
     final PopupWindow tipPw = new PopupWindow(dialogView, FrameLayout.LayoutParams.WRAP_CONTENT,
             FrameLayout.LayoutParams.WRAP_CONTENT, true);
@@ -133,7 +147,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
     tipPw.setFocusable(true);
     // Cancel按钮及其处理事件
     final TextView btnCancel = (TextView) dialogView
-            .findViewById(R.id.btn_cancel);
+            .findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.btn_cancel);
     btnCancel.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         if (tipPw != null && tipPw.isShowing()) {
@@ -141,7 +155,7 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
         }
       }
     });
-    final TextView btnOk = (TextView) dialogView.findViewById(R.id.btn_ok);
+    final TextView btnOk = (TextView) dialogView.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.btn_ok);
     btnOk.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         if (tipPw != null && tipPw.isShowing()) {
@@ -227,6 +241,53 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
     }
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    Log.d("TAG","走了欧娜resume");
+
+  }
+
+  @Override
+  public void onShare() {
+    pandaVedioPlayer.ivStart.performClick();
+    UMWeb web = new UMWeb("www.baidu.com");
+    web.setTitle("This is music title");//标题
+    web.setThumb(new UMImage(JCFullScreenActivity.this, R.drawable.logo_ipnda));  //缩略图
+    web.setDescription("my description");//描述
+    new ShareAction(JCFullScreenActivity.this)
+            .setPlatform(SHARE_MEDIA.QQ)//传入平台
+            .withText("hello")//分享内容
+            .withMedia(web)
+            .setCallback(new UMShareListener() {
+              @Override
+              public void onStart(SHARE_MEDIA share_media) {
+                Toast.makeText(JCFullScreenActivity.this, "开始分享", Toast.LENGTH_SHORT).show();
+              }
+
+              @Override
+              public void onResult(SHARE_MEDIA share_media) {
+                Toast.makeText(JCFullScreenActivity.this, "分享返回值", Toast.LENGTH_SHORT).show();
+              }
+
+              @Override
+              public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+                Toast.makeText(JCFullScreenActivity.this, "分享异常", Toast.LENGTH_SHORT).show();
+//                pandaVedioPlayer.setStateAndUi(JCVideoPlayer.CURRENT_STATE_PLAYING);
+//                pandaVedioPlayer.ivStart.performClick();
+
+              }
+
+              @Override
+              public void onCancel(SHARE_MEDIA share_media) {
+                Toast.makeText(JCFullScreenActivity.this, "取消分享", Toast.LENGTH_SHORT).show();
+                pandaVedioPlayer.ivStart.performClick();
+              }
+            })//回调监听器
+            .share();
+
+  }
+
   private class MyVolumeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -236,5 +297,11 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
         pandaVedioPlayer.seekbar_volume.setProgress(currVolume);
       }
     }
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);//完成回调
   }
 }

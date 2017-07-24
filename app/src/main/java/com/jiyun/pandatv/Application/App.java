@@ -13,6 +13,7 @@ import com.umeng.socialize.UMShareAPI;
 import java.util.HashSet;
 import java.util.Set;
 
+import cn.jiguang.analytics.android.api.JAnalyticsInterface;
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
@@ -30,6 +31,19 @@ public class App extends Application {
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(getApplicationContext());
         UMShareAPI.get(this);
+        Config.DEBUG = true;
+        setJpush();
+        setJAnalytics();
+
+    }
+
+    private void setJAnalytics() {
+        JAnalyticsInterface.setDebugMode(true);
+        JAnalyticsInterface.init(this);
+
+    }
+
+    private void setJpush() {
         JPushInterface.setDebugMode(true);//开启极光推送的debug模式
         JPushInterface.init(this);//初始化极光推送
         Set<Integer> days = new HashSet<Integer>();

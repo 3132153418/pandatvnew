@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,13 @@ import android.view.ViewGroup;
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.JCFullScreenActivity;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.L;
+import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
+import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 import com.jiyun.pandatv.module.live.liveadapter.JianJieAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JingcaiAdapter;
 import com.jiyun.pandatv.module.live.views.NoScrollViewPager;
@@ -27,9 +31,8 @@ import com.jiyun.pandatv.moudle.entity.VideoTwoBean;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import fm.jiecao.jcvideoplayer_lib.JCFullScreenActivity;
-import fm.jiecao.jcvideoplayer_lib.PandaVedioPlayer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by lt on 2015/12/14.直播
@@ -64,6 +67,21 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     private static int p = 1;
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            ShowPopuUtils.getInsent().create(App.context);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    ShowPopuUtils.getInsent().popuUtilsDismiss();
+                }
+            }, 300);
+        }
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
         if (getArguments() != null) {
@@ -76,6 +94,8 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         switch (type) {
             case live:
+                Log.d("TAG", "重新创建了直播Fragment");
+                jianjieBeanlist.clear();
                 View inflate = inflater.inflate(R.layout.live_live_pull, null);
                 jianjiepull = (RecyclerView) inflate.findViewById(R.id.jianjie);
                 presenter.jianjieData();
@@ -102,19 +122,18 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
                 jiangcaimangger();
                 presenter.setjiangcai("VSET100167216881", "7", "panda", "desc", "time", p + "");
                 return inflatejiangcai;
+            case When_the_bear_oes_not_let:
+                View inflateq = View.inflate(getActivity(), R.layout.live_jingcaiyike_pull, null);
+                jingcaipull = (PullToRefreshRecyclerView) inflateq.findViewById(R.id.live_jiangcai_pull);
+                jiangcaimangger();
+                presenter.dangxiongburang("VSET100332640004", "7", "panda", "desc", "time", p + "");
+                return inflateq;
             case supercute:
                 View inflatee = inflater.inflate(R.layout.live_jingcaiyike_pull, null);
                 jingcaipull = (PullToRefreshRecyclerView) inflatee.findViewById(R.id.live_jiangcai_pull);
                 presenter.superxiu("VSET100272959126", "7", "panda", "desc", "time", p + "");
                 jiangcaimangger();
                 return inflatee;
-            case When_the_bear_oes_not_let:
-                View inflateq = inflater.inflate(R.layout.live_jingcaiyike_pull, null);
-                jingcaipull = (PullToRefreshRecyclerView) inflateq.findViewById(R.id.live_jiangcai_pull);
-                presenter.dangxiongburang("VSET100332640004", "7", "panda", "desc", "time", p + "");
-                jiangcaimangger();
-                return inflateq;
-
             case The_panda_archives:
                 View inflated = inflater.inflate(R.layout.live_jingcaiyike_pull, null);
                 jingcaipull = (PullToRefreshRecyclerView) inflated.findViewById(R.id.live_jiangcai_pull);
@@ -243,7 +262,9 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
 
     @Override
     public void jianjie(Live_JianJieBean live_jianJieBean) {
+        Log.d("TAG", "走了简介回调");
         jianjieBeanlist.addAll(live_jianJieBean.getLive());
+        Log.d("TAG","简介的长度="+jianjieBeanlist.size()+"简介的实体"+jianjieBeanlist.toString());
         jianJieAdapter = new JianJieAdapter(App.context, jianjieBeanlist);
         jianjiepull.setAdapter(jianJieAdapter);
         jianJieAdapter.notifyDataSetChanged();

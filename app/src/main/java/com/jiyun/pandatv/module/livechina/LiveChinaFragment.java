@@ -16,11 +16,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-
+import android.widget.TextView;
 
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.apputils.ACache;
+import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.module.home.centre.CentreActivity;
 import com.jiyun.pandatv.module.livechina.adapter.DragAdapter;
@@ -34,6 +35,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LiveChinaFragment extends BaseFragment implements LiveChinaContract.View, View.OnClickListener {
 
@@ -43,7 +46,7 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     private Map<String, String> mMapAllUrl;
     private ViewPager liveChenaViewPager;
     private TabLayout liveChenaTabLayout;
-    private ImageView personal_Cente,imageView;
+    private ImageView personal_Cente, imageView;
     private PandaDirectAdapter adapter;
     private LiveChinapresenter presenter;
     private ImageButton live_chena_IBtn;
@@ -61,6 +64,21 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
 
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            ShowPopuUtils.getInsent().create(App.context);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    ShowPopuUtils.getInsent().popuUtilsDismiss();
+                }
+            }, 300);
+        }
+    }
+
+    @Override
     protected int getFragmentLayoutId() {
 
         return R.layout.livechina_fragment;
@@ -70,11 +88,22 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     protected void init(View view) {
         new LiveChinapresenter(this);
 
+        View viewById = view.findViewById(R.id.livechinafragment_common);
+        viewById.findViewById(R.id.iv_top_logo).setVisibility(View.INVISIBLE);
+        ((TextView) viewById.findViewById(R.id.tv_top_title)).setText("直播中国");
+        viewById.findViewById(R.id.iv_top_hudong).setVisibility(View.INVISIBLE);
+        viewById.findViewById(R.id.iv_top_Image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CentreActivity.class);
+                startActivity(intent);
+            }
+        });
+
         liveChenaViewPager = (ViewPager) view.findViewById(R.id.live_chena_viewPager);
         liveChenaTabLayout = (TabLayout) view.findViewById(R.id.live_chena_TabLayout);
-        personal_Cente = (ImageView) view.findViewById(R.id.personal_Cente);
-        personal_Cente.setOnClickListener(this);
         live_chena_IBtn = (ImageButton) view.findViewById(R.id.live_chena_IBtn);
+
         live_chena_IBtn.setOnClickListener(this);
         title_adapter = new ZHPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList, channels);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -186,10 +215,6 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.personal_Cente:
-                Intent intent = new Intent(getActivity(), CentreActivity.class);
-                startActivity(intent);
-                break;
             case R.id.live_chena_IBtn:
 
                 View view = LayoutInflater.from(getActivity()).inflate(R.layout.livechina_fragment, null);
@@ -201,7 +226,8 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
         }
     }
 
-  public void upPopupWindow(View view) {
+
+    public void upPopupWindow(View view) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.activity_popup_columns, null);
         popupView(v);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -211,7 +237,7 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
     }
 
     public void popupView(View v) {
-        imageView  = (ImageView) v.findViewById(R.id.Fanhui);
+        imageView = (ImageView) v.findViewById(R.id.Fanhui);
         imageView.setOnClickListener(this);
         gridView = (DragGridView) v.findViewById(R.id.gridView_channel);
         gridView_other = (DragGridView) v.findViewById(R.id.gridView_channel_other);
@@ -264,29 +290,30 @@ public class LiveChinaFragment extends BaseFragment implements LiveChinaContract
 
     }
 
-        public void setRefresh() {
-            mListName.clear();
-            mList.clear();
-            mListName.addAll(channels) ;
-            Set<String> strings = mMapAllUrl.keySet();
+    public void setRefresh() {
+        mListName.clear();
+        mList.clear();
+        mListName.addAll(channels);
+        Set<String> strings = mMapAllUrl.keySet();
 
-            LiveFragment badaLingFragment = null;
-            Bundle bundle = null;
-            String url=null;
-            for (String nameTab : mListName) {
-                url = mMapAllUrl.get(nameTab);
-                badaLingFragment = new LiveFragment();
-                bundle = new Bundle();
-                bundle.putString("url", url);
-                badaLingFragment.setParams(bundle);
-                mList.add(badaLingFragment);
-            }
-            adapter = new PandaDirectAdapter(getChildFragmentManager(), mListName, mList);
-            liveChenaViewPager.setAdapter(adapter);
-            liveChenaTabLayout.setupWithViewPager(liveChenaViewPager);
-
+        LiveFragment badaLingFragment = null;
+        Bundle bundle = null;
+        String url = null;
+        for (String nameTab : mListName) {
+            url = mMapAllUrl.get(nameTab);
+            badaLingFragment = new LiveFragment();
+            bundle = new Bundle();
+            bundle.putString("url", url);
+            badaLingFragment.setParams(bundle);
+            mList.add(badaLingFragment);
         }
+        adapter = new PandaDirectAdapter(getChildFragmentManager(), mListName, mList);
+        liveChenaViewPager.setAdapter(adapter);
+        liveChenaTabLayout.setupWithViewPager(liveChenaViewPager);
 
     }
+
+}
+
 
 

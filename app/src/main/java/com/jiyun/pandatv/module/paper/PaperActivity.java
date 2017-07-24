@@ -53,7 +53,6 @@ public class PaperActivity extends AppCompatActivity {
             //开始加载时
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
                 dialog = new ProgressDialog(PaperActivity.this);
                 dialog.setMessage("请稍等......");
                 dialog.show();

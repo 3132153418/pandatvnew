@@ -16,5 +16,6 @@ public interface ChinaContract {
 
     interface Presenter extends BasePresenter {
 
+
     }
 }

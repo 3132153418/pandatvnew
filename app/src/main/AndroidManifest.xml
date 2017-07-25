@@ -53,6 +53,8 @@
         <activity android:name=".module.home.centre.RegisterActivity"></activity>
         <activity android:name=".module.home.centre.PassWordActivity"></activity>
         <activity android:name=".moudle.db.HistoryActivity"/>
+
+        <activity android:name=".module.china.GGactivity"/>
         <activity android:name=".module.home.AboutActivity"/>
         <activity android:name=".module.home.centre.PersonhelpActivity"/>
         <activity android:name=".module.home.centre.GeRenXinXiActivity"></activity>

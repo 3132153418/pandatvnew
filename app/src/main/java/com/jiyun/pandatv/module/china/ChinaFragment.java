@@ -1,8 +1,4 @@
 package com.jiyun.pandatv.module.china;
-
-
-
-
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -62,6 +58,14 @@ public class ChinaFragment extends BaseFragment implements ChinaContract.View{
         presenter.start();
         inflat = LayoutInflater.from(getContext()).inflate(R.layout.fragment_china_item, null);
         mImage = (ImageView) inflat.findViewById(R.id.gg_ImageView);
+        mImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), GGactivity.class);
+                startActivity(intent);
+
+            }
+        });
         china_Image_title = (TextView) inflat.findViewById(R.id.china_Image_title);
         ptr = (PullToRefreshRecyclerView) view.findViewById(R.id.gg_PulltoRef);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -135,6 +139,7 @@ public class ChinaFragment extends BaseFragment implements ChinaContract.View{
             }
         });
     }
+
 
 
 }

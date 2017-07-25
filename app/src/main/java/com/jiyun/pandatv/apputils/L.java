@@ -11,7 +11,7 @@ public class L {
         throw new UnsupportedOperationException("cannot be instantiated");  
     }  
    
-    public static boolean isDebug = true;// 是否需要打印bug，可以在application的onCreate函数里面初始化
+    public static boolean isDebug = false;// 是否需要打印bug，可以在application的onCreate函数里面初始化
  
     //可以在这里修改自己想要的Tag
     private static final String TAG = "way";  

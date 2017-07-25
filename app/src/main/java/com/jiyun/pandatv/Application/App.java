@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.Notification;
 
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.CrashHandler;
 import com.jiyun.pandatv.base.BaseActivity;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
@@ -28,8 +29,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        CrashHandler crashHandler = CrashHandler.getInstance();
-//        crashHandler.init(getApplicationContext());
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
         UMShareAPI.get(this);
         Config.DEBUG = true;
         setJpush();

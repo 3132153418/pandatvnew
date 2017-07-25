@@ -37,6 +37,7 @@ import com.jiyun.pandatv.module.home.adapter.Home_Adaoter;
 import com.jiyun.pandatv.module.home.adapter.Home_viewpager_Adapter;
 import com.jiyun.pandatv.module.home.centre.CentreActivity;
 import com.jiyun.pandatv.module.home.original.OriginalActivity;
+import com.jiyun.pandatv.moudle.db.HistoryUtils;
 import com.jiyun.pandatv.moudle.entity.FirstBean;
 import com.jiyun.pandatv.moudle.entity.UpdateBean;
 import com.jiyun.pandatv.moudle.entity.Video_home_TuiJianBean;
@@ -64,7 +65,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
     private List<ImageView> DianDians;
     private ImageView home_Original_Image, home_MyLogin_Image;
     private LinearLayout linearLayout;
-
+//    历史记录
+private     String imageone;
+ private    String videoLength;
     //版本更新
     private static int versionCode;
     private String versionsUrl;
@@ -159,13 +162,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
                     @Override
                     public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
                         // TODO Auto-generated method stub
-//                        try {
-//                            PackageManager pm = getActivity().getPackageManager();
-//                            PackageInfo pi = pm.getPackageInfo(getActivity().getPackageName(), 0);
-//                            pi.versionCode = versionsInt;
-//                        } catch (PackageManager.NameNotFoundException e) {
-//                            e.printStackTrace();
-//                        }
                         dialog.dismiss();
                         showDialogUpdate();
                         dialog.dismiss();
@@ -354,27 +350,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    List<FirstBean.DataBean.BigImgBean> bigImg = list.get(0).getData().getBigImg();
-//                    String pid = bigImg.get(0).getPid();
-//                    L.d("你大爷的奶奶的个腿", pid);
-//                    presenter.homevideo(pid, new MyHttpCallBack<Video_home_TuiJianBean>() {
-//                        @Override
-//                        public void onSuccess(Video_home_TuiJianBean video_home_tuiJianBean) {
-//                            L.d("轮播监听", video_home_tuiJianBean.getTitle().toString());
-//                            List<Video_home_TuiJianBean.VideoBean.Chapters4Bean> chapters4 = video_home_tuiJianBean.getVideo().getChapters4();
-//                            L.e("我擦", chapters4.get(0).getDuration().toString());
-//                            String gaoqing = chapters4.get(0).getUrl();
-//                            L.d("高清轮播", gaoqing.toString());
-//                            String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();
-//                            String title = video_home_tuiJianBean.getTitle();
-//                            JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
-//                        }
-//
-//                        @Override
-//                        public void onError(int errorCode, String errorMsg) {
-//
-//                        }
-//                    });
+
                 }
             });
             TextView title = (TextView) view.findViewById(R.id.home_viewpager_title);
@@ -518,6 +494,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
         List<FirstBean.DataBean.AreaBean.ListscrollBean> listscroll = list.get(0).getData().getArea().getListscroll();
         final FirstBean.DataBean.AreaBean.ListscrollBean listscrollBean = listscroll.get(0);
         String pid = listscrollBean.getPid();
+
+
+
+        imageone = listscrollBean.getImage();
+
+        videoLength = listscrollBean.getVideoLength();
         L.d("推荐", pid.toString());
         presenter.homevideo(pid, new MyHttpCallBack<Video_home_TuiJianBean>() {
             @Override
@@ -530,6 +512,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
                 L.d("eeeee", gaoqing.toString());
                 String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();
                 String title = video_home_tuiJianBean.getTitle();
+                HistoryUtils.getInstance(getActivity()).instert(title,imageone,videoLength);
                 JCFullScreenActivity.toActivity(image,time,getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
 
             }
@@ -558,6 +541,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
                 String gaoqing = chapters4.get(0).getUrl();
                 String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();
                 String title = video_home_tuiJianBean.getTitle();
+
+
                 JCFullScreenActivity.toActivity(image,time,getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
             }
 
@@ -574,11 +559,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
         List<FirstBean.DataBean.PandaeyeBean.ItemsBean> items = list.get(0).getData().getPandaeye().getItems();
         FirstBean.DataBean.PandaeyeBean.ItemsBean itemsBean = items.get(0);
         String pid = itemsBean.getPid();
+
         presenter.homevideo(pid, new MyHttpCallBack<Video_home_TuiJianBean>() {
             @Override
             public void onSuccess(Video_home_TuiJianBean video_home_tuiJianBean) {
                 String image = list.get(0).getData().getPandalive().getList().get(0).getImage();
                 String time = video_home_tuiJianBean.getF_pgmtime();
+
                 final List<Video_home_TuiJianBean.VideoBean.Chapters4Bean> chapters4 = video_home_tuiJianBean.getVideo().getChapters4();
                 String gaoqing = chapters4.get(0).getUrl();
                 String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();

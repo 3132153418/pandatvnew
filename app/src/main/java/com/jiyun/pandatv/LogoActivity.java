@@ -2,7 +2,6 @@ package com.jiyun.pandatv;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 
 import com.jiyun.pandatv.base.BaseActivity;
@@ -31,6 +30,7 @@ public class LogoActivity extends BaseActivity {
                 if (have.isEmpty()){
                     Intent intent = new Intent(LogoActivity.this,SplashActivity.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     Intent intent = new Intent(LogoActivity.this,MainActivity.class);
                     startActivity(intent);

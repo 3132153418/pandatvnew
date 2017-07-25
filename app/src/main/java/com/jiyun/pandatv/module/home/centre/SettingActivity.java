@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.DataCleanManager;
 import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseActivity;
 import com.jiyun.pandatv.module.home.AboutActivity;
@@ -91,8 +92,41 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     protected void initView() {
         context = SettingActivity.this;
         new Homepresenter(this);
+        try {
+            String totalCacheSize = DataCleanManager.getTotalCacheSize(SettingActivity.this);
+            number.setText(totalCacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         settingBack = (ImageView) findViewById(R.id.settingBack);
         settingBack.setOnClickListener(this);
+        clean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+                builder.setTitle("确认清楚缓存吗?");
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                    }
+                });
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                            DataCleanManager.clearAllCache(SettingActivity.this);
+                        try {
+                            String totalCacheSize = DataCleanManager.getTotalCacheSize(SettingActivity.this);
+                            number.setText(totalCacheSize);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
         isPush.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -110,9 +144,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void loadData() {
-
         presenter.version();
-
     }
 
     @Override

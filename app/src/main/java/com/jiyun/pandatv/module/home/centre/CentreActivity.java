@@ -1,8 +1,6 @@
 package com.jiyun.pandatv.module.home.centre;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,6 +8,7 @@ import android.widget.TextView;
 
 import com.jiyun.pandatv.R;
 import com.jiyun.pandatv.base.BaseActivity;
+import com.jiyun.pandatv.module.home.centre.shoucang.ShouCangActivity;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -63,13 +62,15 @@ public class CentreActivity extends BaseActivity implements View.OnClickListener
 
                 break;
             case R.id.myShouCang:
+                Intent intent = new Intent(CentreActivity.this, ShouCangActivity.class);
+                startActivity(intent);
                 break;
             case R.id.shezhi:
                 Intent intent1 = new Intent(this, SettingActivity.class);
                 startActivity(intent1);
-                finish();
+
                 break;
-            case R.id.original_Back_ImageOne:
+           case R.id.original_Back_ImageOne:
                 finish();
                 break;
         }

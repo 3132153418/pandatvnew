@@ -203,14 +203,17 @@ public class PaperFragment extends BaseFragment implements PaperContract.View, P
 
     @Override
     public void back(int layoutPosition) {
-    String pid = list.get(0).getGuid();
+        final Paper_DataBean.ListBean listBean = list.get(0);
+        String pid = listBean.getGuid();
     presenter.papervideo(pid, new MyHttpCallBack<Video_PaperBean>() {
         @Override
         public void onSuccess(Video_PaperBean paper_videoBean) {
+            String image = listBean.getPicurl();
+            String time = paper_videoBean.getF_pgmtime();
             String gaoqing = paper_videoBean.getVideo().getChapters4().get(0).getUrl();
             String liuchang = paper_videoBean.getVideo().getChapters().get(0).getUrl();
             String title = paper_videoBean.getTitle();
-            JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
+            JCFullScreenActivity.toActivity(image,time,getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
         }
         @Override
         public void onError(int errorCode, String errorMsg) {

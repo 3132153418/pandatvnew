@@ -64,8 +64,8 @@ Intent intent = new Intent(CentreActivity.this, HistoryActivity.class);
 startActivity(intent);
                 break;
             case R.id.myShouCang:
-                Intent intent = new Intent(CentreActivity.this, ShouCangActivity.class);
-                startActivity(intent);
+                Intent intent2= new Intent(CentreActivity.this, ShouCangActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.shezhi:
                 Intent intent1 = new Intent(this, SettingActivity.class);

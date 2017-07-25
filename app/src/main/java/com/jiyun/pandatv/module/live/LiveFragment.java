@@ -3,7 +3,10 @@ package com.jiyun.pandatv.module.live;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiyun.pandatv.R;
@@ -19,16 +22,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class LiveFragment extends BaseFragment implements LiveContract.View {
 
+
+    @BindView(R.id.iv_top_logo)
+    ImageView ivTopLogo;
+    @BindView(R.id.tv_top_title)
+    TextView tvTopTitle;
+    @BindView(R.id.iv_top_hudong)
+    ImageView ivTopHudong;
+    @BindView(R.id.iv_top_Image)
+    ImageView ivTopImage;
     @BindView(R.id.tablayout)
     TabLayout tablayout;
     @BindView(R.id.viewpager)
     NoScrollViewPager viewpager;
     Unbinder unbinder;
-
     private List<BaseFragment> fragment_list;
     private ViewPagerAdapter adapter;
     //持有P层对象
@@ -97,14 +109,6 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
     }
 
 
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     @Override
     public void showLiveFragment(Live_MoreViewBean pandaLiveDuoshijiaoBean) {
 
@@ -126,4 +130,17 @@ public class LiveFragment extends BaseFragment implements LiveContract.View {
 
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

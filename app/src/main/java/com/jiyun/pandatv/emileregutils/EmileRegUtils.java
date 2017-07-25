@@ -7,17 +7,15 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.internet.HttpBase.BaseHttp;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
-
-import com.umeng.qq.handler.a;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.net.URLEncoder;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,8 +25,6 @@ import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static com.umeng.qq.handler.a.s;
 
 /**
  * Created by Administrator on 2017/7/21.
@@ -106,7 +102,7 @@ public class EmileRegUtils implements BaseHttp {
             @Override
             public void onFailure(Call call, IOException e) {
                 //okhttp请求失败的回调
-                Log.d("OkHttpUtils", "网络请求异常" + e.toString());
+                L.d("OkHttpUtils", "网络请求异常" + e.toString());
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -162,7 +158,7 @@ public class EmileRegUtils implements BaseHttp {
             @Override
             public void onFailure(Call call, IOException e) {
                 //okhttp请求失败的回调
-                Log.d("OkHttpUtils", "网络请求异常" + e.toString());
+                L.d("OkHttpUtils", "网络请求异常" + e.toString());
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

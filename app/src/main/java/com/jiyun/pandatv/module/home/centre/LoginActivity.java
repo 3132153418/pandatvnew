@@ -1,10 +1,7 @@
 package com.jiyun.pandatv.module.home.centre;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseActivity;
 import com.jiyun.pandatv.moudle.entity.LoginEntity;
 import com.umeng.socialize.UMAuthListener;
@@ -20,19 +18,8 @@ import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.utils.SocializeUtils;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Map;
 import java.util.Set;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/7/17.
@@ -136,11 +123,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             String s;
             for (String key : keySet) {
                 s = data.get(key);
-                Log.i("===========", s);
+                L.i("===========", s);
             }
             String names = data.get("names");
             String iconurl = data.get("iconurl");
-            Log.i("==", names + iconurl);
+            L.i("==", names + iconurl);
             Intent in = getIntent();
             in.putExtra("names", names);
             setResult(10, in);
@@ -165,7 +152,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void setLogin(LoginEntity login) {
         String errMsg = login.getErrMsg();
         String user_seq_id = login.getUser_seq_id();
-        Log.i("susses",errMsg);
+        L.i("susses",errMsg);
         if (errMsg.equals("成功")) {
             Intent intent = getIntent();
             intent.putExtra("name", "央视" + user_seq_id);

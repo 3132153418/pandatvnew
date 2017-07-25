@@ -1,12 +1,10 @@
 package com.jiyun.pandatv.loginUtils;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.internet.HttpBase.BaseHttp;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
-import com.jiyun.pandatv.internet.utils.OkHttpUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -82,7 +80,7 @@ public class LoginUtils implements BaseHttp{
             @Override
             public void onFailure(Call call, IOException e) {
                 //okhttp请求失败的回调
-                Log.d("OkHttpUtils", "网络请求异常"+e.toString());
+                L.d("OkHttpUtils", "网络请求异常"+e.toString());
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -95,7 +93,7 @@ public class LoginUtils implements BaseHttp{
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 //okhttp请求成功的回调
-                Log.d("OkHttpUtils", "执行了网络请求成功");
+                L.d("OkHttpUtils", "执行了网络请求成功");
                 final String jsonData = response.body().string();
                 //执行在子线程中
                 App.context.runOnUiThread(new Runnable() {

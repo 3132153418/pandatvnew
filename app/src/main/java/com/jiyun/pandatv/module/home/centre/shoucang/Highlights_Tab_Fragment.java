@@ -1,7 +1,6 @@
 package com.jiyun.pandatv.module.home.centre.shoucang;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -12,8 +11,11 @@ import com.jiyun.com.day07_greendao.DaoMaster;
 import com.jiyun.com.day07_greendao.DaoSession;
 import com.jiyun.com.day07_greendao.VideoCollectBean;
 import com.jiyun.com.day07_greendao.VideoCollectBeanDao;
+import com.jiyun.pandatv.JCFullScreenActivity;
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.base.BaseFragment;
+import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -110,10 +112,8 @@ public class Highlights_Tab_Fragment extends BaseFragment {
                 }else{
                     adapter.notifyDataSetChanged();
                     //跳转到视频播放
-//                    Intent intent = new Intent(getContext(), ReportActivity.class);
-//                    intent.putExtra("url", arr1.get(i).getUrl());
-//                    intent.putExtra("img", arr1.get(i).getImg());
-//                    startActivity(intent);
+                    VideoCollectBean bean = arr1.get(i);
+                    JCFullScreenActivity.toActivity(bean.getImg(), bean.getTime(), getActivity(), bean.getUrl(), bean.getUrltwo(), null, PandaVedioPlayer.class, bean.getTitle());
                 }
 
 
@@ -174,7 +174,7 @@ public class Highlights_Tab_Fragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 if (textView.getText().equals("完成")) {
-                    Log.e("tag===list.size", arr1.size() + "");
+                    L.e("tag===list.size", arr1.size() + "");
                     for (int i = arr1.size() - 1; i >= 0; i--) {
                         if (arr1.get(i).getRb()) {
                             delect(arr1.get(i));

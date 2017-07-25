@@ -7,7 +7,8 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
-import android.util.Log;
+
+import com.jiyun.pandatv.apputils.L;
 
 import java.io.IOException;
 
@@ -84,7 +85,7 @@ public class NetUtil {
         } catch (InterruptedException e) {
             result = "InterruptedException";
         } finally {
-            Log.d("----result---", "result = " + result);
+            L.d("----result---", "result = " + result);
         }
         return false;
     }

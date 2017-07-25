@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -124,12 +123,12 @@ private     String imageone;
             versionName = pi.versionName;
             //versioncode = pi.versionCode;
             versionCode = pi.versionCode;
-            Log.i("aaa", versionCode + "");
+            L.i("aaa", versionCode + "");
             if (versionName == null || versionName.length() <= 0) {
                 return "";
             }
         } catch (Exception e) {
-            Log.i("aaa", versionName);
+            L.i("aaa", versionName);
         }
         return versionName;
 
@@ -228,7 +227,7 @@ private     String imageone;
                     pd.dismiss(); //结束掉进度条对话框
                 } catch (Exception e) {
                     //下载apk失败
-                    Log.i("abc", "下载失败");
+                    L.i("abc", "下载失败");
 //                    Toast.makeText(getActivity(), "下载新版本失败", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

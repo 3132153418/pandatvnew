@@ -40,7 +40,6 @@ public class GGAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         GGliveBean.ListBean listBean = mlist.get(position);
-
         url = listBean.getUrl();
         ViewHolder viewHolder = (ViewHolder) holder;
         Glide.with(context).load(mlist.get(position).getImage()).into(viewHolder.gg_item_image);

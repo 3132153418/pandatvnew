@@ -20,7 +20,6 @@ public class SplashActivity extends BaseActivity {
     ViewPager viewPager;
     private List<ImageView> list = new ArrayList<>();
     private FragmentAdapter adapter;
-    private int[] imgs = {R.drawable.guide_one,R.drawable.guide_two,R.drawable.guide_three};
 
     @Override
     protected int getLayoutId() {

@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jiyun.pandatv.apputils.L;
 
 import java.util.Map;
 import java.util.Timer;
@@ -101,7 +102,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentVolume = progress;
-                Log.d(TAG, "currentVolume:" + currentVolume);
+                L.d(TAG, "currentVolume:" + currentVolume);
                 if (progress == 0) {
                     btn_volume.setBackgroundResource(R.drawable.volume_no);
                     systemService.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_PLAY_SOUND);
@@ -309,7 +310,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void changeUiToNormal() {
-        Log.d(TAG, "正常状态正常状态正常状态正常状态正常状态正常状态正常状态正常状态正常状态");
+        L.d(TAG, "正常状态正常状态正常状态正常状态正常状态正常状态正常状态正常状态正常状态");
         llTopContainer.setVisibility(VISIBLE);//顶部布局
         llBottomContainer.setVisibility(VISIBLE);//底部布局
         ivStart.setVisibility(VISIBLE);//播放按钮
@@ -319,7 +320,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void changeUiToShowUiPrepareing() {
-        Log.d(TAG, "准备状态准备状态准备状态准备状态准备状态准备状态准备状态准备状态准备状态");
+        L.d(TAG, "准备状态准备状态准备状态准备状态准备状态准备状态准备状态准备状态准备状态");
         llTopContainer.setVisibility(VISIBLE);
         llBottomContainer.setVisibility(VISIBLE);
         ivStart.setVisibility(VISIBLE);
@@ -328,7 +329,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void changeUiToShowUiPlaying() {
-        Log.d(TAG, "播放状态播放状态播放状态播放状态播放状态播放状态播放状态播放状态播放状态");
+        L.d(TAG, "播放状态播放状态播放状态播放状态播放状态播放状态播放状态播放状态播放状态");
         llTopContainer.setVisibility(VISIBLE);
         llBottomContainer.setVisibility(VISIBLE);
         ivStart.setVisibility(VISIBLE);
@@ -338,7 +339,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void changeUiToShowUiPause() {
-        Log.d(TAG, "暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态");
+        L.d(TAG, "暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态暂停状态");
         llTopContainer.setVisibility(VISIBLE);
         llBottomContainer.setVisibility(VISIBLE);
         ivStart.setVisibility(VISIBLE);
@@ -348,7 +349,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void changeUiToClear() {
-        Log.d(TAG, "清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui");
+        L.d(TAG, "清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui清理ui");
         llTopContainer.setVisibility(INVISIBLE);
         llBottomContainer.setVisibility(INVISIBLE);
         ivStart.setVisibility(VISIBLE);
@@ -357,7 +358,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void changeUiToError() {
-        Log.d(TAG, "异常状态异常状态异常状态异常状态异常状态异常状态异常状态异常状态异常状态");
+        L.d(TAG, "异常状态异常状态异常状态异常状态异常状态异常状态异常状态异常状态异常状态");
         llTopContainer.setVisibility(INVISIBLE);
         llBottomContainer.setVisibility(INVISIBLE);
         ivStart.setVisibility(INVISIBLE);
@@ -368,7 +369,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
 
     //更新开始播放的按钮
     private void updateIvStartState() {
-        Log.d(TAG, "开始更新播放按钮状态updateIvStartState");
+        L.d(TAG, "开始更新播放按钮状态updateIvStartState");
         if (CURRENT_STATE == CURRENT_STATE_PLAYING) {
             ivStart.setBackgroundResource(R.drawable.pla_pause);
         } else if (CURRENT_STATE == CURRENT_STATE_ERROR) {
@@ -378,7 +379,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
         }
         AudioManager systemService = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
         int streamVolume = systemService.getStreamVolume(AudioManager.STREAM_MUSIC);
-        Log.d(TAG, "streamVolume:" + streamVolume);
+        L.d(TAG, "streamVolume:" + streamVolume);
         if (streamVolume == 0) {
             btn_volume.setBackgroundResource(R.drawable.volume_no);
         } else {
@@ -410,7 +411,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
     }
 
     private void cancelTimer() {
-        Log.d(TAG, "计时器结束");
+        L.d(TAG, "计时器结束");
         if (mDismissControlViewTimer != null) {
             mDismissControlViewTimer.cancel();
             mDismissControlViewTimer = null;
@@ -456,7 +457,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
 
         int vieheight = findViewById(R.id.btn_clarity).getMeasuredHeight();
         int vieWidth = findViewById(R.id.btn_clarity).getMeasuredWidth();
-        Log.d(TAG, "高为" + vieheight + "宽为" + vieWidth);
+        L.d(TAG, "高为" + vieheight + "宽为" + vieWidth);
         mPopupQingXiWindow = new PopupWindow(view, vieWidth + vieWidth
                 * 2 / 8, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         mPopupQingXiWindow.setOutsideTouchable(true);
@@ -488,7 +489,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
             if (v.getId() == R.id.app_video_qingxidu_liuchang) {
                 isSwitchClarity = true;
                 if (currentQingXiDu == QING_XI_JISHU) {
-                    Log.d(TAG, "点击了流畅");
+                    L.d(TAG, "点击了流畅");
                     mPopupQingXiWindow.dismiss();
                     return;
                 }
@@ -507,7 +508,7 @@ public class PandaVedioPlayer extends JCVideoPlayer {
             } else if (v.getId() == R.id.app_video_qingxidu_gaoqing) {
                 isSwitchClarity = true;
                 if (currentQingXiDu == QING_XI_GAOQING) {
-                    Log.d(TAG, "点击了高清");
+                    L.d(TAG, "点击了高清");
                     mPopupQingXiWindow.dismiss();
                     return;
                 }

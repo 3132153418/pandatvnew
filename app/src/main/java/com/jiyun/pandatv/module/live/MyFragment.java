@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
-import com.jiyun.pandatv.jcvideoplayer_lib.JCVideoPlayerStandard;
 import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 import com.jiyun.pandatv.module.live.liveadapter.JianJieAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JingcaiAdapter;
@@ -97,7 +95,7 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         switch (type) {
             case live:
-                Log.d("TAG", "重新创建了直播Fragment");
+                L.d("TAG", "重新创建了直播Fragment");
                 jianjieBeanlist.clear();
                 View inflate = inflater.inflate(R.layout.live_live_pull, null);
 
@@ -265,9 +263,9 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
 
     @Override
     public void jianjie(Live_JianJieBean live_jianJieBean) {
-        Log.d("TAG", "走了简介回调");
+        L.d("TAG", "走了简介回调");
         jianjieBeanlist.addAll(live_jianJieBean.getLive());
-        Log.d("TAG","简介的长度="+jianjieBeanlist.size()+"简介的实体"+jianjieBeanlist.toString());
+        L.d("TAG","简介的长度="+jianjieBeanlist.size()+"简介的实体"+jianjieBeanlist.toString());
         jianJieAdapter = new JianJieAdapter(App.context, jianjieBeanlist);
         jianjiepull.setAdapter(jianJieAdapter);
         jianJieAdapter.notifyDataSetChanged();

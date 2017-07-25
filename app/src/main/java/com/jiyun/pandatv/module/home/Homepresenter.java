@@ -1,6 +1,4 @@
 package com.jiyun.pandatv.module.home;
-import android.util.Log;
-
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.apputils.L;
@@ -46,7 +44,7 @@ public class Homepresenter implements HomeContract.Presenter {
                 @Override
                 public void onError(int errorCode, String errorMsg) {
                     //失败的回调
-                    Log.d("LiveChinapresenter", errorMsg);
+                    L.d("LiveChinapresenter", errorMsg);
                     homeView.showMessage(errorMsg);
                 }
             });

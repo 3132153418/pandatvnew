@@ -1,13 +1,11 @@
 package com.jiyun.pandatv.module.china;
 
 
-import android.util.Log;
-
 import com.jiyun.pandatv.Application.App;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.biz.china.ChinaMoudle;
 import com.jiyun.pandatv.moudle.biz.china.ChinaMoudleIpl;
-import com.jiyun.pandatv.moudle.entity.Bean;
 import com.jiyun.pandatv.moudle.entity.GGliveBean;
 
 public class Chinapresenter implements ChinaContract.Presenter {
@@ -27,7 +25,7 @@ public class Chinapresenter implements ChinaContract.Presenter {
     //p层的网络请求
     @Override
     public void start() {
-        Log.d("LiveChinapresenter", "start");
+        L.d("LiveChinapresenter", "start");
 
 
         chinaMoudle.setGGImage(new MyHttpCallBack<GGliveBean>() {
@@ -37,7 +35,7 @@ public class Chinapresenter implements ChinaContract.Presenter {
                 App.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("LiveChinapresenter", "bean:" + bean.toString());
+                        L.d("LiveChinapresenter", "bean:" + bean.toString());
                         chinaview.setResult(bean);
 
                     }
@@ -48,7 +46,7 @@ public class Chinapresenter implements ChinaContract.Presenter {
             @Override
             public void onError(int errorCode, String errorMsg) {
             //失败的回调
-                Log.d("LiveChinapresenter", errorMsg);
+                L.d("LiveChinapresenter", errorMsg);
             }
         });
 

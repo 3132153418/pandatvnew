@@ -1,10 +1,9 @@
 package com.jiyun.pandatv.module.paper;
 
 
-import android.util.Log;
-
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.apputils.ACache;
+import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
 import com.jiyun.pandatv.moudle.biz.paper.PaperMoudle;
 import com.jiyun.pandatv.moudle.biz.paper.PaperMoudleIpl;
@@ -52,7 +51,7 @@ public class Paperpresenter implements PaperContract.PaperPresenter {
                 @Override
                 public void onError(int errorCode, String errorMsg) {
                     //失败的回调
-                    Log.d("LiveChinapresenter", errorMsg);
+                    L.d("LiveChinapresenter", errorMsg);
                 }
             });
         } else
@@ -80,7 +79,7 @@ public class Paperpresenter implements PaperContract.PaperPresenter {
                 @Override
                 public void onError(int errorCode, String errorMsg) {
                     //失败的回调
-                    Log.d("LiveChinapresenter", errorMsg);
+                    L.d("LiveChinapresenter", errorMsg);
                 }
             });
 

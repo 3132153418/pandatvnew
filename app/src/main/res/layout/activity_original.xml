@@ -3,30 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#FF4621DC">
-        <ImageView
-            android:id="@+id/original_Back_Imagetwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_left_white_36dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="原创互动"
-            android:textSize="25sp"
-            android:textColor="#fff"
-            android:layout_gravity="center"
-            android:layout_marginLeft="75dp"/>
-    </LinearLayout>
-
     <ListView
         android:id="@+id/activity_original_ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF4621DC">
+
+        <ImageView
+            android:id="@+id/original_Back_Imagetwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_left_white_36dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="75dp"
+            android:text="原创互动"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+
 </LinearLayout>

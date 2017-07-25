@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jiyun.pandatv.apputils.L;
 
 import java.util.Map;
 import java.util.Timer;
@@ -132,12 +133,12 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
             //当触摸最外层布局时
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    Log.d(TAG, "按下了最外层布局");
+                    L.d(TAG, "按下了最外层布局");
                     //按下的时候如果计时器存在就取消
                     cancelDismissControlViewTimer();
                     break;
                 case MotionEvent.ACTION_UP:
-                    Log.d(TAG, "抬起了最外层布局");
+                    L.d(TAG, "抬起了最外层布局");
                     //抬起时开启计时器
                     startDismissControlViewTimer();
                     //如果改变了进度就更新底部进度条
@@ -157,12 +158,12 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    Log.d(TAG, "按下了进度条");
+                    L.d(TAG, "按下了进度条");
                     //按下的时候如果计时器存在就取消
                     cancelDismissControlViewTimer();
                     break;
                 case MotionEvent.ACTION_UP:
-                    Log.d(TAG, "抬起了进度条");
+                    L.d(TAG, "抬起了进度条");
                     //抬起时开启计时器
                     startDismissControlViewTimer();
                     break;
@@ -178,7 +179,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
         //点击背景图i == R.id.thumb播放改为点击播放按钮播放i == R.id.start
         if (i == R.id.start) {
-            Log.d(TAG, "点击了播放按钮");
+            L.d(TAG, "点击了播放按钮");
             if (TextUtils.isEmpty(url)) {
                 Toast.makeText(getContext(), "No url", Toast.LENGTH_SHORT).show();
                 return;
@@ -191,7 +192,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
                 startDismissControlViewTimer();
             }
         } else /*if (i == R.id.surface_container) {
-            Log.d(TAG, "点击了最外层布局");
+            L.d(TAG, "点击了最外层布局");
             //当点击最外层时
             if (jc_BuriedPointStandard != null && JCMediaManager.intance().listener == this) {
                 if (IF_CURRENT_IS_FULLSCREEN) {
@@ -203,7 +204,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
             startDismissControlViewTimer();
         } else*/ if (i == R.id.back) {
 
-            Log.d(TAG, "点击了返回键");
+            L.d(TAG, "点击了返回键");
             //当点击返回键时
             backFullscreen();
         }
@@ -215,28 +216,28 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
         if (CURRENT_STATE == CURRENT_STATE_PREPAREING) {
               if (llBottomContainer.getVisibility() == VISIBLE) {
                 changeUiToClearUiPrepareing();
-                Log.d(TAG, "在      准备状态下      隐藏了播放器两边");
+                L.d(TAG, "在      准备状态下      隐藏了播放器两边");
             } else {
                 changeUiToShowUiPrepareing();
-                  Log.d(TAG, "在      准备状态下      显示了播放器两边");
+                  L.d(TAG, "在      准备状态下      显示了播放器两边");
             }
         } else if (CURRENT_STATE == CURRENT_STATE_PLAYING) {
 
             if (llBottomContainer.getVisibility() == VISIBLE) {
                 changeUiToClearUiPlaying();
-                Log.d(TAG, "在      播放状态下      隐藏了播放器两边");
+                L.d(TAG, "在      播放状态下      隐藏了播放器两边");
             } else {
                 changeUiToShowUiPlaying();
-                Log.d(TAG, "在      播放状态下      显示了播放器两边");
+                L.d(TAG, "在      播放状态下      显示了播放器两边");
             }
         } else if (CURRENT_STATE == CURRENT_STATE_PAUSE) {
 
             if (llBottomContainer.getVisibility() == VISIBLE) {
                 changeUiToClearUiPause();
-                Log.d(TAG, "在      暂停状态下      隐藏了播放器两边");
+                L.d(TAG, "在      暂停状态下      隐藏了播放器两边");
             } else {
                 changeUiToShowUiPause();
-                Log.d(TAG, "在      暂停状态下      显示了播放器两边");
+                L.d(TAG, "在      暂停状态下      显示了播放器两边");
             }
         }
     }
@@ -244,7 +245,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
     //调用父类方法设置进度条时间
     @Override
     protected void setProgressAndTime(int progress, int secProgress, int currentTime, int totalTime) {
-        Log.d(TAG, "设置了进度条时间");
+        L.d(TAG, "设置了进度条时间");
         super.setProgressAndTime(progress, secProgress, currentTime, totalTime);
         if (progress != 0) pbBottom.setProgress(progress);
         if (secProgress != 0) pbBottom.setSecondaryProgress(secProgress);
@@ -252,7 +253,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
     @Override
     protected void resetProgressAndTime() {
-        Log.d(TAG, "重置了进度条时间");
+        L.d(TAG, "重置了进度条时间");
         super.resetProgressAndTime();
         pbBottom.setProgress(0);
         pbBottom.setSecondaryProgress(0);
@@ -349,7 +350,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
     //更新开始播放的按钮
     private void updateIvStartState() {
-        Log.d(TAG, "开始更新播放按钮状态");
+        L.d(TAG, "开始更新播放按钮状态");
         if (CURRENT_STATE == CURRENT_STATE_PLAYING) {
             ivStart.setImageResource(R.drawable.jc_click_pause_selector);
         } else if (CURRENT_STATE == CURRENT_STATE_ERROR) {
@@ -386,7 +387,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
     }
 
     private void cancelDismissControlViewTimer() {
-        Log.d(TAG, "计时器结束");
+        L.d(TAG, "计时器结束");
         if (mDismissControlViewTimer != null) {
             mDismissControlViewTimer.cancel();
             mDismissControlViewTimer = null;

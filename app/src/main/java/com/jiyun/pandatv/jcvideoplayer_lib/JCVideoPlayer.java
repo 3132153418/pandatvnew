@@ -6,7 +6,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -24,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.pandatv.JCFullScreenActivity;
+import com.jiyun.pandatv.apputils.L;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -472,16 +472,16 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
   private void setDisplayCaseFailse() {
     try {
-      Log.d("JC", "JCMediaManager.intance().mediaPlayer"+(JCMediaManager.intance().mediaPlayer == null)+"");
-      Log.d("JC", "surfaceHolder"+(surfaceHolder == null)+"");
+      L.d("JC", "JCMediaManager.intance().mediaPlayer"+(JCMediaManager.intance().mediaPlayer == null)+"");
+      L.d("JC", "surfaceHolder"+(surfaceHolder == null)+"");
       JCMediaManager.intance().mediaPlayer.setDisplay(surfaceHolder);
     } catch (IllegalArgumentException e) {
-      Log.i(TAG, "recreate surfaceview from IllegalArgumentException");
+      L.i(TAG, "recreate surfaceview from IllegalArgumentException");
       FalseSetDisPlay = true;
 //      addSurfaceView();
       e.printStackTrace();
     } catch (IllegalStateException e1) {
-      Log.i(TAG, "recreate surfaceview from IllegalStateException");
+      L.i(TAG, "recreate surfaceview from IllegalStateException");
       FalseSetDisPlay = true;
 //      addSurfaceView();
       e1.printStackTrace();
@@ -659,7 +659,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
   public static void releaseAllVideos() {
     if (IF_RELEASE_WHEN_ON_PAUSE) {
-      Log.d(TAG, "IF_RELEASE_WHEN_ON_PAUSE:" + IF_RELEASE_WHEN_ON_PAUSE);
+      L.d(TAG, "IF_RELEASE_WHEN_ON_PAUSE:" + IF_RELEASE_WHEN_ON_PAUSE);
       JCMediaManager.intance().mediaPlayer.release();
       if (JCMediaManager.intance().listener != null) {
         JCMediaManager.intance().listener.onCompletion();

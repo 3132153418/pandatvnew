@@ -1,8 +1,6 @@
 package com.jiyun.pandatv.module.live;
 
 
-import android.util.Log;
-
 import com.jiyun.pandatv.Application.App;
 import com.jiyun.pandatv.apputils.ACache;
 import com.jiyun.pandatv.apputils.L;
@@ -59,7 +57,7 @@ public class Livepresenter implements LiveContract.Presenter {
                 }
             });
         } else {
-            Log.d("TAG", "拿到了缓存数据");
+            L.d("TAG", "拿到了缓存数据");
             liveview.showLiveFragment(live_moreViewBean);
         }
     }

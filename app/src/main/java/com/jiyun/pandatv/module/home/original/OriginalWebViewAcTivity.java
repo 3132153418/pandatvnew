@@ -5,17 +5,23 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.pandatv.R;
+import com.jiyun.pandatv.module.china.GGactivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.jiyun.pandatv.R.id.webview_collect_gg;
 
 /**
  * Created by lenovo on 2017/7/21.
@@ -30,6 +36,7 @@ public class OriginalWebViewAcTivity extends AppCompatActivity {
     @BindView(R.id.original_share)
     ImageView originalShare;
     private ProgressDialog dialog;
+    private boolean isCollect = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +84,26 @@ public class OriginalWebViewAcTivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.original_shoucang:
+                if (isCollect) {
+                    originalShoucang.setBackgroundResource(R.drawable.collect_no);
+                    isCollect = false;
+                    Toast toast = Toast.makeText(OriginalWebViewAcTivity.this, "恭喜您收藏成功啦", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    View inflate = View.inflate(OriginalWebViewAcTivity.this, com.jiyun.pandatv.jcvideoplayer_lib.R.layout.item_toast, null);
+                    ((TextView) inflate.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.tv_toast)).setText("已取消收藏");
+                    toast.setView(inflate);
+                    toast.show();
+                }else {
+                    originalShoucang.setBackgroundResource(R.drawable.collect_yes);
+                    isCollect = true;
+                    Toast toast = Toast.makeText(OriginalWebViewAcTivity.this, "恭喜您收藏成功啦", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    View inflate = View.inflate(OriginalWebViewAcTivity.this, com.jiyun.pandatv.jcvideoplayer_lib.R.layout.item_toast, null);
+                    ((TextView) inflate.findViewById(com.jiyun.pandatv.jcvideoplayer_lib.R.id.tv_toast)).setText("已添加，请到[我的收藏]中查看");
+                    toast.setView(inflate);
+                    toast.show();
+                }
+                
                 break;
             case R.id.original_share:
                 break;

@@ -516,18 +516,21 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
     @Override
     public void jingcaituijianback(int position) {
         List<FirstBean.DataBean.AreaBean.ListscrollBean> listscroll = list.get(0).getData().getArea().getListscroll();
-        String pid = listscroll.get(0).getPid();
+        final FirstBean.DataBean.AreaBean.ListscrollBean listscrollBean = listscroll.get(0);
+        String pid = listscrollBean.getPid();
         L.d("推荐", pid.toString());
         presenter.homevideo(pid, new MyHttpCallBack<Video_home_TuiJianBean>() {
             @Override
             public void onSuccess(Video_home_TuiJianBean video_home_tuiJianBean) {
                 L.d("首页推荐一刻的bean值", video_home_tuiJianBean.getTitle().toString());
+                String image = listscrollBean.getImage();
+                String time = video_home_tuiJianBean.getF_pgmtime();
                 final List<Video_home_TuiJianBean.VideoBean.Chapters4Bean> chapters4 = video_home_tuiJianBean.getVideo().getChapters4();
                 String gaoqing = chapters4.get(0).getUrl();
                 L.d("eeeee", gaoqing.toString());
                 String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();
                 String title = video_home_tuiJianBean.getTitle();
-                JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
+                JCFullScreenActivity.toActivity(image,time,getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
 
             }
 
@@ -543,15 +546,19 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
     @Override
     public void xiongmaoguanchaback(int position) {
         List<FirstBean.DataBean.PandaeyeBean.ItemsBean> items = list.get(0).getData().getPandaeye().getItems();
-        String pid = items.get(0).getPid();
+        FirstBean.DataBean.PandaeyeBean.ItemsBean itemsBean = items.get(0);
+        String pid = itemsBean.getPid();
         presenter.homevideo(pid, new MyHttpCallBack<Video_home_TuiJianBean>() {
             @Override
             public void onSuccess(Video_home_TuiJianBean video_home_tuiJianBean) {
+                String time = video_home_tuiJianBean.getF_pgmtime();
+                FirstBean.DataBean.PandaliveBean.ListBean listBean = list.get(0).getData().getPandalive().getList().get(0);
+                String image = listBean.getImage();
                 final List<Video_home_TuiJianBean.VideoBean.Chapters4Bean> chapters4 = video_home_tuiJianBean.getVideo().getChapters4();
                 String gaoqing = chapters4.get(0).getUrl();
                 String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();
                 String title = video_home_tuiJianBean.getTitle();
-                JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
+                JCFullScreenActivity.toActivity(image,time,getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
             }
 
             @Override
@@ -565,15 +572,18 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Vie
     @Override
     public void xiongmaoguanchaback2(int position) {
         List<FirstBean.DataBean.PandaeyeBean.ItemsBean> items = list.get(0).getData().getPandaeye().getItems();
-        String pid = items.get(0).getPid();
+        FirstBean.DataBean.PandaeyeBean.ItemsBean itemsBean = items.get(0);
+        String pid = itemsBean.getPid();
         presenter.homevideo(pid, new MyHttpCallBack<Video_home_TuiJianBean>() {
             @Override
             public void onSuccess(Video_home_TuiJianBean video_home_tuiJianBean) {
+                String image = list.get(0).getData().getPandalive().getList().get(0).getImage();
+                String time = video_home_tuiJianBean.getF_pgmtime();
                 final List<Video_home_TuiJianBean.VideoBean.Chapters4Bean> chapters4 = video_home_tuiJianBean.getVideo().getChapters4();
                 String gaoqing = chapters4.get(0).getUrl();
                 String liuchang = video_home_tuiJianBean.getVideo().getChapters().get(0).getUrl();
                 String title = video_home_tuiJianBean.getTitle();
-                JCFullScreenActivity.toActivity(getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
+                JCFullScreenActivity.toActivity(image,time,getContext(), gaoqing, liuchang, null, PandaVedioPlayer.class, title);
             }
 
             @Override

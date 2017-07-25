@@ -19,6 +19,7 @@ import com.jiyun.pandatv.apputils.L;
 import com.jiyun.pandatv.apputils.ShowPopuUtils;
 import com.jiyun.pandatv.base.BaseFragment;
 import com.jiyun.pandatv.internet.callback.MyHttpCallBack;
+import com.jiyun.pandatv.jcvideoplayer_lib.JCVideoPlayerStandard;
 import com.jiyun.pandatv.jcvideoplayer_lib.PandaVedioPlayer;
 import com.jiyun.pandatv.module.live.liveadapter.JianJieAdapter;
 import com.jiyun.pandatv.module.live.liveadapter.JingcaiAdapter;
@@ -99,10 +100,10 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
                 Log.d("TAG", "重新创建了直播Fragment");
                 jianjieBeanlist.clear();
                 View inflate = inflater.inflate(R.layout.live_live_pull, null);
+
                 jianjiepull = (RecyclerView) inflate.findViewById(R.id.jianjie);
                 presenter.jianjieData();
                 jianjieManager();
-
                 livetabLayout = (TabLayout) inflate.findViewById(R.id.livetablayout);
                 liveviewPager = (NoScrollViewPager) inflate.findViewById(R.id.liveviewpager);
                 fragment_list = new ArrayList<>();
@@ -299,13 +300,15 @@ public class MyFragment extends BaseFragment implements LiveContract.View, Jingc
             @Override
             public void onSuccess(VideoTwoBean videoTwoBean) {
                 L.d("精彩一课视频", videoBean.getLen().toString());
+                String img = videoBean.getImg();
+                String time = videoTwoBean.getF_pgmtime();
                 List<VideoTwoBean.VideoBean.ChaptersBean> chapters = videoTwoBean.getVideo().getChapters();//流畅
                 String liuchangurl = chapters.get(0).getUrl();
                 List<VideoTwoBean.VideoBean.Chapters4Bean> chapters4 = videoTwoBean.getVideo().getChapters4();//高清
                 String gaoqingurl = chapters4.get(0).getUrl();
                 String title = videoTwoBean.getTitle();
                 HistoryUtils.getInstance(getActivity()).instert(title,img,len);
-                JCFullScreenActivity.toActivity(getContext(), gaoqingurl, liuchangurl, null, PandaVedioPlayer.class, title);
+                JCFullScreenActivity.toActivity(img,time,getContext(), gaoqingurl, liuchangurl, null, PandaVedioPlayer.class, title);
             }
 
             @Override

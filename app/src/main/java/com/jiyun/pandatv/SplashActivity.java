@@ -1,6 +1,7 @@
 package com.jiyun.pandatv;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class SplashActivity extends BaseActivity {
     ViewPager viewPager;
     private List<ImageView> list = new ArrayList<>();
     private FragmentAdapter adapter;
+    private int[] imgs = {R.drawable.guide_one,R.drawable.guide_two,R.drawable.guide_three};
 
     @Override
     protected int getLayoutId() {
@@ -53,7 +55,10 @@ public class SplashActivity extends BaseActivity {
         img3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
+                data.edit().putString("have", "1").commit();
                 startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                finish();
             }
         });
 

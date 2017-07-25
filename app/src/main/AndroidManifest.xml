@@ -56,9 +56,10 @@
 
         <activity android:name=".module.china.GGactivity"/>
         <activity android:name=".module.home.AboutActivity"/>
-        <activity android:name=".module.home.centre.PersonhelpActivity"/>
         <activity android:name=".module.home.centre.GeRenXinXiActivity"></activity>
         <activity android:name=".module.home.centre.XiuGaiNameActivity"></activity>
+        <activity android:name=".module.home.centre.PersonhelpActivity"></activity>
+        <activity android:name=".module.home.centre.shoucang.ShouCangActivity"></activity>
         <activity android:name=".LogoActivity">
 
             <intent-filter>

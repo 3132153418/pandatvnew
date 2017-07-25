@@ -1,8 +1,12 @@
 package com.jiyun.pandatv;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
@@ -64,7 +68,6 @@ public class MainActivity extends BaseActivity {
         App.context = this;
 //        String s = ACache.get(App.context).CacheSize();
 //        Log.d("TAG", "缓存大小为" + s);
-
 
 
         homeFragment = new HomeFragment();
@@ -156,5 +159,28 @@ public class MainActivity extends BaseActivity {
         if (liveChinaFragment != null) {
             getSupportFragmentManager().beginTransaction().hide(liveChinaFragment).commit();
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(App.context);
+            builder.setMessage("确认退出吗？");
+            builder.setTitle("提示");
+            builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    MainActivity.this.finish();
+                }
+            });
+            builder.create().show();
+        }
+        return false;
     }
 }

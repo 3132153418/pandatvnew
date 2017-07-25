@@ -20,6 +20,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jiyun.com.day07_greendao.VideoCollectBean;
+import com.jiyun.pandatv.apputils.VideoCollectUtils;
 import com.jiyun.pandatv.jcvideoplayer_lib.JCMediaManager;
 import com.jiyun.pandatv.jcvideoplayer_lib.JCVideoPlayer;
 import com.jiyun.pandatv.jcvideoplayer_lib.NetUtil;
@@ -33,6 +35,7 @@ import com.umeng.socialize.media.UMWeb;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.Switchlistener {
@@ -49,8 +52,11 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   PandaVedioPlayer pandaVedioPlayer;
   private AudioManager audioManager;
   private MyVolumeReceiver mVolumeReceiver;
-
-  //从正常状态下进入视频播放
+  public static String IMAGE;
+  public static String TIME;
+    private VideoCollectBean bean;
+private  boolean ym=false;
+    //从正常状态下进入视频播放
   public static void toActivityFromNormal(Context context, int state, String GAOQINGURL, Class videoPlayClass, Object... obj) {
     CURRENT_STATE = state;
     DIRECT_FULLSCREEN = false;
@@ -62,7 +68,9 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
   }
 
   //直接开启全屏Activity播放视频
-  public static void toActivity(Context context, String gaoqingurl,String liuchangurl, Map<String, String> headData, Class videoPlayClass, Object... obj) {
+  public static void toActivity(String image,String time,Context context, String gaoqingurl,String liuchangurl, Map<String, String> headData, Class videoPlayClass, Object... obj) {
+    IMAGE = image;
+    TIME = time;
     if (headData!=null) {
       mapHeadData = new HashMap<>();
       mapHeadData.clear();
@@ -289,13 +297,48 @@ public class JCFullScreenActivity extends Activity implements PandaVedioPlayer.S
 
   @Override
   public void addToCollect() {
-
+      VideoCollectUtils videoCollectUtils = new VideoCollectUtils(getApplicationContext());
+      List<VideoCollectBean> selector = videoCollectUtils.selector();
+      if (selector.size()==0) {
+          bean = new VideoCollectBean();
+          bean.setImg(IMAGE);
+          bean.setTitle(OBJECTS[0].toString());
+          bean.setTime(TIME);
+          bean.setUrl(GAOQINGURL);
+          bean.setUrltwo(LIUCHANGURL);
+          videoCollectUtils.add(bean);
+          Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show();
+      }else{
+          for (VideoCollectBean videoCollectBean : selector) {
+              if(videoCollectBean.getTitle().equals(OBJECTS[0].toString())){
+                  ym=true;
+              }
+          }
+          if(ym){
+              ym=false;
+              Toast.makeText(this, "已存在", Toast.LENGTH_SHORT).show();
+          }else {
+              bean = new VideoCollectBean();
+              bean.setImg(IMAGE);
+              bean.setTitle(OBJECTS[0].toString());
+              bean.setTime(TIME);
+              bean.setUrl(GAOQINGURL);
+              bean.setUrltwo(LIUCHANGURL);
+              videoCollectUtils.add(bean);
+              Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show();
+              ym=true;
+          }
+      }
   }
 
   @Override
   public void removeCollect() {
-
+      VideoCollectUtils videoCollectUtils = new VideoCollectUtils(getApplicationContext());
+      videoCollectUtils.remove(bean);
+      Toast.makeText(this, "取消收藏", Toast.LENGTH_SHORT).show();
   }
+
+
 
   private class MyVolumeReceiver extends BroadcastReceiver {
     @Override
